@@ -19,13 +19,11 @@
   color: #666;
 }
 .gex-header-container .gex-filter-mask{
-  cursor: pointer;
   position: absolute;
   right: 0px;
   top: 0px;
   bottom: 0px;
   z-index: 1;
-  cursor: pointer;
   background-color: #fff;
   width: 22px;
 }
@@ -38,6 +36,7 @@
   color: #aaa;
   margin-left: 4px;
   margin-top: 9px;
+  cursor: pointer;
 }
 .gex-header .gex-filter-btn.gex-filter-btn-applied{
   display: block !important;
@@ -130,3 +129,4 @@ input[type=text]::-ms-clear {
     animation-name: tool-tip-a;
     animation-duration: 4s;
 }
+
