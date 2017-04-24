@@ -18,13 +18,12 @@
             	</th>
       				<th style="width: 100px;" class="gex-header">
                  <div class="gex-header-container">
-                   <div class="gex-header-label" title="Some Tooltip (Sorted Ascending)">
+                   <div class="gex-header-label" title="Some simple tooltipt &#013; tooltip">
                       <a class="sorted">Audience Long Text more and more and more and more and more<span class="caret"></span></a>
                    </div>
                    <div class="gex-filter-mask">
                      <span class="glyphicon glyphicon-filter gex-filter-btn gex-filter-btn-applied"></span>
                    </div>
-
                  </div>
                  <div class="gex-list" style="display: block" style="width: 300px">
                    <ul class="gex-choice-block gex-list-block">
@@ -75,11 +74,14 @@
       	</table>
       </div>
     </div>
-    <script src="../js/jquery.js" charset="utf-8"></script>
     <script type="text/javascript">
-      $('.gex-filter-mask').on('click', function() {
+
+    var els = document.getElementsByClassName('gex-filter-btn');
+    for (var i = 0; i < els.length; i++) {
+      els[i].addEventListener('click', function(){
         alert('clicked');
       });
+    }
     </script>
   </body>
 </html>
