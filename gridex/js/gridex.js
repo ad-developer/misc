@@ -294,12 +294,23 @@
 
         _resetDirection: function (context, field, el) {
             var that = this,
-                newEl = $('<span />');
+                newEl = $('<span />'),
+                srtD = '(Sorted descending)',
+                srtA = '(Sorted ascending)',
+                br = '&#013;',
+                tooltip;
 
             // Remove all carets
             $(this._o.con)
               .find('.caret')
               .remove();
+
+            // Reset all tooltips
+            $(this._o.con)
+                .find('gex-header-label').each(function(){
+                  tooltip = $(this).attr('title');
+                  tooltip = tooltip()
+                });
 
             // Add caret to selected
             // header
@@ -324,17 +335,25 @@
         _createHeaderCell: function (option, btn, sort, filter) {
             var that = this,
         				th = $('<th/>').addClass('gex-header'),
-              	link,
+                hCon = $('<div/>').addClass('gex-header-container'),
+                hLabel = $('<div/>').addClass('gex-header-label'),
+                hfMask = $('<div/>').addClass('gex-filter-mask'),
+                br = '&#013;',
+                tooltip,
+                link,
         				ar;
             if (option.width) {
                 th.width(option.width);
             }
+            tooltip = option.header;
             if (sort) {
                 +function (me, field, header) {
+
                     link = $('<a/>').click(function () {
                         that._resetDirection.call(that, me, field, this);
                         that.bind();
                     }).text(header);
+
                 }(this, option.name, option.header);
 
                 if (option.name === that._sort.field) {
@@ -343,12 +362,15 @@
                         ar.addClass('up');
                     }
                     link.append(ar);
+                    tooltip += br + '(Sorted descending)'
                 }
-                th.append(link);
+                hLabel.append(link);
 
             } else if (!btn) {
-                th.text(option.header);
+                hLabel.text(option.header);
             }
+
+            hLabel.attr('title', tooltip);
 
             if(filter){
               th.append(
