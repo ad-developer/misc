@@ -16,13 +16,13 @@
   color: #000;
 }
 .gex-header-label .sorted{
-  color: #666;
+  color: #f44330;
 }
 .gex-header-container .gex-filter-mask{
   position: absolute;
   right: 0px;
   top: 0px;
-  bottom: 0px;
+  bottom: 1px;
   z-index: 1;
   background-color: #fff;
   width: 22px;
@@ -34,8 +34,8 @@
 .gex-header .gex-filter-btn{
   display: none;
   color: #aaa;
-  margin-left: 4px;
-  margin-top: 9px;
+  margin-right: 5px;
+  margin-top: 8px;
   cursor: pointer;
 }
 .gex-header .gex-filter-btn.gex-filter-btn-applied{
@@ -51,8 +51,8 @@
   position: absolute;
   background-color: #fff;
   border: 1px solid #ccc;
-  margin-top: 0px;
-  margin-left: -4px;
+  margin-top: -1px;
+  margin-left: 1px;
   width: 254px;
   z-index: 10;
 }
@@ -129,4 +129,3 @@ input[type=text]::-ms-clear {
     animation-name: tool-tip-a;
     animation-duration: 4s;
 }
-
