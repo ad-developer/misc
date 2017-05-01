@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * pager.js
  * Simple pager markup is based on Twitter Bootstrap
  */
@@ -71,16 +71,15 @@
 
 	Pager.prototype = {
 		_par: {},
-		_id: 'a' + $.guid++,
+		_id: '#a' + $.guid++,
 		_current: -1,
 		_built: false,
 		_build: function() {
 			var
 				that = this;
-			$(that._con).append('<ul class="' + that._cl + '" id="' + that._id + '"></ul>');
+			$(that._con).append('<ul class="' + that._cl + '" id="' + that._id.substring(1, that._id.length) + '"></ul>');
 			// We capture all events at one location and
 			// pass it to callback method
-			that._id = '#' + that._id;
 			$(that._id).click(function(ev){
 				var
 					sel = parseInt($(ev.target).attr('data'));
@@ -91,6 +90,7 @@
 			this._built = true;
 		},
 		_remove: function() {
+      $(this._con).empty();
 			this._built = false
 		},
 		_range: function (pageCount) {
