@@ -1,80 +1,112 @@
 /**
- * Copyright 2017 A.D.
- *
- * file: gridex.js
- * dependency: pager.js
- * gridex.css
- *
- * markup:
- * <div>
- * 		<table class="table table-striped table-hover">
- *			<thead>
- *				<tr>
- *					<th></th>
- *				</tr>
- *			</thead>
- *			<tbody>
- *				<tr>
- *					<td></td>
- *				<tr>
- *			</tbody>
- *		<>
- * CSS:
- * grid uses twitter Bootstrap classs
- * in addition gridex.css file must be included
- *
- * rpc: ../request_controller?
- * rpc_return: {}
- * options
- *{
- *  source: object.getData(par, callback)
- *      par - can be any object but must include the following fields if
- *      paging is engaged {
- *                          page - int
- *                          pageSize - int
- *                        }
- *      and if sorting is engaged
- *                        {
- *                          sortField -  string
- *                          sortDirection -  string
- *                        }
- *	con: 'con', r container id
- *	fields: [
- *	         { name:'Field_Name',
- 			   header:'Header Name',
- 			   width: 200,
- 			   edit: true,
- 			   sort: {
- 			   			default: true, - default can be omitted,
- 			   			direction: [asc|desc] - direction can be omitted
-            },
-          filter: {
-            server: [true|false]
-         },
- 			   custom: function(record){
-					return 'html';
- 			   }
- 			 },
-			 ...
- 			], r update is predefined fields that will add the button to the grid
- *  sort: {
- 			field: 'field_name',
-			direction: [asc|desc]
- 		   },
- *	pager: {pageSise: 10, pagerSize: 2, [position: 'center | left']}, by default
- *  pager position is right and does not need to be set
- *	key: 'id',	identity field r
- *  sort: {field: 'filedName', dirction: [asc|desc]}
- *  befoBind: function(data){ return true} fired before data bind, if return false then binding process is cancelled.
- *	selectCallBack: function(record){}, selected row callback, return selected row record, n
- *	updateCallBack: function(record){}  update row callback, return selected row record n
- *  proc: function(startStop) {} indicated where process of loading data started or stopped.
- *  ===========================================================================================
- *	rpc return {gd:[{Name: 'Alex', Address:'Some Address'},..., {...}], total: 200}
- *  ===========================================================================================
+  Copyright 2017 A.D.
+
+  FILE:
+    gridex.js
+
+  DEPENDENCY:
+    jquery.js
+		pager.js
+		gridex.css
+
+  USAGE:
+    1. set container
+      <div id="con"></div> - container on the page.
+    2. set datasource
+      var DataSource = function(){};
+      DataSource.prototype.getData = function(par, callback, caller){
+        var returnObject = {}; //some data
+        callback(returnObject);
+      }
+    3. init the grid
+      var grid = jQuery('#con').grid({paremeters-object});
+    4. bind grid to the data
+      grid.bind();
+
+  OPTIONS OBJECT:
+    {
+      key: 'id',	identity field (must be unique for each record)
+      source: datasource-object
+      con: 'con', host container id
+      fields: [
+                {
+                  name:'Field_Name',
+                  header:'Header Name',
+                  [width]: 200,
+                  [edit]: true, (will add button to the grid)
+                  [sort]: true|false|{
+                    [default]: true,
+                    [direction]: asc|desc
+                    },
+                  [filter]: true|false|{
+                      server: true|false
+                  },
+                  [custom]: function(record){
+                    return 'text or html markup';
+                  }
+                },
+          ...
+      ]
+      [pager]: {pageSise: 10, pagerSize: 2, [position]: 'center| left' }
+        by default pager position is right and does not need to be set
+      [sort]: {field: 'filedName', [dirction]: 'asc'|'desc'} name of the field that will be sorted on the first load of the grid
+      [befoBind]: function(data){ return true|false} triggered before data bound... return true if you want to abort the binding process
+      [selectCallBack]: function(key, record){}, triggered on row selected... return key and selected row record
+      [updateCallBack]: function(key, record){}  triggered on row updated... return updated row record
+      [proc]: function(startStop) {} indicate on data binding start/stop... can be used to start/stop progress indicator
+      [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
+    }
+  PUBLIC INSTANCE METHODS:
+    bind(caller)
+      method binds data to the grid
+      parameters:
+        'caller' can be any object or variable to pass allong to the
+          the getData(), datasource's method (see datasource object definition)
+          used values:
+            1. 'filter' - is sent when filtering action occured
+            2. 'sort'   - is sent when filtering sorting occured
+            3. 'pager'  - is sent when paging action occured
+
+    setPagerIndex(n)
+      method used to reset pager index... it can be used in case if some external conditions were applied to the
+      dataset like filtering... ets... and pager can be out of boundaries of the new dataset
+      parameters:
+        n - pager index
+
+    DATASOURCE OBJECT:
+      {
+        getData: function(par, callback, caller){
+          ...
+          var returnObject = {};
+          callback(returnObject);
+        }
+      }
+      'par' will be passed as an object and will include the following fields:
+        if paging is engaged:
+          page: - int (page index)
+          pageSize: - int (page size)
+
+        if sorting is engaged:
+          sortField -  string (field name)
+          sortDirection -  string (sorting direction asc|desc)
+
+        if filtering is engaged
+          filter: { field-name:['item-one',...,n],...,n:[...]}
+
+      'callback' callback method
+
+      callback's 'returnObject' must be in the following form:
+        {
+          gd:[{Name: 'Alex', Address:'Some Address'},..., {...}],
+          total: 200,
+          ft:[field:['item-one','item-two',...,n],..., n:[...]]
+        }
+          'ft' is optional field but must be supplied if filtering set up as 'server' (refer to filter option)
+      'caller' - reffer to bind method
+
  */
 
-(function () {
++function () {
     var
 		Grid = window.Grid = function (options) {
 		    var that = this;
@@ -95,7 +127,7 @@
 
     Grid.prototype = {
         _progress: false,
-        _action: function (show) {},
+        _action: function (show) { },
         _roleUpdate: 'edit',
         _roleDelete: 'delete',
         _roleConfirm: 'confirm',
@@ -106,9 +138,11 @@
         _gridContent: null,
         _filterOpt: {},
         _selFiltOpt: {},
+        _filterEmptyVal: ' ',
+        _pager: null,
         _getRecord: function (key) {
 
-            if ($.type(key) === 'number') {
+            if (!isNaN(key)) {
                 key = parseInt(key);
             }
 
@@ -142,175 +176,192 @@
         },
 
         // filter options blcok of methods
-        _groupBy: function(column){
-          var flags = [],
-              output = [],
-              el,
-              i = 0,
-              array = this._data.gd;
-          if(array){
-            for(;el = array[i++];) {
-                el = el[column];
-                if( flags[el]){
-                  continue;
+        _groupBy: function (column) {
+            var flags = [],
+                output = [],
+                el,
+                i = 0,
+                array = this._data.gd;
+            if (array) {
+                for (; el = array[i++];) {
+                    el = el[column];
+                    if (flags[el]) {
+                        continue;
+                    }
+                    flags[el] = true;
+                    output.push(el);
                 }
-                flags[el] = true;
-                output.push(el);
             }
-          }
-          return output;
+            return output;
         },
-        _selectFilterOption: function(el, e, all){
-          // TODO: this method needs to be optimized
-          var me = $(el),
-              val = me.attr('ad-value'),
-              fieldName = me.parent().attr('id').split('_')[2],
-              field = this._filterOpt[fieldName],
-              chbx = me.children('input'),
-              target = $(e.target),
-              ul = me.closest('ul').find('input');
+        _selectFilterOption: function (el, e, all) {
+            // TODO: this method needs to be optimized
+            var me = $(el),
+                val = me.attr('ad-value'),
+                fieldName = me.parent().attr('id').split('_')[2],
+                field = this._filterOpt[fieldName],
+                chbx = me.children('input'),
+                target = $(e.target),
+                ul = me.closest('ul').find('input');
 
-          if(target.is('li') || target.is('span')){
-            if(chbx.is(':checked')){
-              field.s--;
-              all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
-              all && ul.prop('checked', false) && (field.s = 0);
-              chbx.prop('checked', false);
-            } else {
-              field.s++;
-              all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
-              all && ul.prop('checked', true) && (field.s = field.t);
-              chbx.prop('checked', true);
-           }
-          } else {
-            if(chbx.is(':checked')){
-              field.s--;
-              all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
-              all && ul.prop('checked', false) && (field.s = 0);
-            } else {
-              field.s++;
-              all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
-              all && ul.prop('checked', true) && (field.s = field.t);
-            }
-          }
-          if(!all){
-              all = true;
-              if(field.s < field.t){
-                all = false;
-              }
-              me.closest('ul')
-                .find('[dt-all]')
-                .find('input')
-                .prop('checked', all);
-          }
-          //gex-filter-btn-applied
-          // setting ul to the filter btn
-          ul = me.closest('th').find('.gex-filter-btn');
-          if(field.s > 0){
-            ul.addClass('gex-filter-btn-applied');
-          } else {
-            ul.removeClass('gex-filter-btn-applied');
-          }
-
-          this.bind();
-        },
-        _addRemSelOpt: function(fieldName, par, add){
-          var index = 0,
-              el;
-          if(Array.isArray(par)){
-              for (;el = par[index++];) {
-                this._addRemSelOpt(fieldName, el, add);
-              }
-          } else {
-
-            el = this._selFiltOpt[fieldName];
-            if(el){
-              index = el.indexOf(par);
-            } else {
-              el = this._selFiltOpt[fieldName] = [];
-              index = -1;
-            }
-
-            if(add){
-              if(index <= -1){
-                el.push(par);
-              }
-            } else {
-              if(index > -1){
-                el.splice(index, 1);
-              }
-            }
-          }
-        },
-        _addFilterOptions: function(){
-          var $this = this,
-              e,
-              list,
-              con,
-              i = 0,
-              j;
-          for (; e = this._o.fields[i]; i++) {
-              if(e.filter){
-                if(e.filter.server){
-                  list = this._data.ft[e.name];
+            if (target.is('li') || target.is('span')) {
+                if (chbx.is(':checked')) {
+                    field.s--;
+                    all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
+                    all && ul.prop('checked', false) && (field.s = 0);
+                    chbx.prop('checked', false);
                 } else {
-                  list = this._groupBy(e.name);
+                    field.s++;
+                    all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
+                    all && ul.prop('checked', true) && (field.s = field.t);
+                    chbx.prop('checked', true);
                 }
-                if(list && list.length){
-                    // set initial state of filter options
-                    $this._filterOpt[e.name] = {};
-                    $this._filterOpt[e.name].t = list.length
-                    $this._filterOpt[e.name].s = 0
-                    $this._filterOpt[e.name].l = list;
-                    con = $('#col_ch_' + e.name);
-                    con
-                    .empty()
-                    .append(
-                      $('<li/>')
-                        .attr('dt-all',true)
-                        .append($('<input/>').attr('type','checkbox'))
-                        .append($('<span/>').text('All'))
-                        .on('click', function(e){
-                           $this._selectFilterOption(this, event, true);
-          						   })
-                    );
-                    j = 0;
-                    for (;e = list[j++];) {
-                      con
-                      .append(
-                        $('<li/>')
-                          .attr('ad-value', e)
-                          .append($('<input/>').attr('type','checkbox'))
-                          .append($('<span/>').text(e))
-                          .on('click', function(){
-                             $this._selectFilterOption(this, event, false);
-                          })
-                      );
+            } else {
+                if (chbx.is(':checked')) {
+                    field.s--;
+                    all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
+                    all && ul.prop('checked', false) && (field.s = 0);
+                } else {
+                    field.s++;
+                    all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
+                    all && ul.prop('checked', true) && (field.s = field.t);
+                }
+            }
+            if (!all) {
+                all = true;
+                if (field.s < field.t) {
+                    all = false;
+                }
+                me.closest('ul')
+                  .find('[dt-all]')
+                  .find('input')
+                  .prop('checked', all);
+            }
+            //gex-filter-btn-applied
+            // setting ul to the filter btn
+            ul = me.closest('th').find('.gex-filter-btn');
+            if (field.s > 0) {
+                ul.addClass('gex-filter-btn-applied');
+            } else {
+                ul.removeClass('gex-filter-btn-applied');
+            }
+
+            this.bind('filter');
+        },
+        _addRemSelOpt: function (fieldName, par, add) {
+            var index = 0,
+                el;
+            if (Array.isArray(par)) {
+                for (; index < par.length; index++) {
+                    el = par[index];
+                    this._addRemSelOpt(fieldName, el, add);
+                }
+            } else {
+
+                el = this._selFiltOpt[fieldName];
+                if (el) {
+                    index = el.indexOf(par);
+                } else {
+                    el = this._selFiltOpt[fieldName] = [];
+                    index = -1;
+                }
+
+                if (add) {
+                    if (index <= -1) {
+                        el.push(par);
+                    }
+                } else {
+                    if (index > -1) {
+                        el.splice(index, 1);
                     }
                 }
-              }
-          }
+            }
         },
-
+        _addFilterOptions: function () {
+            var $this = this,
+                e,
+                val,
+                list,
+                con,
+                i = 0,
+                j;
+            for (; e = this._o.fields[i]; i++) {
+                if (e.filter) {
+                    if (e.filter.server) {
+                        list = this._data.ft[e.name];
+                    } else {
+                        list = this._groupBy(e.name);
+                    }
+                    if (list && list.length) {
+                        // set initial state of filter options
+                        $this._filterOpt[e.name] = {};
+                        $this._filterOpt[e.name].t = list.length;
+                        $this._filterOpt[e.name].s = 0;
+                        $this._filterOpt[e.name].l = list;
+                        con = $('#col_ch_' + e.name);
+                        con
+                        .empty()
+                        .append(
+                          $('<li/>')
+                            .attr('dt-all', true)
+                            .append($('<input/>').attr('type', 'checkbox'))
+                            .append($('<span/>').text('All'))
+                            .on('click', function (e) {
+                                $this._selectFilterOption(this, event, true);
+                            })
+                        );
+                        j = 0;
+                        for (; j < list.length; j++) {
+                            // handle null or empty strings
+                            val = e = list[j];
+                            if (e === null || e === '') {
+                                // TODO: empty choice value needs to be configurable
+                                // in the
+                                val = $this._o.filterEmptyVal ? $this._o.filterEmptyVal : $this._filterEmptyVal;
+                                list[j] = val;
+                                e = '[Empty]';
+                            }
+                            con
+                            .append(
+                              $('<li/>')
+                                .attr('ad-value', val)
+                                .append($('<input/>').attr('type', 'checkbox'))
+                                .append($('<span/>').text(e))
+                                .on('click', function () {
+                                    $this._selectFilterOption(this, event, false);
+                                })
+                            );
+                        }
+                    }
+                }
+            }
+        },
         _resetDirection: function (context, field, el) {
             var that = this,
                 newEl = $('<span />'),
                 srtD = '(Sorted descending)',
                 srtA = '(Sorted ascending)',
-                br = '&#013;',
+                br = '\n',
                 tooltip;
 
             // Remove all carets
             $(this._o.con)
               .find('.caret')
               .remove();
+            $(this._o.con)
+            .find('.sorted')
+            .removeClass('sorted');
 
             // Reset all tooltips
             $(this._o.con)
-                .find('gex-header-label').each(function(){
+                .find('.gex-header-label').each(function(){
                   tooltip = $(this).attr('title');
-                  tooltip = tooltip()
+                  tooltip = tooltip.replace(br + srtD, '').replace(br + srtA, '');
+                  $(this).attr('title', tooltip);
                 });
+
+            // Get original tooltip
+            tooltip = $(el).parent().attr('title');
 
             // Add caret to selected
             // header
@@ -319,29 +370,44 @@
                 if (that._sort.dir === 'asc') {
                     that._sort.dir = 'desc';
                     newEl.addClass('up');
+                    tooltip += (br + srtD);
                 } else {
                     that._sort.dir = 'asc';
+                    tooltip += (br + srtA);
                 }
             } else {
                 that._sort.dir = 'asc';
+                tooltip += (br + srtA);
             }
 
+
             // Add carret to the link
-            $(el).append(newEl);
+            // and update tooltip
+
+            $(el).parent().attr('title', tooltip);
+            $(el)
+            .append(newEl)
+            .addClass('sorted');
 
             // Set new state
             that._sort.field = field;
         },
+        _isOffScreen: function (el) {
+            var rect = el[0].getBoundingClientRect();
+            return rect.right > window.innerWidth;
+        },
         _createHeaderCell: function (option, btn, sort, filter) {
             var that = this,
-        				th = $('<th/>').addClass('gex-header'),
+                th = $('<th/>').addClass('gex-header'),
                 hCon = $('<div/>').addClass('gex-header-container'),
                 hLabel = $('<div/>').addClass('gex-header-label'),
                 hfMask = $('<div/>').addClass('gex-filter-mask'),
-                br = '&#013;',
+                br = '\n',
                 tooltip,
                 link,
-        				ar;
+                ar;
+            th.append(hCon.append(hLabel).append(hfMask));
+
             if (option.width) {
                 th.width(option.width);
             }
@@ -349,11 +415,12 @@
             if (sort) {
                 +function (me, field, header) {
 
-                    link = $('<a/>').click(function () {
+                    link = $('<a/>')
+                    .click(function () {
                         that._resetDirection.call(that, me, field, this);
-                        that.bind();
-                    }).text(header);
-
+                        that.bind('sort');
+                    })
+                    .text(header);
                 }(this, option.name, option.header);
 
                 if (option.name === that._sort.field) {
@@ -361,7 +428,10 @@
                     if (that._sort.dir && that._sort.dir === 'desc') {
                         ar.addClass('up');
                     }
-                    link.append(ar);
+                    link
+                    .append(ar)
+                    .addClass('sorted');
+
                     tooltip += br + '(Sorted descending)'
                 }
                 hLabel.append(link);
@@ -373,20 +443,36 @@
             hLabel.attr('title', tooltip);
 
             if(filter){
-              th.append(
+              hfMask.append(
                 $('<span/>')
                   .addClass('glyphicon glyphicon-filter  gex-filter-btn pull-right')
                   .attr('ad-ref-list', 'col_ch_' + option.name)
                   .on('click', function(){
                     var me = $(this),
-                        parent = me.parent().addClass('gex-header-selected');
-                    $('#' + me.attr('ad-ref-list'))
-                    .parent()
-                    .width(parent.outerWidth() - 2)
-                    .show();
+                        parent = me
+                        .parent()
+                        .parent()
+                        .parent().addClass('gex-header-selected');
+                        // use ar as a width for the filter list
+                        ar = parent.outerWidth() - 3;
+                        if (ar < 200) {
+                            ar = 200;
+                        }
+                        // TODO: Detect if the drop down is offscreen
+                        // on the right or on the bottom edge of the
+                        // view port
+                        // Here is the possible solution:
+                        // http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
+                        ar = $('#' + me.attr('ad-ref-list'))
+                        .parent()
+                        .width(ar)
+                        .show();
+                        if (that._isOffScreen(ar)) {
+                            ar.addClass('off-right-edge');
+                        }
                   })
-              )
-              .append(
+              );
+              th.append(
                 $('<div/>')
                 .hide()
                 .addClass('gex-list')
@@ -417,8 +503,8 @@
         				i = 0,
         				btn;
 
-            for (; e = this._o.fields[i]; i++) {
-
+            for (; i < this._o.fields.length; i++) {
+                e = this._o.fields[i];
                 edit = false;
                 if (e.name === 'edit' || e.name == 'delete') {
                     btn = true;
@@ -484,34 +570,34 @@
                 clm = 'pagination pagination-sm ',
                 cl = 'pull-right';
 
-            // Creating footer
-            $(that._o.con).append('<div id="' + id + '"></div>');
-
-            if(options.position){
-              cl = options.position;
-              if(cl === 'center'){
-                cl = 'pull-center';
-              }
-              if(cl === 'left'){
-                cl = 'pull-left';
-              }
+            if (options.position) {
+                cl = options.position;
+                if (cl === 'center') {
+                    cl = 'pull-center';
+                }
+                if (cl === 'left') {
+                    cl = 'pull-left';
+                }
             }
 
+            if (!that._built) {
+                // Creating footer
+                $(that._o.con).append('<div id="' + id + '"></div>');
 
-            // Creating pager control
-            pager = $('#' + id).pager({
-                pageSize: options.pageSize,
-                pagerSize: options.pagerSize,
-                fl: true,
-                cl: clm  + cl,
-                callBack: function (index) {
-                    that._pagerIdex = index;
-                    that.bind();
-                }
-            });
-
-            var p = $(pager[0]).data('pager');
-            p.state(that._data.total, that._pagerIdex);
+                // Creating pager control
+                that._pager = $('#' + id).pager({
+                    pageSize: options.pageSize,
+                    pagerSize: options.pagerSize,
+                    fl: true,
+                    cl: clm + cl,
+                    callBack: function (index) {
+                        that._pagerIdex = index;
+                        that.bind('pager');
+                    }
+                });
+                that._pager = $(that._pager[0]).data('pager');
+            }
+            that._pager.state(that._data.total, that._pagerIdex);
         },
         _createGrid: function () {
 
@@ -522,59 +608,57 @@
         				bodyContent = that._gridContent,
         				cl;
 
-            if(!that._built){
+            if (!that._built) {
 
-              bodyContent = $('<tbody/>')
-              that._gridContent = bodyContent;
-              cl = that._o.cl ? that._o.cl : 'table table-hover table-condensed';
+                bodyContent = $('<tbody/>')
+                that._gridContent = bodyContent;
+                cl = that._o.cl ? that._o.cl : 'table table-hover table-condensed';
 
-              // Creating table frame
-              $(that._o.con).empty().append('<table id="' + that._id + '" class="' + cl + '"></table>');
-              // Creating header
-              that._createHeader();
+                // Creating table frame
+                $(that._o.con).empty().append('<table id="' + that._id + '" class="' + cl + '"></table>');
+                // Creating header
+                that._createHeader();
 
-              // Add filter options
-              that._addFilterOptions();
+                // Add filter options
+                that._addFilterOptions();
 
-              // Add body content to the grid table
-              $('#' + that._id).append(bodyContent);
+                // Add body content to the grid table
+                $('#' + that._id).append(bodyContent);
 
-              // Wire callbacks
-              if (that._o.selectCallBack || that._o.updateCallBack || that._o.deleteCallBack) {
-                  $('#' + that._id).click(function (e) {
-                      var info = 'info',
-                          lInfor = 'label-info',
-                          lImportant = 'label-important',
-                          el = $(e.target),
-                          role = el.attr('role'),
-                          row = el.closest($('tr[data-key]')),
-                          key = row.attr('data-key');
+                // Wire callbacks
+                if (that._o.selectCallBack || that._o.updateCallBack || that._o.deleteCallBack) {
+                    $('#' + that._id).click(function (e) {
+                        var info = 'info',
+                            lInfor = 'label-info',
+                            lImportant = 'label-important',
+                            el = $(e.target),
+                            role = el.attr('role'),
+                            row = el.closest($('tr[data-key]')),
+                            key = row.attr('data-key');
 
-                      if (that._o.enableSelect) {
-                          $(that._o.con + ' tr').removeClass(info);
-                          row.addClass(info);
-                      }
+                        if (that._o.enableSelect) {
+                            $(that._o.con + ' tr').removeClass(info);
+                            row.addClass(info);
+                        }
 
-                      if (role === that._roleUpdate) {
-                          that._o.updateCallBack && that._o.updateCallBack(key, that._getRecord(key));
-                      } else if (role === that._roleDelete) {
-                          el.text('Confirm');
-                          el.attr('role', that._roleConfirm);
-                          el.removeClass(lInfor);
-                          el.addClass(lImportant);
+                        if (role === that._roleUpdate) {
+                            that._o.updateCallBack && that._o.updateCallBack(key, that._getRecord(key));
+                        } else if (role === that._roleDelete) {
+                            el.text('Confirm');
+                            el.attr('role', that._roleConfirm);
+                            el.removeClass(lInfor);
+                            el.addClass(lImportant);
 
-                      } else if (role === that._roleConfirm) {
-                          that._o.deleteCallBack(key, that._getRecord(key));
-                      } else {
-                          that._o.selectCallBack && that._o.selectCallBack(key, that._getRecord(key));
-                      }
-                  });
-              }
+                        } else if (role === that._roleConfirm) {
+                            that._o.deleteCallBack(key, that._getRecord(key));
+                        } else {
+                            that._o.selectCallBack && that._o.selectCallBack(key, that._getRecord(key));
+                        }
+                    });
+                }
 
 
             }
-
-            that._built = true;
 
             // Going through the data set
             bodyContent.empty();
@@ -582,13 +666,17 @@
                 bodyContent.append(that._createRow(d[i]));
             }
 
-            // Finally creating the pager if specified
-            // TODO: The pager needs to be re-rendered on each bind for now. :(
-            // The pager object does not have internal refresh capability.
-            // This will be addressed in the next version...
+            // Creating the pager if specified
             that._o.pager && that._createPager();
+
+            // Finally setting state of the control
+            // as built :)
+            that._built = true;
         },
-        bind: function () {
+        setPagerIndex: function (index) {
+            this._pagerIdex = index;
+        },
+        bind: function (caller) {
             var that = this,
 			          ds;
             if (that._progress) return;
@@ -602,7 +690,7 @@
             }
             ds = that._o.source;
             ds = new ds();
-            ds.getData(that._st, function (data) {
+            ds.getData.call(that, that._st, function (data) {
                 that._progress = false;
                 if (that._o.proc) {
                     that._o.proc(false);
@@ -615,10 +703,10 @@
                 that._data = data;
                 that._action(false);
                 data && that._createGrid();
-            });
+            }, caller);
         }
     };
-})();
+}();
 
 // jQuery grid plug-in
 $.fn.grid = function (option) {
