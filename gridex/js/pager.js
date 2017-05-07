@@ -106,7 +106,7 @@
 			}
 			return sdo;
 		},
-		state: function(totalNumber, celPage){
+		state: function(totalNumber, selPage){
 			var
 				that = this,
 				wr,
@@ -116,8 +116,8 @@
 				content;
 
 
-			if ( celPage && celPage <= pages ) {
-				that._current = celPage;
+			if ( selPage && selPage <= pages ) {
+				that._current = selPage;
 			}
 
 			// rounds upward to the nearest integer

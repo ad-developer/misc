@@ -170,12 +170,12 @@
             // Filtering: On the first load we will not have any
             // finltering fields selected and as such we do not need to add
             // any information to the state. The filtering information will be
-            // comming from the protexted _selFiltOpt variable
+            // comming from the protected _selFiltOpt variable
             that._st.filter = that._selFiltOpt;
 
         },
 
-        // filter options blcok of methods
+        // filter options block of methods
         _groupBy: function (column) {
             var flags = [],
                 output = [],
@@ -195,7 +195,7 @@
             return output;
         },
         _selectFilterOption: function (el, e, all) {
-            // TODO: this method needs to be optimized
+            //TODO: this method needs to be optimized
             var me = $(el),
                 val = me.attr('ad-value'),
                 fieldName = me.parent().attr('id').split('_')[2],
@@ -711,14 +711,9 @@
 // jQuery grid plug-in
 $.fn.grid = function (option) {
     return this.each(function () {
-        var
-			$this = $(this);
-        //data = $this.data('grid');
-
-        //if (!data){
+        var $this = $(this);
         option.con = $this[0].id;
         $this.data('grid', (data = new Grid(option)));
-        //}
     })
 }
 
