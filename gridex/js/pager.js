@@ -48,10 +48,9 @@
 	var
 
 		Pager = window.Pager = function(par){
-			var
-				that = this,
-				prev = '<',
-				next = '>';
+			var that = this,
+				  prev = '<',
+				  next = '>';
 
 			that._prev = par.prev ? par.prev : prev;
 			that._next = par.next ? par.next : next;

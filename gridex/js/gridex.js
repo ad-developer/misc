@@ -99,10 +99,10 @@
         {
           gd:[{Name: 'Alex', Address:'Some Address'},..., {...}],
           total: 200,
-          ft:[field:['item-one','item-two',...,n],..., n:[...]]
+          [ft]:[field:['item-one','item-two',...,n],..., n:[...]]
         }
-          'ft' is optional field but must be supplied if filtering set up as 'server' (refer to filter option)
-      'caller' - reffer to bind method
+      'ft' is optional field but must be supplied if filtering set as 'server' (refer to filter option)
+      'caller' - refer to bind method
 
  */
 
