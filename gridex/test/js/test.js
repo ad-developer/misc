@@ -13,7 +13,7 @@ var DataSet = class ClassName {
       ]
     });
   }
-}
+};ß
 
 $('#g').grid({
   con: 'g',
