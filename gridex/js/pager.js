@@ -105,14 +105,16 @@
 			}
 			return sdo;
 		},
-		state: function(totalNumber, selPage){
-			var
-				that = this,
-				wr,
-				pages = Math.ceil(totalNumber / that._pageSize),
-				i = 0,
-				r,
-				content;
+		state: function(totalNumber, selPage, pageSize){
+      if(pageSize){
+        this._pageSize = pageSize;
+      }
+			var that = this,
+  				wr,
+  				pages = Math.ceil(totalNumber / that._pageSize),
+  				i = 0,
+  				r,
+  				content;
 
 
 			if ( selPage && selPage <= pages ) {
