@@ -68,14 +68,14 @@
             3. 'pager'  - is sent when paging action occured
         'pager' (optional) - object to dynamically reset the pager parameters
           internally calls setPager(pager) method... see below
-          { [pageSize]: 10, [pagerIdex]: 2}
+          { [pageSize]: 10, [pagerIndex]: 2}
           all pager parameters are optional
 
     setPager(pager)
       dynamically reset pager parameters and behaviour
       parameters:
         'pager' - pager object
-        {[pageSize]: 10, [pagerIdex]: 2}
+        {[pageSize]: 10, [pagerIndex]: 2}
         all pager parameters are optional
 
     DATASOURCE OBJECT:
@@ -137,7 +137,7 @@
         _roleDelete: 'delete',
         _roleConfirm: 'confirm',
         _data: [],
-        _pagerIdex: 1,
+        _pagerIndex: 1,
         _st: '',
         _built: false,
         _gridContent: null,
@@ -163,7 +163,7 @@
             that._st = {};
 
             if (pager) {
-                that._st.page = that._pagerIdex;
+                that._st.page = that._pagerIndex;
                 if (pager.pageSize) {
                     that._st.pageSize = pager.pageSize;
                 }
@@ -596,13 +596,13 @@
                     fl: true,
                     cl: clm + cl,
                     callBack: function (index) {
-                        that._pagerIdex = index;
+                        that._pagerIndex = index;
                         that.bind('pager');
                     }
                 });
                 that._pager = $(that._pager[0]).data('pager');
             }
-            that._pager.state(that._data.total, that._pagerIdex, options.pageSize);
+            that._pager.state(that._data.total, that._pagerIndex, options.pageSize);
         },
         _createGrid: function () {
 
@@ -683,8 +683,8 @@
             if(pager.pageSize){
               this._o.pager.pageSize = pager.pageSize;
             }
-            if(pager.pagerIdex){
-              this._pagerIdex = pager.pagerIdex;
+            if(pager.pagerIndex){
+              this._pagerIndex = pager.pagerIndex;
             }
           }
         },
