@@ -47,7 +47,7 @@
                 },
           ...
       ]
-      [pager]: {pageSise: 10, pagerSize: 2, [position]: 'center| left' }
+      [pager]: {pageSize: 10, pagerSize: 2, [position]: 'center| left' }
         by default pager position is right and does not need to be set
       [sort]: {field: 'filedName', [dirction]: 'asc'|'desc'} name of the field that will be sorted on the first load of the grid
       [befoBind]: function(data){ return true|false} triggered before data bound... return true if you want to abort the binding process
@@ -57,21 +57,26 @@
       [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
     }
   PUBLIC INSTANCE METHODS:
-    bind(caller)
+    bind([caller], [pager])
       method binds data to the grid
       parameters:
-        'caller' can be any object or variable to pass allong to the
+        'caller' (optional) can be any object or variable to pass allong to the
           the getData(), datasource's method (see datasource object definition)
           used values:
             1. 'filter' - is sent when filtering action occured
             2. 'sort'   - is sent when filtering sorting occured
             3. 'pager'  - is sent when paging action occured
+        'pager' (optional) - object to dynamically reset the pager parameters
+          internally calls setPager(pager) method... see below
+          { [pageSize]: 10, [pagerIdex]: 2}
+          all pager parameters are optional
 
-    setPagerIndex(n)
-      method used to reset pager index... it can be used in case if some external conditions were applied to the
-      dataset like filtering... ets... and pager can be out of boundaries of the new dataset
+    setPager(pager)
+      dynamically reset pager parameters and behaviour
       parameters:
-        n - pager index
+        'pager' - pager object
+        {[pageSize]: 10, [pagerIdex]: 2}
+        all pager parameters are optional
 
     DATASOURCE OBJECT:
       {
@@ -597,7 +602,7 @@
                 });
                 that._pager = $(that._pager[0]).data('pager');
             }
-            that._pager.state(that._data.total, that._pagerIdex);
+            that._pager.state(that._data.total, that._pagerIdex, options.pageSize);
         },
         _createGrid: function () {
 
@@ -628,14 +633,15 @@
                 // Wire callbacks
                 if (that._o.selectCallBack || that._o.updateCallBack || that._o.deleteCallBack) {
                     $('#' + that._id).click(function (e) {
-                        var info = 'info',
-                            lInfor = 'label-info',
-                            lImportant = 'label-important',
-                            el = $(e.target),
-                            role = el.attr('role'),
-                            row = el.closest($('tr[data-key]')),
-                            key = row.attr('data-key');
+                      var info = 'info',
+                          lInfor = 'label-info',
+                          lImportant = 'label-important',
+                          el = $(e.target),
+                          role = el.attr('role'),
+                          row = el.closest($('tr[data-key]')),
+                          key = row.attr('data-key');
 
+                      if(key){
                         if (that._o.enableSelect) {
                             $(that._o.con + ' tr').removeClass(info);
                             row.addClass(info);
@@ -654,10 +660,9 @@
                         } else {
                             that._o.selectCallBack && that._o.selectCallBack(key, that._getRecord(key));
                         }
+                      }
                     });
                 }
-
-
             }
 
             // Going through the data set
@@ -673,13 +678,21 @@
             // as built :)
             that._built = true;
         },
-        setPagerIndex: function (index) {
-            this._pagerIdex = index;
+        setPager: function(pager){
+          if(pager){
+            if(pager.pageSize){
+              this._o.pager.pageSize = pager.pageSize;
+            }
+            if(pager.pagerIdex){
+              this._pagerIdex = pager.pagerIdex;
+            }
+          }
         },
-        bind: function (caller) {
+        bind: function (caller, pager) {
             var that = this,
 			          ds;
             if (that._progress) return;
+            that.setPager(pager);
 
             that._progress = true;
             that._action(true);
