@@ -1,0 +1,123 @@
+
+.ms{}
+.ms.ms-expanded{
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+
+  /*TODO: this is for testing only*/
+  margin-bottom: 10px;
+
+  /*TODO: IMPORTANT-----
+    In Javascript
+      1. Position must be set to fixed
+      2. width: must be set to the current width of the .ms container;
+  */
+  //position: fixed;
+}
+.ms.ms-expanded .ms-box{
+  border: none;
+}
+.ms .ms-box{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 0 0 5px;
+    font-size: 12px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    box-sizing: border-box;
+    cursor: default;
+
+    /*TODO: this is for testing only*/
+    margin-bottom: 10px;
+}
+.ms-box .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid #555;
+  float: right;
+  position: relative;
+  top: 10px;
+  right: 5px;
+}
+.ms-box .arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 5px solid #555;
+  float: right;
+  position: relative;
+  top: 10px;
+  right: 5px;
+}
+.ms .ms-choices{
+  display: inline-block;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 95%;
+}
+.ms-filter-block{
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+
+}
+.ms-filter-block input{
+    border: none;
+    margin-left: 5px;
+    width: 92%;
+}
+.ms-filter-block input::-ms-clear {
+    display: none;
+}
+.ms-filter-block b{
+    font-size: 11px;
+    border: none;
+    margin-left: 5px;
+    float: right;
+    position: relative;
+    top: 7px;
+    right: 5px;
+}
+.ms-choice-block{
+  margin-top: 5px;
+  overflow-y:scroll;
+  height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  list-style: none;
+  padding-left: 5px;
+}
+.ms-choice-block li{
+ padding-left: 5px;
+ line-height: 25px;
+ cursor: pointer;
+ white-space: nowrap;
+ overflow: hidden;
+}
+.ms-choice-block li input{
+ position: relative;
+ top: 2px;
+ margin-right: 5px;
+}
+.ms-choice-block li:hover{
+  background-color: #ddd;
+}
+/* this removes IE input box clear x button */
+input[type=text]::-ms-clear {
+    display: none;
+}
