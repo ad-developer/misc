@@ -275,10 +275,11 @@
 			this.choices.text(list).attr('title', list);
 
 			if(this.choicesList.length > 0 && ctrl){
-				ctrl.val('yes');
+				ctrl.val('c');
 			} else if(ctrl){
 				ctrl.val('');
 			}
+			ctrl.trigger('keyup');
 		},
 		expand: function(){
 			var width = this.con.width();
