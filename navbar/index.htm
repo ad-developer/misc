@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/index-master.css">
+    <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
     <div class="navbar">
-      <div class="nav-btn">
+      <div class="nav-btn" role="button" id="nav-menu-btn">
         <svg viewBox="0 0 24 24">
             <path d="M0 0h24v24H0z" fill="none"/>
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
         </svg>
       </div>
-      <div class="nav-title">Name</div>
-      <div class="nav-search">
+      <div class="navbar-text">App Name</div>
+      <div class="navbar-search">
         <div class="search-container" id="searchCon">
-          <input type="text" class="search-control">
+          <input type="text" class="search-control" id="searchInput">
           <div class="search-btn" role="button" id="searchBtn">
             <svg viewBox="0 0 24 24">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -25,12 +25,46 @@
           </div>
         </div>
       </div>
-      <div class="nav-identity"></div>
+      <div class="navbar-identity" title="first.last@gmail.com"></div>
     </div>
-    <div class="nav-menu">
-
+    <div class="nav-menu-mask" id="nav-mask"></div>
+    <div class="nav-menu show" id="nav-menu">
+      <span class="logo">App Name</span>
+      <nav>
+        <dl>
+          <dt>Group One</dt>
+          <div class="nav-list">
+            <dd><a href="#">Item One</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+          </div>
+        </dl>
+        <dl>
+          <dt>Group Two</dt>
+          <div class="nav-list">
+            <dd><a href="#">Item One</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+          </div>
+        </dl>
+        <dl>
+          <dt>Group Three</dt>
+          <div class="nav-list">
+            <dd><a href="#">Item One</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+          </div>
+        </dl>
+        <dl>
+          <dt>Group Four</dt>
+          <div class="nav-list">
+            <dd><a href="#">Item One</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+            <dd><a href="#">Item Two</a></dd>
+          </div>
+        </dl>
+      </nav>
     </div>
 
-    <script src="js/new-look.js" charset="utf-8"></script>
+    <script src="js/navbar.js" charset="utf-8"></script>
   </body>
 </html>

@@ -28,7 +28,26 @@ btn.addEventListener('click', function(){
   } else {
     u.addClass(el, 'search-container-show');
     u.addAttr(btn, 'ad-search', true);
+    var inp = u.el('searchInput');
+    inp.focus();
+    inp.select();
   }
 
 
+});
+
+var navBtn = u.el('nav-menu-btn');
+
+var mask = u.el('nav-mask');
+navBtn.addEventListener('click', function(){
+  var men = u.el('nav-menu');
+  u.addClass(men, 'show');
+  u.addClass(mask, 'show');
+});
+
+
+mask.addEventListener('click', function(){
+  var men = u.el('nav-menu');
+  u.removeClass(men, 'show');
+  u.removeClass(mask, 'show');
 });
