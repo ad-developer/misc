@@ -51,3 +51,21 @@ mask.addEventListener('click', function(){
   u.removeClass(men, 'show');
   u.removeClass(mask, 'show');
 });
+
+var navList = document.querySelectorAll('.nav-menu dt');
+
+for (var i = 0, el; i < navList.length; i++) {
+  el = navList[i];
+  console.log(el.textContent);
+  el.addEventListener('click', function(event){
+    var par = event.target.parentNode;
+    var nl = par.querySelector('.nav-list');
+    if(nl.classList.contains('show')){
+      u.removeClass(nl, 'show');
+    } else {
+      u.addClass(nl, 'show');
+    }
+
+    console.log(event.target.textContent);
+  });
+}
