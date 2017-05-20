@@ -1,0 +1,38 @@
+dictionary to save filter options list information
+for each identified field
+--
+this information will need to be reset upon each state of the grid
+
+
+optionsList = {
+  "field":{
+    t: 10, // total
+    s: 10 // selected
+  }
+}
+
+
+var isCheckbox = function(target, callbackNo, callbackYes){
+
+}
+
+
+objects
+  grid
+  header
+  footer
+  headerCell
+  dataCell
+
+features
+  sortable
+  filterable
+  resizable (x,y)
+  column rearrangeable
+
+  record # selector
+  subgrid
+  pager
+  select
+  update
+  delete
