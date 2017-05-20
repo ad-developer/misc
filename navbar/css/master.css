@@ -670,7 +670,7 @@ address {
   border-color: transparent;
   border-style: dashed dashed solid;
   border-width: 0 8.5px 8.5px;
-  //display: none;
+  display: none;
   position: absolute;
   left: 10.5px;
   z-index: 1;
@@ -685,7 +685,7 @@ address {
   border-bottom-color: #fff;
   border-style: dashed dashed solid;
   border-width: 0 8.5px 8.5px;
-  //display: none;
+  display: none;
   position: absolute;
   left: 10.5px;
   top: 41px;
@@ -699,7 +699,7 @@ address {
   border-color: rgba(0,0,0,.2);
   color: #000;
   box-shadow: 0 2px 10px rgba(0,0,0,.2);
-  //display: none;
+  display: none;
   outline: none;
   overflow: hidden;
   position: absolute;
@@ -710,4 +710,91 @@ address {
   width: 321px;
   height: 188px;
   cursor: default;
+}
+.pop .pop-content{
+  margin: 20px;
+  display: block;
+}
+.pop .pop-img{
+  display: inline-block;
+  position: relative;
+  width: 96px;
+  height: 96px;
+  background-color: #ccc;
+  border-radius: 50%;
+  background-size: 96px;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-image: url('../images/face.jpg');
+  margin-right: 20px;
+  vertical-align: top;
+  border: none;
+}
+.pop .pop-info{
+  font: small arial,sans-serif;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.pop-info .pop-name{
+  font-weight: bold;
+  margin: -4px 0 1px 0;
+}
+.pop-info .pop-email{
+  color: #666;
+  white-space: nowrap;
+}
+.pop-info .pop-list{
+  margin-top: 10px;
+}
+.pop-info .pop-list p{
+  font-weight: bold;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+.pop-info .pop-list ul{
+  list-style: none;
+  height: 59px;
+  padding-left: 10px;
+  overflow: hidden;
+  display: inline-block;
+  float: right;
+  color: #666;
+  font-weight: 100;
+}
+.pop .pop-footer{
+  display: table;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 6px 10px;
+}
+.navbar-identity.show .pop-arrow-border,
+.navbar-identity.show .pop-arrow,
+.navbar-identity.show .pop{
+  display: block;
+}
+.btn{
+  color: #666;
+  font-size: 13px;
+  height: 32px;
+  text-transform: uppercase;
+  padding: 0px;
+  line-height: 0px;
+  border: none;
+  border-radius: 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: transparent;
+  outline: none;
+}
+.btn:hover{
+  color: #333;
+  background-color: #ddd;
+}
+.btn.right{
+  float: right;
 }
