@@ -68,4 +68,20 @@ for (var i = 0, el; i < navList.length; i++) {
 
     console.log(event.target.textContent);
   });
-}
+};
+
+var ident = u.el('identity');
+ident.addEventListener('click', function(event){
+  var el = event.target;
+  if(!el.classList.contains('show')){
+    u.addClass(el, 'show');
+  }
+});
+
+document.addEventListener('click', function(event){
+  var el = u.el('identity');
+  var tarEl = event.target;
+  if(!tarEl.classList.contains('navbar-identity') && el.classList.contains('show')){
+    u.removeClass(el, 'show');
+  }
+});
