@@ -48,12 +48,15 @@ function handleDrop(e) {
     e.stopPropagation(); // stops the browser from redirecting.
   }
   var data = event.dataTransfer.getData("Text");
+  var el = document.getElementById(data);
+  //var rad = document.createElement("input");
+  //el.appendChild(rad);
   // Check if it's main container or item
   if(e.target.nodeName === 'UL'){
-    e.target.appendChild(document.getElementById(data));
+    e.target.appendChild(el);
   } else {
     var parent = e.target.parentElement;
-    parent.insertBefore(document.getElementById(data), e.target);
+    parent.insertBefore(el, e.target);
   }
 
   return false;
