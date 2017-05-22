@@ -70,6 +70,7 @@ function handleDragEnd(e) {
   });
   [].forEach.call(cols, function (col) {
     col.style.opacity = '1';
+    col.classList.remove('over-item');
   });
 }
 
