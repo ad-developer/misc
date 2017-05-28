@@ -40,13 +40,16 @@
 }
 .list li{
   padding: 5px;
+  border: 1px solid transparent;
 }
 .list li:hover{
   background-color: #ccc;
 }
 .over{
   border: 1px dashed #ff0000;
+  cursor: pointer !important;
 }
 .over-item{
-  border: 1px dashed #ccc;
+  border: 1px dashed #ccc !important;
+  cursor: copy !important;
 }
