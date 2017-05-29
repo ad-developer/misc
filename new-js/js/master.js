@@ -33,9 +33,9 @@ class Person {
 };
 
 class Child extends Person {
-  constructor(firstName, lastName, favoritToy){
+  constructor(firstName, lastName, favoriteToy){
     super(firstName, lastName);
-    this.toy_ = favoritToy;
+    this.toy_ = favoriteToy;
   }
   get getFullNameWithToy(){
     return 'My Full Name is ' + this.first_ + ', ' + this.last_ + '... and my favorite toy is ' + this.toy_;
