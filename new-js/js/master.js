@@ -1,4 +1,4 @@
-let util = {
+const util = {
   el(id){
     return document.getElementById(id);
   }
@@ -32,10 +32,22 @@ class Person {
   }
 };
 
+class Child extends Person {
+  constructor(firstName, lastName, favoritToy){
+    super(firstName, lastName);
+    this.toy_ = favoritToy;
+  }
+  get getFullNameWithToy(){
+    return 'My Full Name is ' + this.first_ + ', ' + this.last_ + '... and my favorite toy is ' + this.toy_;
+  }
+}
+
 util.el('name').addEventListener('click', function(){
   let nm = new Person('John','Smith');
   alert(nm.getFirstName);
   alert(nm.getLastName);
   alert(nm.getFullName());
   alert(Person.convertToUpperCase(nm.getFullName()));
+  let child = new Child('Boy','George','Fire Truck');
+  alert(child.getFullNameWithToy);
 });
