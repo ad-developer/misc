@@ -279,7 +279,9 @@
 			} else if(ctrl){
 				ctrl.val('');
 			}
-			ctrl.trigger('keyup');
+			if(ctrl){
+				ctrl.trigger('keyup');
+			}
 		},
 		expand: function(){
 			var width = this.con.width();
