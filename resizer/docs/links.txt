@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/8960193/how-to-make-html-element-resizable-using-pure-javascript
+http://mark-story.com/posts/view/making-elements-drag-resizable-with-javascript
