@@ -25,6 +25,7 @@ class Resizer {
     this.stopHnd_ = null;
     this.cont_ = cont;
     this.conf_ = conf;
+    this.uid_ = 0;
     this.createGrip_();
     //this.grip_.addEventListener('mousedown', this.initDrag_.bind(this), false);
     this.grip_.addEventListener('mousedown',this, false);
@@ -32,37 +33,18 @@ class Resizer {
     document.documentElement.addEventListener('mouseup', this, false);
   }
   createGrip_(){
-    let temp = `
-    <div class="grip" id="grip_">
-      <div class="grip-row">
-        <div class="no-cell"></div>
-        <div class="no-cell"></div>
-        <div class="grip-cell"></div>
-      </div>
-      <div class="grip-row">
-        <div class="no-cell"></div>
-        <div class="grip-cell"></div>
-        <div class="grip-cell"></div>
-      </div>
-      <div class="grip-row">
-        <div class="grip-cell"></div>
-        <div class="grip-cell"></div>
-        <div class="grip-cell"></div>
-      </div>
-    </div>
-    `;
-    this.cont_.innerHTML = temp;
-    this.grip_ = util.el('grip_');
+    let gripCont = util.elCreate('div');
+    let temp = `<div class="grip-row"><div class="no-cell"></div><div class="no-cell"></div><div class="grip-cell"></div></div><div class="grip-row"><div class="no-cell"></div><div class="grip-cell"></div><div class="grip-cell"></div></div><div class="grip-row"><div class="grip-cell"></div><div class="grip-cell"></div><div class="grip-cell"></div></div>`;
+    gripCont.setAttribute('class', 'grip');
+    gripCont.innerHTML = temp;
+    this.cont_.appendChild(gripCont);
+    this.grip_ = gripCont;
   }
   initDrag_(e){
     this.startX_ = e.clientX;
     this.startY_ = e.clientY;
     this.startW_ = parseInt(document.defaultView.getComputedStyle(this.cont_).width, 10);
     this.startH_ = parseInt(document.defaultView.getComputedStyle(this.cont_).height, 10);
-    this.dragHnd_ = this.doDrag_.bind(this);
-    this.stopHnd_ = this.stopDrag_.bind(this);
-    //console.log(this.dragHnd_);
-    //console.log(this.stopHnd_);
     document.documentElement.addEventListener('mousemove', this, false);
     document.documentElement.addEventListener('mouseup', this, false);
   }
@@ -82,7 +64,6 @@ class Resizer {
     if(e.type == 'mouseup' && this.dragOn_){
       this.dragOn_ = false;
     }
-    console.log(e.type);
   }
   doDrag_(e){
     this.cont_.style.width = (this.startW_ + e.clientX - this.startX_) + 'px';
@@ -97,4 +78,5 @@ class Resizer {
 // test
 //
 
-new Resizer('cont');
+new Resizer('cont1');
+new Resizer('cont2');

@@ -177,6 +177,8 @@ input[type=text]::-ms-clear {
   height: 200px;
   background-color: #eee;
   position: relative;
+  display: inline-block;
+  margin: 10px;
   //resize: both;
   //overflow: auto;
 }
