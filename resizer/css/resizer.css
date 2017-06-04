@@ -130,7 +130,8 @@ input[type=text]::-ms-clear {
     animation-name: tool-tip-a;
     animation-duration: 4s;
 }
-.gex-grip{
+
+.grip{
   display: block;
   width: 10px;
   height: 10px;
@@ -144,12 +145,12 @@ input[type=text]::-ms-clear {
   right: 2px;
   bottom: 3px;
 }
-.gex-grip .grip-row{
+.grip .grip-row{
   display: block;
   border: none;
   margin-bottom: 2px;
 }
-.gex-grip .grip-row:last-child{
+.grip .grip-row:last-child{
   margin-bottom: 0px;
 }
 .grip-row .grip-cell{
@@ -170,4 +171,12 @@ input[type=text]::-ms-clear {
 }
 .grip-row .grip-cell:last-child{
   margin-right: 0px;
+}
+.cont {
+  width: 200px;
+  height: 200px;
+  background-color: #eee;
+  position: relative;
+  //resize: both;
+  //overflow: auto;
 }
