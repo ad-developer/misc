@@ -463,8 +463,8 @@
                         .parent().addClass('gex-header-selected');
                         // use ar as a width for the filter list
                         ar = parent.outerWidth() - 3;
-                        if (ar < 200) {
-                            ar = 200;
+                        if (ar < 250) {
+                            ar = 250;
                         }
                         // TODO: Detect if the drop down is offscreen
                         // on the right or on the bottom edge of the
@@ -489,20 +489,15 @@
                     .addClass('gex-choice-block gex-list-block')
                 )
                 .on('mouseleave',function(){
-                    //th.removeClass('gex-header-selected');
-                    //$(this).hide();
+                    th.removeClass('gex-header-selected');
+                    $(this).hide();
                 });
-
-              // Add grip
-              if(that._o.filterResizable){
-                $.resizer(filterContent[0])
-              }
 
               th.append(filterContent)
               .on('mouseleave', function(){
                 $(this)
-                //.removeClass('gex-header-selected')
-                //.children('.gex-list').hide();
+                .removeClass('gex-header-selected')
+                .children('.gex-list').hide();
               });
             }
 
