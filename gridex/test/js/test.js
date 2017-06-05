@@ -62,7 +62,6 @@ var grid = $('#g').grid({
     ],
     sort: { field: 'lastName', direction: 'desc' },
     key: 'id',
-    filterResizable: true,
     selectCallBack: function(key, record){
       alert(key);
     },
