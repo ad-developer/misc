@@ -1,1 +1,3 @@
 *.txt
+resizer/node_modules
+node_modules
