@@ -55,6 +55,7 @@
       [updateCallBack]: function(key, record){}  triggered on row updated... return updated row record
       [proc]: function(startStop) {} indicate on data binding start/stop... can be used to start/stop progress indicator
       [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
+      [filterResizable]: true|false  enable filter option list to be resizable, a grip on the right bottom conrner will be added.
     }
   PUBLIC INSTANCE METHODS:
     bind([caller], [pager])
@@ -330,6 +331,7 @@
                             .append(
                               $('<li/>')
                                 .attr('ad-value', val)
+                                .attr('title', e)
                                 .append($('<input/>').attr('type', 'checkbox'))
                                 .append($('<span/>').text(e))
                                 .on('click', function () {
@@ -407,6 +409,7 @@
                 hCon = $('<div/>').addClass('gex-header-container'),
                 hLabel = $('<div/>').addClass('gex-header-label'),
                 hfMask = $('<div/>').addClass('gex-filter-mask'),
+                filterContent = null,
                 br = '\n',
                 tooltip,
                 link,
@@ -477,8 +480,7 @@
                         }
                   })
               );
-              th.append(
-                $('<div/>')
+              filterContent = $('<div/>')
                 .hide()
                 .addClass('gex-list')
                 .append(
@@ -487,14 +489,20 @@
                     .addClass('gex-choice-block gex-list-block')
                 )
                 .on('mouseleave',function(){
-                    th.removeClass('gex-header-selected');
-                    $(this).hide();
-                })
-              )
+                    //th.removeClass('gex-header-selected');
+                    //$(this).hide();
+                });
+
+              // Add grip
+              if(that._o.filterResizable){
+                $.resizer(filterContent[0])
+              }
+
+              th.append(filterContent)
               .on('mouseleave', function(){
                 $(this)
-                .removeClass('gex-header-selected')
-                .children('.gex-list').hide();
+                //.removeClass('gex-header-selected')
+                //.children('.gex-list').hide();
               });
             }
 

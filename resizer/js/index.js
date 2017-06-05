@@ -12,22 +12,31 @@ const util = {
 };
 
 class Resizer {
-  constructor(cont, conf=null) {
+  constructor(cont, noShrink = true) {
+    // Container can be either dom element
+    // or container id.
     if(util.isString(cont)){
       cont = util.el(cont);
     }
+    // Init variables.
     this.grip_ = null;
     this.startX_ = null;
     this.startY_ = null;
+
     this.startW_ = null;
     this.startH_ = null;
-    this.dragHnd_ = null;
-    this.stopHnd_ = null;
+
+    this.first_ = true;
+    this.maxW_ = null;
+    this.maxH_ = null;
+
     this.cont_ = cont;
-    this.conf_ = conf;
-    this.uid_ = 0;
+    this.noShr_ = noShrink;
+
+    // Create grip element.
     this.createGrip_();
-    //this.grip_.addEventListener('mousedown', this.initDrag_.bind(this), false);
+
+    // Add event listeners.
     this.grip_.addEventListener('mousedown',this, false);
     document.documentElement.addEventListener('mousemove', this, false);
     document.documentElement.addEventListener('mouseup', this, false);
@@ -40,43 +49,47 @@ class Resizer {
     this.cont_.appendChild(gripCont);
     this.grip_ = gripCont;
   }
-  initDrag_(e){
-    this.startX_ = e.clientX;
-    this.startY_ = e.clientY;
-    this.startW_ = parseInt(document.defaultView.getComputedStyle(this.cont_).width, 10);
-    this.startH_ = parseInt(document.defaultView.getComputedStyle(this.cont_).height, 10);
-    document.documentElement.addEventListener('mousemove', this, false);
-    document.documentElement.addEventListener('mouseup', this, false);
-  }
   handleEvent(e){
     if(e.type == 'mousedown'){
+      let w = parseInt(document.defaultView.getComputedStyle(this.cont_).width, 10);
+      let h = parseInt(document.defaultView.getComputedStyle(this.cont_).height, 10);
       this.startX_ = e.clientX;
       this.startY_ = e.clientY;
-      this.startW_ = parseInt(document.defaultView.getComputedStyle(this.cont_).width, 10);
-      this.startH_ = parseInt(document.defaultView.getComputedStyle(this.cont_).height, 10);
-      this.dragOn_ = true;
 
+      if(this.noShr_){
+        if(this.first_){
+          this.maxW_ = w;
+          this.maxH_ = h;
+          this.first_ = false;
+        }
+      }
+      this.startW_ = w;
+      this.startH_ = h;
+      this.dragOn_ = true;
     }
     if(e.type == 'mousemove' && this.dragOn_){
-      this.cont_.style.width = (this.startW_ + e.clientX - this.startX_) + 'px';
-      this.cont_.style.height = (this.startH_ + e.clientY - this.startY_) + 'px';
+      let w = (this.startW_ + e.clientX - this.startX_);
+      let h = (this.startH_ + e.clientY - this.startY_);
+      if(this.noShr_){
+        if(this.maxW_ < w){
+          this.cont_.style.width = w + 'px';
+        }
+        if(this.maxH_ < h){
+          this.cont_.style.height = h + 'px';
+        }
+      } else {
+          this.cont_.style.width = w + 'px';
+          this.cont_.style.height = h + 'px';
+      }
     }
     if(e.type == 'mouseup' && this.dragOn_){
       this.dragOn_ = false;
     }
-  }
-  doDrag_(e){
-    this.cont_.style.width = (this.startW_ + e.clientX - this.startX_) + 'px';
-    this.cont_.style.height = (this.startH_ + e.clientY - this.startY_) + 'px';
-  }
-  stopDrag_(){
-    document.documentElement.removeEventListener('mousemove', this, false);
-    document.documentElement.removeEventListener('mouseup', this, false);
   }
 }
 
 // test
 //
 
-new Resizer('cont1');
-new Resizer('cont2');
+//new Resizer('cont1');
+//new Resizer('cont2');

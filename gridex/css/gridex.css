@@ -129,3 +129,44 @@ input[type=text]::-ms-clear {
     animation-name: tool-tip-a;
     animation-duration: 4s;
 }
+.grip{
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  font-size: 0px;
+  cursor: nw-resize;
+  position: absolute;
+  margin-left: auto;
+  right: 2px;
+  bottom: 3px;
+}
+.grip .grip-row{
+  display: block;
+  border: none;
+  margin-bottom: 2px;
+}
+.grip .grip-row:last-child{
+  margin-bottom: 0px;
+}
+.grip-row .grip-cell{
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background-color: #aaa;
+  border: none;
+  margin-right: 2px;
+}
+.grip-row .no-cell{
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background-color: transparent;
+  border: none;
+  margin-right: 2px;
+}
+.grip-row .grip-cell:last-child{
+  margin-right: 0px;
+}
