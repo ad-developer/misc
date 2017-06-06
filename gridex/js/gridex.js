@@ -55,7 +55,6 @@
       [updateCallBack]: function(key, record){}  triggered on row updated... return updated row record
       [proc]: function(startStop) {} indicate on data binding start/stop... can be used to start/stop progress indicator
       [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
-      [filterResizable]: true|false  enable filter option list to be resizable, a grip on the right bottom conrner will be added.
     }
   PUBLIC INSTANCE METHODS:
     bind([caller], [pager])
