@@ -55,6 +55,7 @@
       [updateCallBack]: function(key, record){}  triggered on row updated... return updated row record
       [proc]: function(startStop) {} indicate on data binding start/stop... can be used to start/stop progress indicator
       [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
+      [filterResizable]: true|false  enable filter option list to be resizable, a grip on the right bottom conrner will be added.
     }
   PUBLIC INSTANCE METHODS:
     bind([caller], [pager])
@@ -208,7 +209,7 @@
                 chbx = me.children('input'),
                 target = $(e.target),
                 ul = me.closest('ul').find('input');
-
+            // Click li or span element
             if (target.is('li') || target.is('span')) {
                 if (chbx.is(':checked')) {
                     field.s--;
@@ -221,15 +222,16 @@
                     all && ul.prop('checked', true) && (field.s = field.t);
                     chbx.prop('checked', true);
                 }
+            // Click input checkbox
             } else {
-                if (chbx.is(':checked')) {
-                    field.s--;
-                    all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
-                    all && ul.prop('checked', false) && (field.s = 0);
+                if(chbx.is(':checked')) {
+                  field.s++;
+                  all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
+                  all && ul.prop('checked', true) && (field.s = field.t);
                 } else {
-                    field.s++;
-                    all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
-                    all && ul.prop('checked', true) && (field.s = field.t);
+                  field.s--;
+                  all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
+                  all && ul.prop('checked', false) && (field.s = 0);
                 }
             }
             if (!all) {
@@ -317,11 +319,9 @@
                         );
                         j = 0;
                         for (; j < list.length; j++) {
-                            // handle null or empty strings
+                            // Handle null or empty string.
                             val = e = list[j];
                             if (e === null || e === '') {
-                                // TODO: empty choice value needs to be configurable
-                                // in the
                                 val = $this._o.filterEmptyVal ? $this._o.filterEmptyVal : $this._filterEmptyVal;
                                 list[j] = val;
                                 e = '[Empty]';
