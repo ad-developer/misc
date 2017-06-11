@@ -18,13 +18,19 @@
   vertical-align: middle;
   user-select: none;
   box-sizing: border-box;
-  color: #000;
+  color: #66bb6a;
+  margin: 0px;
 }
 .ad-btn:hover{
   cursor: pointer;
-  background-color: #98ee99;
+  background-color: rgba(102, 187, 106, 0.26)
 }
 .ad-btn:active{
-outline: 0;
-  background-color: #66bb6a;
+  outline: 0;
+  background-color: rgba(102, 187, 106, 0.)
+}
+.ad-btn:disabled{
+  color: rgba(0, 0, 0, 0.26);
+  cursor: default;
+  pointer-events: none; 
 }
