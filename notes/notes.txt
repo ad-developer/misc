@@ -1,0 +1,34 @@
+Component Manager - form centric manager
+
+Component Adapter - works directly with the component manager
+Component Renderer - works with the component adapter to render control 
+
+ComponentManager (cm)
+	see all original 
+	methods and variables
+
+Component
+	root_
+	constructor
+	init
+	destroy
+	render
+	listen
+	unlisten
+	emit
+	
+ComponentRenderer
+	render
+	
+	
+
+	
+Standalone Components
+
+Component
+	Faundation 
+		Adapter
+
+	
+
+
