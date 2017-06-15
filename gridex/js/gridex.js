@@ -55,7 +55,6 @@
       [updateCallBack]: function(key, record){}  triggered on row updated... return updated row record
       [proc]: function(startStop) {} indicate on data binding start/stop... can be used to start/stop progress indicator
       [filterEmptyVal]: sets filter empty value, by default it is an empty string with one space character ' '
-      [filterResizable]: true|false  enable filter option list to be resizable, a grip on the right bottom conrner will be added.
     }
   PUBLIC INSTANCE METHODS:
     bind([caller], [pager])
@@ -105,9 +104,13 @@
         {
           gd:[{Name: 'Alex', Address:'Some Address'},..., {...}],
           total: 200,
-          [ft]:[field:['item-one','item-two',...,n],..., n:[...]]
+          [ft]:[field:['item-one','item-two',...,n],..., n:[...],
+            opt_:{filed:[],...n:[...]}]
         }
-      'ft' is optional field but must be supplied if filtering set as 'server' (refer to filter option)
+      'ft' is optional field but must be supplied if filtering set as 'server'
+      (refer to filter option)
+        opt_ option has a special meaning and the name MUST NOT be uses by any other
+        field. It is used upotn the first load to preselect the filter(s) option(s)
       'caller' - refer to bind method
 
  */
@@ -200,30 +203,35 @@
             }
             return output;
         },
-        _selectFilterOption: function (el, e, all) {
+        _selectFilterOption: function (el, e, all, noBind) {
             //TODO: this method needs to be optimized
             var me = $(el),
                 val = me.attr('ad-value'),
                 fieldName = me.parent().attr('id').split('_')[2],
                 field = this._filterOpt[fieldName],
                 chbx = me.children('input'),
-                target = $(e.target),
+                target = e ? $(e.target): null,
                 ul = me.closest('ul').find('input');
-            // Click li or span element
-            if (target.is('li') || target.is('span')) {
-                if (chbx.is(':checked')) {
-                    field.s--;
-                    all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
-                    all && ul.prop('checked', false) && (field.s = 0);
-                    chbx.prop('checked', false);
-                } else {
-                    field.s++;
-                    all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
-                    all && ul.prop('checked', true) && (field.s = field.t);
-                    chbx.prop('checked', true);
-                }
-            // Click input checkbox
-            } else {
+            // target is used to identity the case
+            // when the eventhadler is called directrly from the code.
+            // This happens only on the first load to select filter option(s)
+            // option(s) that come from the server.
+            if(target){
+              // Click li or span element
+              if (target.is('li') || target.is('span')) {
+                  if (chbx.is(':checked')) {
+                      field.s--;
+                      all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
+                      all && ul.prop('checked', false) && (field.s = 0);
+                      chbx.prop('checked', false);
+                  } else {
+                      field.s++;
+                      all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
+                      all && ul.prop('checked', true) && (field.s = field.t);
+                      chbx.prop('checked', true);
+                  }
+              // Click input checkbox
+              } else {
                 if(chbx.is(':checked')) {
                   field.s++;
                   all ? this._addRemSelOpt(fieldName, field.l, true) : this._addRemSelOpt(fieldName, val, true);
@@ -233,6 +241,11 @@
                   all ? this._addRemSelOpt(fieldName, field.l) : this._addRemSelOpt(fieldName, val);
                   all && ul.prop('checked', false) && (field.s = 0);
                 }
+            }
+            } else {
+              field.s++;
+              this._addRemSelOpt(fieldName, val, true);
+              chbx.prop('checked', true);
             }
             if (!all) {
                 all = true;
@@ -244,7 +257,7 @@
                   .find('input')
                   .prop('checked', all);
             }
-            //gex-filter-btn-applied
+            // gex-filter-btn-applied
             // setting ul to the filter btn
             ul = me.closest('th').find('.gex-filter-btn');
             if (field.s > 0) {
@@ -252,8 +265,9 @@
             } else {
                 ul.removeClass('gex-filter-btn-applied');
             }
-
-            this.bind('filter');
+            if(!noBind){
+              this.bind('filter');
+            }
         },
         _addRemSelOpt: function (fieldName, par, add) {
             var index = 0,
@@ -289,11 +303,20 @@
                 e,
                 val,
                 list,
+                selOpt,
                 con,
                 i = 0,
-                j;
+                j,
+                li,
+                fieldName;
+            // Set selected default options, it comes from the server and
+            // there is no need for explicit server option on the filter
+            if(this._data.ft && this._data.ft.opt_){
+              selOpt = this._data.ft.opt_;
+            }
             for (; e = this._o.fields[i]; i++) {
                 if (e.filter) {
+                    fieldName = e.name;
                     if (e.filter.server) {
                         list = this._data.ft[e.name];
                     } else {
@@ -321,22 +344,28 @@
                         for (; j < list.length; j++) {
                             // Handle null or empty string.
                             val = e = list[j];
+                            let li;
                             if (e === null || e === '') {
                                 val = $this._o.filterEmptyVal ? $this._o.filterEmptyVal : $this._filterEmptyVal;
                                 list[j] = val;
                                 e = '[Empty]';
                             }
-                            con
-                            .append(
-                              $('<li/>')
-                                .attr('ad-value', val)
-                                .attr('title', e)
-                                .append($('<input/>').attr('type', 'checkbox'))
-                                .append($('<span/>').text(e))
-                                .on('click', function () {
-                                    $this._selectFilterOption(this, event, false);
-                                })
-                            );
+
+                            li = $('<li/>')
+                              .attr('ad-value', val)
+                              .attr('title', e)
+                              .append($('<input/>').attr('type', 'checkbox'))
+                              .append($('<span/>').text(e))
+                              .on('click', function () {
+                                  $this._selectFilterOption(this, event, false);
+                              });
+                            con.append(li);
+                            // Check and preselect the filter option(s)
+                            // on the fist load
+                            if(selOpt && selOpt[fieldName]
+                               && selOpt[fieldName].indexOf(val) != -1){
+                               $this._selectFilterOption(li, null, false, true);
+                            }
                         }
                     }
                 }
