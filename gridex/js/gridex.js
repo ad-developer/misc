@@ -109,8 +109,8 @@
         }
       'ft' is optional field but must be supplied if filtering set as 'server'
       (refer to filter option)
-        opt_ option has a special meaning and the name MUST NOT be uses by any other
-        field. It is used upotn the first load to preselect the filter(s) option(s)
+        'opt_' option has a special meaning and the name MUST NOT be used by any other
+        field. It is used on the first load to preselect the filter(s) option(s)
       'caller' - refer to bind method
 
  */
