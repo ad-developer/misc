@@ -1,0 +1,193 @@
+body{
+  //background-color: #f7f7f7;
+}
+.search-bar-mask {
+  top: 0;
+  background-color: #87CEEB;
+  height: 38px;
+  position: absolute;
+  width: 100%;
+}
+.ad-toolbar {
+  position: relative;
+  //background-color: #eee;
+  //border-bottom: 1px solid #ccc;
+  height: 60px;
+  margin-top: 38px;
+  width: 100%;
+  padding: 15px 20px;
+}
+.ad-toolbar select{
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  vertical-align: top;
+  //border: 1px solid #ccc;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  //background-color: #eee;
+  //padding-left:10px;
+  min-width: 160px;
+  outline: none;
+  //border-radius: 2px;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: -webkit-grabbing;
+}
+.ad-container{
+  font-size: 0px;
+  width: 100%;
+  margin: auto;
+  margin-top: 0px;
+  padding: 20px;
+  height: 370px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.ad-left-panel,
+.ad-right-panel{
+  vertical-align: top;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  height: 300px;
+  margin: 0px;
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.ad-left-panel{
+  width: 32%;
+  min-width: 300px;
+}
+.ad-right-panel{
+  width: 62%;
+  min-width: 600px;
+}
+.ad-divider{
+  display: inline-block;
+  width: 6%;
+  min-width: 60px;
+}
+.ad-list{
+  list-style: none;
+  margin: 0px;
+  padding: 20px;
+  width: auto;
+  min-height: 300px;
+  border: 1px solid #ccc;
+}
+.ad-list li{
+  border: 1px solid transparent;
+  border-bottom-color: #eee;
+  height: 36px;
+  padding-top: 3px;
+  padding-bottom:3px;
+  padding-left: 5px;
+  overflow: hidden;
+  font-size: 0px;
+}
+.ad-list li:hover{
+  background-color: #f7f7f7;
+}
+.ad-list li:hover .ad-grip{
+  opacity: 1;
+}
+.ad-list .ad-grip{
+  display: inline-block;
+  font-size: 0px;
+  width: 10px;
+  height: 30px;
+  opacity: 0;
+}
+.ad-list .ad-grip-grabbing{
+  cursor: -webkit-grabbing;
+}
+.ad-grip .ad-grip-row{
+  display: block;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+.ad-grip .ad-grip-row:first-child{
+    margin-top: 2px;
+}
+.ad-grip .ad-grip-row:last-child{
+  margin-bottom:2px;
+}
+.ad-grip .ad-grip-col{
+  display: inline-block;
+  height: 2px;
+  width: 2px;
+  margin-right: 4px;
+  background-color: #aaa;
+}
+
+.ad-list span{
+  font-weight: 100;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  font-size: 14px;
+}
+.ad-list .list-title{
+  //width: 160px;
+}
+.ad-list .list-icon{
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 30px;
+  position: relative;
+  top: 3px;
+}
+.ad-list .list-icon svg{
+  fill: #000;
+  margin: 0px;
+  vertical-align: top;
+}
+.ad-over{
+  border: 1px dashed #ff0000;
+  cursor: pointer !important;
+}
+.ad-over-item{
+  border: 1px dashed #ccc !important;
+  cursor: copy !important;
+}
+
+.ad-chip{
+  vertical-align: top;
+  position: relative;
+  height: 26px;
+  font-size: 12px;
+  line-height: 26px;
+  background-color: #ff0000;
+  color: #fff;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+}
+.ad-right-medium{
+  margin-right: 5px;
+}
+.ad-right-small{
+  margin-right: 3px;
+}
+
+.hide{
+  display: none !important;
+}
