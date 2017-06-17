@@ -1,5 +1,5 @@
 body{
-  //background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
 .search-bar-mask {
   top: 0;
@@ -59,13 +59,11 @@ body{
 .ad-left-panel,
 .ad-right-panel{
   vertical-align: top;
-  font-size: 14px;
-  border: 1px solid #ccc;
+  font-size: 0px;
   display: inline-block;
   height: 300px;
   margin: 0px;
-  background-color: #fff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
 }
 .ad-left-panel{
   width: 32%;
@@ -80,35 +78,64 @@ body{
   width: 6%;
   min-width: 60px;
 }
-.ad-list{
+
+/* List Container */
+.ad-list-container {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  color: #575757;
+  padding: 0px;
+  margin: 0px;
+  min-width: 300px;
+}
+
+/* List Header */
+.ad-list-container .ad-list-header {
+  height: 64px;
+  line-height: 64px;
+  padding-left: 24px;
+}
+.ad-list-header h1 {
+  font-size: 20px;
+  font-weight: 100;
+  padding: 0px;
+  margin: 0px;
+  cursor: default;
+}
+
+/* List Body */
+.ad-list-container .ad-list{
   list-style: none;
   margin: 0px;
-  padding: 20px;
+  padding-left: 0px;
   width: auto;
-  min-height: 300px;
-  border: 1px solid #ccc;
+  height: 236px;
+  overflow-y: auto;
 }
 .ad-list li{
-  border: 1px solid transparent;
-  border-bottom-color: #eee;
-  height: 36px;
+  border-bottom: 1px solid #eee;
+  height: 48px;
   padding-top: 3px;
   padding-bottom:3px;
-  padding-left: 5px;
+  padding-left: 7px;
   overflow: hidden;
   font-size: 0px;
 }
 .ad-list li:hover{
-  background-color: #f7f7f7;
+  background-color: #eee;
 }
 .ad-list li:hover .ad-grip{
   opacity: 1;
 }
+
+/* Grip */
 .ad-list .ad-grip{
   display: inline-block;
+  border: none;
   font-size: 0px;
   width: 10px;
-  height: 30px;
+  height: 42px;
   opacity: 0;
 }
 .ad-list .ad-grip-grabbing{
@@ -137,7 +164,8 @@ body{
   font-weight: 100;
   display: inline-block;
   vertical-align: top;
-  line-height: 30px;
+  height: 42px;
+  line-height: 42px;
   overflow: hidden;
   white-space: nowrap;
   cursor: default;
@@ -147,16 +175,15 @@ body{
   //width: 160px;
 }
 .ad-list .list-icon{
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   display: inline-block;
   vertical-align: top;
-  line-height: 30px;
   position: relative;
-  top: 3px;
+  top: 12px;
 }
 .ad-list .list-icon svg{
-  fill: #000;
+  fill: #575757;
   margin: 0px;
   vertical-align: top;
 }
@@ -168,6 +195,12 @@ body{
   border: 1px dashed #ccc !important;
   cursor: copy !important;
 }
+.ad-list .checked svg {
+  fill: #1e88e5;
+}
+.ad-list .highlight svg {
+  fill: #d32f2f;
+}
 
 .ad-chip{
   vertical-align: top;
@@ -175,19 +208,23 @@ body{
   height: 26px;
   font-size: 12px;
   line-height: 26px;
-  background-color: #ff0000;
+  background-color: #d32f2f;
   color: #fff;
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 12px;
+  top: 8px;
 }
+
 .ad-right-medium{
-  margin-right: 5px;
+  margin-right: 7px;
 }
 .ad-right-small{
   margin-right: 3px;
 }
-
+.ad-right-24 {
+  margin-right: 24px;
+}
 .hide{
   display: none !important;
 }
