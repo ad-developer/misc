@@ -32,3 +32,4 @@ Component
 	
 
 
+http://blog.vjeux.com/2012/css/css-cross-browser-drag-cursor.html
