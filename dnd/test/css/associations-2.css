@@ -1,4 +1,7 @@
 body{
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
   background-color: #fafafa;
 }
 .search-bar-mask {
@@ -31,6 +34,7 @@ body{
   outline: none;
   //border-radius: 2px;
 }
+
 
 [draggable] {
   -moz-user-select: none;
@@ -78,6 +82,70 @@ body{
   width: 6%;
   min-width: 60px;
 }
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Select Control */
+.ad-select {
+  display: flex;
+  position: relative;
+  width: 120px;
+  white-space: nowrap;
+  height: 30px;
+  line-height: 30px;
+}
+.ad-select:hover {
+  background-color: #eee;
+}
+.ad-select .ad-control {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  line-height: 30px;
+  width: 102px;
+  padding-left: 5px;
+  overflow: hidden;
+  font-size: 14px;
+}
+.ad-select .ad-select-arrow {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  top: 6px;
+}
+.ad-select .ad-select-list {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  list-style: none;
+  padding: 5px;
+  margin: 0px;
+  width: 120px;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 10;
+  background-color: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: none;
+}
+.ad-select-list li {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 5px;
+  font-size: 14px;
+}
+.ad-select-list li:hover {
+  background-color: #eee;
+
+}
+
+/* Adjustment for toolbar */
+.ad-toolbar .ad-select {
+  top: 5px;
+}
 
 /* List Container */
 .ad-list-container {
@@ -92,6 +160,7 @@ body{
 
 /* List Header */
 .ad-list-container .ad-list-header {
+  display: flex;
   font-size: 0px;
   height: 64px;
   line-height: 64px;
@@ -127,21 +196,26 @@ body{
   vertical-align: top;
   fill: #363636;
 }
+.ad-list-header .ad-select {
+  top: 17px;
+}
 /* List Body */
 .ad-list-container .ad-list{
   list-style: none;
-  margin: 0px;
+  margin: -1px;
   padding-left: 0px;
+  border: 1px dotted transparent;
   width: auto;
   height: 236px;
   overflow-y: auto;
 }
 .ad-list li{
+  border: 1px dotted transparent;
   border-bottom: 1px solid #eee;
   height: 48px;
   padding-top: 3px;
   padding-bottom:3px;
-  padding-left: 7px;
+  padding-left: 6px;
   overflow: hidden;
   font-size: 0px;
 }
@@ -151,7 +225,10 @@ body{
 .ad-list li:hover .ad-grip{
   opacity: 1;
 }
-
+.ad-over {
+  border-color: red !important;
+  border-bottom: 1px dotted red !important;
+}
 /* Grip */
 .ad-list .ad-grip{
   display: inline-block;
@@ -239,14 +316,17 @@ body{
   top: 10px;
 }
 
-.ad-right-medium{
+.ad-right-medium {
   margin-right: 7px;
 }
-.ad-right-small{
+.ad-right-small {
   margin-right: 3px;
 }
 .ad-right-24 {
   margin-right: 24px;
+}
+.ad-right-auto {
+  margin-right: auto !important;
 }
 .hide{
   display: none !important;
