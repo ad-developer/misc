@@ -225,6 +225,7 @@ body{
 .ad-list li:hover .ad-grip{
   opacity: 1;
 }
+
 .ad-over {
   border-color: red !important;
   border-bottom: 1px dotted red !important;
@@ -270,6 +271,7 @@ body{
   white-space: nowrap;
   cursor: default;
   font-size: 14px;
+  pointer-events: none;
 }
 .ad-list .list-title{
   //width: 160px;
@@ -300,6 +302,13 @@ body{
 }
 .ad-list .highlight svg {
   fill: #d32f2f;
+}
+
+.ad-list [no-drag] {
+  pointer-events: none;
+}
+.ad-list [no-drag] .ad-grip{
+  pointer-events: all;
 }
 
 .ad-chip{
