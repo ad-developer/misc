@@ -1,35 +1,25 @@
-// Checkbox
-let cb = document.querySelectorAll('[ad-checkbox]');
-for (let i = 0; i < cb.length; i++) {
-  cb[i].addEventListener('click', function(e){
-    this.classList.add('hide');
-    let el = this.parentElement.querySelector('[ad-hidden]');
-    el.classList.remove('hide');
-    el.removeAttribute('ad-hidden');
-    this.setAttribute('ad-hidden', true);
-  });
-}
-
-// Dnd
-
+// index.js
 /*
   Container handlers
 */
-let util = {
-    getParentOfType: function(el, type){
-      if(el.nodeName === type){
-        return el;
-      }
-      let nodeName = el.parentElement.nodeName;
-      let parentElement = el.parentElement;
-      while (nodeName !== type) {
-        parentElement = parentElement.parentElement;
-        nodeName = parentElement.nodeName;
-      }
-      return parentElement;
-    }
-};
+
+/*
+  Definitions:
+  ad-dnd-container - draggable items' container
+  ad-dnd-item - draggable item
+  no-drop - sub option for [ad-dnd-item] identify no drop capability
+  drop  - sub option for [ad-dnd-item] identify drop capability
+  ad-dnd-[optional] - can be used as optional attribute
+  ad-dnd-grip - grip element within [ad-dnd-item]
+  ad-dnd-comp-type - component type element within [ad-dnd-item]
+  ad-dnd-title - comp title element
+*/
+
 let guid = 1;
+const HtmTemplates = {
+  GRIP: '<div class="ad-grip ad-right-medium"draggable=true><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div><div class=ad-grip-row><div class=ad-grip-col></div><div class=ad-grip-col></div></div></div>',
+  SOURCE_TYPE_ONE: '<span class="ad-right-24 list-type"title=People><i class=list-icon><svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z"fill=none /><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> </i></span><span class=list-title>People Picker Test Control</span>'
+}
 function handleDragOver(e) {
   if (e.preventDefault) {
     e.preventDefault(); // Necessary. Allows us to drop.
@@ -171,4 +161,12 @@ var container = document.querySelectorAll('[ad-dnd-con]');
   col.addEventListener('dragleave', handleDragLeave, false);
   col.addEventListener('drop', handleDrop, false);
   col.addEventListener('dragend', handleDragEnd, false);
+});
+
+util.el('app').addEventListener('change', function(e){
+  //alert(this.getAttribute('ad-text'));
+});
+
+til.el('use').addEventListener('change', function(e){
+   //alert(this.getAttribute('ad-text'));
 });
