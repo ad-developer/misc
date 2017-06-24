@@ -10,31 +10,19 @@
     <div class="search-bar-mask" ></div>
     <!-- Toolbar -->
     <div class="ad-toolbar">
-      <div class="ad-select" role="button" title="Action Required">
-        <div class="ad-control">Opt One Opt One Opt One</div>
+      <div class="ad-select" role="button" title="Action Required" ad-select id="app">
+        <div class="ad-control" ad-select-control>Please Select an  Option...</div>
         <i class="ad-select-arrow">
           <svg viewBox="0 0 24 24">
               <path d="M7 10l5 5 5-5z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
         </i>
-        <ul class="ad-select-list">
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One long item really</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One long item really</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
-          <li>Item One</li>
+        <ul class="ad-select-list" ad-select-options>
+          <li ad-select-option ad-val="one" ad-text="Item One">Item One</li>
+          <li ad-select-option ad-val="two" ad-text="Item Two">Item Two</li>
+          <li ad-select-option ad-val="three" ad-text="Item Three">Item Three</li>
+          <li ad-select-option ad-val="four" ad-text="Item Four">Item Four</li>
         </ul>
       </div>
     </div>
@@ -46,9 +34,9 @@
           <div class="ad-list-header">
             <h1 title="Drag Available options to the Secelted Options container on the right">Available Options</h1>
           </div>
-          <ul class="ad-list" ad-dnd-con>
+          <ul class="ad-list" ad-dnd-container ad-dnd-src>
             <li id="item-1" ad-dnd-item no-drop>
-              <div class="ad-grip ad-right-medium" draggable="true">
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
                   <div class="ad-grip-col"></div>
                   <div class="ad-grip-col"></div>
@@ -82,7 +70,7 @@
                   <div class="ad-grip-col"></div>
                 </div>
               </div>
-              <span class="list-type ad-right-24" title="People">
+              <span class="list-type ad-right-24" title="People" ad-dnd-comp-type>
                 <i class="list-icon">
                   <svg viewBox="0 0 24 24">
                       <path d="M0 0h24v24H0z" fill="none"/>
@@ -90,10 +78,10 @@
                   </svg>
                 </i>
               </span>
-              <span class="list-title">People Picker Test Control</span>
+              <span class="list-title" ad-dnd-title>People Picker Test Control</span>
             </li>
             <li id="item-2" ad-dnd-item no-drop>
-              <div class="ad-grip ad-right-medium" draggable="true">
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
                   <div class="ad-grip-col"></div>
                   <div class="ad-grip-col"></div>
@@ -143,7 +131,7 @@
               <span class="list-title">Test Description.</span>
             </li>
             <li id="item-3" ad-dnd-item no-drop>
-              <div class="ad-grip ad-right-medium" draggable="true">
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
                   <div class="ad-grip-col"></div>
                   <div class="ad-grip-col"></div>
@@ -188,7 +176,7 @@
               <span class="list-title" title="Please indicate the status level.">Please indicate the status level.</span>
             </li>
             <li id="item-4" ad-dnd-item no-drop>
-              <div class="ad-grip ad-right-medium" draggable="true">
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
                   <div class="ad-grip-col"></div>
                   <div class="ad-grip-col"></div>
@@ -235,6 +223,7 @@
           </ul>
         </div>
       </div>
+      <!-- Divider -->
       <div class="ad-divider"></div>
 
       <!-- Right panel -->
@@ -257,35 +246,25 @@
               </i>
               Requred Control
             </span>
-            <div class="ad-select" role="button" title="Action Required">
-              <div class="ad-control">Action Required</div>
+            <div class="ad-select" role="button" title="Action Required" ad-select ad-val ad-text id="use">
+              <div class="ad-control" ad-select-control>Please Select...</div>
               <i class="ad-select-arrow">
                 <svg viewBox="0 0 24 24">
                     <path d="M7 10l5 5 5-5z"/>
                     <path d="M0 0h24v24H0z" fill="none"/>
                 </svg>
               </i>
-              <ul class="ad-select-list">
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One long item really</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One long item really</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
-                <li>Item One</li>
+              <ul class="ad-select-list" ad-select-options>
+                <li ad-select-option ad-val="1" ad-text="Item One">Item One</li>
+                <li ad-select-option ad-val="2" ad-text="Item Two">Item Two</li>
+                <li ad-select-option ad-val="3" ad-text="Item Three Very Logn Item Very Long Item">Item Three Very Logn Item Very Long Item</li>
+                <li ad-select-option ad-val="4" ad-text="Item Four">Item Four</li>
+                <li ad-select-option ad-val="5" ad-text="Item Five">Item Five</li>
+                <li ad-select-option ad-val="6" ad-text="Item Six">Item Six</li>
               </ul>
             </div>
           </div>
-          <ul class="ad-list" ad-dnd-con>
+          <ul class="ad-list" ad-dnd-container ad-dnd-dest>
             <li ad-dnd-item ad-drop id="item-11">
               <div class="ad-grip ad-right-medium" draggable="true">
                 <div class="ad-grip-row">
@@ -723,6 +702,13 @@
         </div>
       </div>
     </div>
-    <script src="js/index.js" charset="utf-8"></script>
+
+    <button type="button" name="button" id="btn" style="margin-left: 20px; line-height: 20px; padding-left: 16px; padding-right: 16px; text-transform: uppercase; ">Test</button>
+
+    <script src="js/util.js" charset="utf-8"></script>
+    <script src="js/checkbox.js" charset="utf-8"></script>
+    <script src="js/drop-down-list.js" charset="utf-8"></script>
+    <script src="js/dnd.js" charset="utf-8"></script>
+    <script src="js/test.js" charset="utf-8"></script>
    </body>
 </html>
