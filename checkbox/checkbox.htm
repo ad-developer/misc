@@ -38,9 +38,9 @@
 
     <script src="js/checkbox.js" charset="utf-8"></script>
     <script type="text/javascript">
-      Checkbox.attachToMany('[ad-checkbox]');
+      ADCheckbox.attachToMany('[ad-checkbox]');
       document.getElementById('btn').addEventListener('click', ()=>{
-        let inst = Checkbox.getInstance(document.getElementById('checkbox'));
+        let inst = ADCheckbox.getInstance(document.getElementById('checkbox'));
         inst.setState('partial');
       });
       document.getElementById('checkbox').addEventListener('change',(e)=>{

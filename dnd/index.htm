@@ -2,29 +2,713 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Drag and Drop Test</title>
+    <title>Test</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/associations-2.css">
   </head>
   <body>
-    <div class="container">
-      <div class="left-panel">
-        <ul class="list" ad-dnd-con>
-          <li draggable="true" id="one">One</li>
-          <li draggable="true" id="two">Two</li>
-          <li draggable="true" id="three">Three</li>
-          <li draggable="true" id="four">Four</li>
-        </ul>
-      </div>
-      <div class="divider">
-
-      </div>
-      <div class="right-panel">
-        <ul class="list" ad-dnd-con>
-
+    <div class="search-bar-mask" ></div>
+    <!-- Toolbar -->
+    <div class="ad-toolbar">
+      <div class="ad-select" role="button" title="Action Required" ad-select id="app">
+        <div class="ad-control" ad-select-control>Please Select an  Option...</div>
+        <i class="ad-select-arrow">
+          <svg viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </i>
+        <ul class="ad-select-list" ad-select-options>
+          <li ad-select-option ad-val="one" ad-text="Item One">Item One</li>
+          <li ad-select-option ad-val="two" ad-text="Item Two">Item Two</li>
+          <li ad-select-option ad-val="three" ad-text="Item Three">Item Three</li>
+          <li ad-select-option ad-val="four" ad-text="Item Four">Item Four</li>
         </ul>
       </div>
     </div>
+    <!-- Main container -->
+    <div class="ad-container">
+      <!-- Left panel -->
+      <div class="ad-left-panel">
+        <div class="ad-list-container">
+          <div class="ad-list-header">
+            <h1 title="Drag Available options to the Secelted Options container on the right">Available Options</h1>
+          </div>
+          <ul class="ad-list" ad-dnd-container ad-dnd-src>
+            <li id="item-1" ad-dnd-item no-drop>
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="list-type ad-right-24" title="People" ad-dnd-comp-type>
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="list-title" ad-dnd-title>People Picker Test Control</span>
+            </li>
+            <li id="item-2" ad-dnd-item no-drop>
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="list-type ad-right-24" title="TextBox">
+                <i class="list-icon">
+                  <svg  viewBox="0 0 24 24">
+                    <defs>
+                        <path d="M24 24H0V0h24v24z" id="a"/>
+                    </defs>
+                    <clipPath id="b">
+                        <use overflow="visible" xlink:href="#a"/>
+                    </clipPath>
+                    <path clip-path="url(#b)" d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-title">Test Description.</span>
+            </li>
+            <li id="item-3" ad-dnd-item no-drop>
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="list-type ad-right-24" title="Current Status Image Drop Down List">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="list-title" title="Please indicate the status level.">Please indicate the status level.</span>
+            </li>
+            <li id="item-4" ad-dnd-item no-drop>
+              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="list-type ad-right-24" title="Multiselect">
+                <i class="list-icon">
+                  <svg  viewBox="0 0 24 24">
+                      <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="list-title">Primary Audience</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Divider -->
+      <div class="ad-divider"></div>
+
+      <!-- Right panel -->
+      <div class="ad-right-panel">
+        <div class="ad-list-container">
+          <div class="ad-list-header">
+            <h1 class="ad-right-auto">Selected Options</h1>
+            <span class="ad-right-24">
+              <i class="ad-icon checked" ad-checkbox role="button">
+                <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </i>
+              <i class="ad-icon hide" ad-checkbox ad-hidden role="button">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                </svg>
+              </i>
+              Requred Control
+            </span>
+            <div class="ad-select" role="button" title="Action Required" ad-select ad-val ad-text id="use">
+              <div class="ad-control" ad-select-control>Please Select...</div>
+              <i class="ad-select-arrow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                </svg>
+              </i>
+              <ul class="ad-select-list" ad-select-options>
+                <li ad-select-option ad-val="1" ad-text="Item One">Item One</li>
+                <li ad-select-option ad-val="2" ad-text="Item Two">Item Two</li>
+                <li ad-select-option ad-val="3" ad-text="Item Three Very Logn Item Very Long Item">Item Three Very Logn Item Very Long Item</li>
+                <li ad-select-option ad-val="4" ad-text="Item Four">Item Four</li>
+                <li ad-select-option ad-val="5" ad-text="Item Five">Item Five</li>
+                <li ad-select-option ad-val="6" ad-text="Item Six">Item Six</li>
+              </ul>
+            </div>
+          </div>
+          <ul class="ad-list" ad-dnd-container ad-dnd-dest>
+            <li ad-dnd-item ad-drop id="item-11">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-chip-container">
+                <div class="ad-chip ad-chip-red ad-right-small">
+                  Notification
+                </div>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+            <li ad-dnd-item ad-drop id="item-12">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-chip-container">
+                <div class="ad-chip ad-chip-red ad-right-small">
+                  Notification
+                </div>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+            <li ad-dnd-item ad-drop id="item-13">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+            <li ad-dnd-item ad-drop id="item-14">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-chip-container">
+                <div class="ad-chip ad-chip-red ad-right-small">
+                  Notification
+                </div>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+            <li ad-dnd-item ad-drop id="item-15">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-chip-container">
+                <div class="ad-chip ad-chip-red ad-right-small">
+                  Notification
+                </div>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+            <li ad-dnd-item ad-drop id="item-16">
+              <div class="ad-grip ad-right-medium" draggable="true">
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+                <div class="ad-grip-row">
+                  <div class="ad-grip-col"></div>
+                  <div class="ad-grip-col"></div>
+                </div>
+              </div>
+              <span class="ad-right-24">
+                <i class="list-icon checked" ad-checkbox role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </i>
+                <i class="list-icon hide" ad-checkbox ad-hidden role="button">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </span>
+
+              <span class="list-type ad-right-small" title="People">
+                <i class="list-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                </i>
+              </span>
+              <span class="ad-right-medium">
+                <i class="list-icon highlight" title="Required field">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                </svg>
+                </i>
+              </span>
+              <span class="list-chip-container">
+                <div class="ad-chip ad-chip-red ad-right-small">
+                  Alert
+                </div>
+              </span>
+              <span class="list-title">People Picker Test Control</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" name="button" id="btn" style="margin-left: 20px; line-height: 20px; padding-left: 16px; padding-right: 16px; text-transform: uppercase; ">Test</button>
+
+    <script src="js/util.js" charset="utf-8"></script>
+    <script src="js/checkbox.js" charset="utf-8"></script>
+    <script src="js/drop-down-list.js" charset="utf-8"></script>
     <script src="js/dnd.js" charset="utf-8"></script>
-  </body>
+    <script src="js/test.js" charset="utf-8"></script>
+   </body>
 </html>

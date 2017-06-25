@@ -1,10 +1,10 @@
 Component Manager - form centric manager
 
 Component Adapter - works directly with the component manager
-Component Renderer - works with the component adapter to render control 
+Component Renderer - works with the component adapter to render control
 
 ComponentManager (cm)
-	see all original 
+	see all original
 	methods and variables
 
 Component
@@ -16,20 +16,20 @@ Component
 	listen
 	unlisten
 	emit
-	
+
 ComponentRenderer
 	render
-	
-	
 
-	
+
+
+
 Standalone Components
 
 Component
-	Faundation 
+	Foundation
 		Adapter
 
-	
+
 
 
 http://blog.vjeux.com/2012/css/css-cross-browser-drag-cursor.html
