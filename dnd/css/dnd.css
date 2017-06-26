@@ -200,6 +200,7 @@ body{
 .ad-list-header .ad-select {
   top: 17px;
 }
+
 /* List Body */
 .ad-list-container .ad-list{
   list-style: none;
@@ -231,6 +232,7 @@ body{
   border-color: red !important;
   border-bottom: 1px dotted red !important;
 }
+
 /* Grip */
 .ad-list .ad-grip{
   display: inline-block;
@@ -262,7 +264,8 @@ body{
   background-color: #aaa;
 }
 
-.ad-list span{
+.ad-list span,
+.ad-list .ad-list-item {
   font-weight: 100;
   display: inline-block;
   vertical-align: top;
@@ -272,12 +275,14 @@ body{
   white-space: nowrap;
   cursor: default;
   font-size: 14px;
-  //pointer-events: none;
+  padding: 0px;
 }
-.ad-list .list-title{
-  //width: 160px;
+.ad-list .icon-placeholder {
+  width: 18px;
 }
-.ad-list .list-icon{
+
+.ad-list .list-icon,
+.ad-list .ad-icon {
   width: 18px;
   height: 18px;
   display: inline-block;
@@ -285,11 +290,14 @@ body{
   position: relative;
   top: 12px;
 }
-.ad-list .list-icon svg{
+.ad-list .list-icon svg,
+.ad-list .ad-icon svg {
   fill: #575757;
   margin: 0px;
   vertical-align: top;
 }
+
+
 .ad-over{
   border: 1px dashed #ff0000;
   cursor: pointer !important;
@@ -303,13 +311,6 @@ body{
 }
 .ad-list .highlight svg {
   fill: #d32f2f;
-}
-
-.ad-list [no-drop] {
-  //pointer-events: none;
-}
-.ad-list [no-drop] .ad-grip{
-  //pointer-events: all;
 }
 
 .ad-chip{
@@ -326,6 +327,7 @@ body{
   top: 10px;
 }
 
+/* Utility classes */
 .ad-right-medium {
   margin-right: 7px;
 }
@@ -338,6 +340,7 @@ body{
 .ad-right-auto {
   margin-right: auto !important;
 }
+
 .hide{
   display: none !important;
 }
