@@ -154,7 +154,6 @@
               <div class="ad-list-item" ad-dnd-title>People Picker Test Control</div>
             </li>
             <!-- ************************** -->
-
             <li id="item-2" ad-dnd-item no-drop>
               <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
@@ -190,7 +189,68 @@
                   <div class="ad-grip-col"></div>
                 </div>
               </div>
-              <span class="list-type ad-right-24" title="TextBox">
+              <!--
+                Placeholder checkbox (dynamic)
+                Transformation: ad-plc-checkbox - hook attribute
+                To dest: remove hide class
+                To src: add hide class
+              -->
+              <div class="ad-list-item ad-right-24 hide" ad-plc-checkbox>
+                <div class="ad-checkbox" ad-checkbox role="button">
+                  <i class="ad-icon checked hide" ad-hide ad-state="check">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon" ad-show ad-state="uncheck">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon hide" ad-hide ad-state="partial">
+                    <svg viewBox="0 0 24 24">
+                        <defs>
+                            <path d="M0 0h24v24H0z" id="a"/>
+                        </defs>
+                        <clipPath id="b">
+                            <use overflow="visible" xlink:href="#a"/>
+                        </clipPath>
+                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
+                    </svg>
+                  </i>
+                </div>
+              </div>
+
+              <!--
+                Placeholder icon fixed width (dynamic)
+                Transformation: ad-plc-required, ad-plc-required-cont - hook
+                  attributes
+                To dest: remove hide class, keep hide on content
+                To src: add hide class, add hide class to content
+              -->
+              <div class="ad-list-item icon-placeholder ad-right-medium hide" ad-plc-requaired>
+                <i class="list-icon highlight hide" title="Required field" ad-plc-required-cont>
+                    <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0V0z" fill="none"/>
+                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                  </svg>
+                  </i>
+              </div>
+
+              <!--
+                Placeholder chips (dynamic)
+                Transformation: ad-plc-chip, ad-plc-chip-cont - hook attributes
+                To dest: do nothing
+                To src: add hide class, remove all content
+              -->
+              <div class="ad-list-item ad-right-medium hide" ad-plc-chip>
+                <div class="ad-chip ad-chip-red" ad-plc-chip-cont>
+                  Notification
+                </div>
+              </div>
+              <div class="ad-list-item ad-right-medium ad-right-24" title="TextBox" ad-dnd-comp-type>
                 <i class="list-icon">
                   <svg  viewBox="0 0 24 24">
                     <defs>
@@ -202,8 +262,8 @@
                     <path clip-path="url(#b)" d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/>
                 </svg>
                 </i>
-              </span>
-              <span class="list-title">Test Description.</span>
+              </div>
+              <div class="ad-list-item">Test Description.</div>
             </li>
             <li id="item-3" ad-dnd-item no-drop>
               <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
@@ -240,16 +300,78 @@
                   <div class="ad-grip-col"></div>
                 </div>
               </div>
-              <span class="list-type ad-right-24" title="Current Status Image Drop Down List">
+              <!--
+                Placeholder checkbox (dynamic)
+                Transformation: ad-plc-checkbox - hook attribute
+                To dest: remove hide class
+                To src: add hide class
+              -->
+              <div class="ad-list-item ad-right-24 hide" ad-plc-checkbox>
+                <div class="ad-checkbox" ad-checkbox role="button">
+                  <i class="ad-icon checked hide" ad-hide ad-state="check">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon" ad-show ad-state="uncheck">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon hide" ad-hide ad-state="partial">
+                    <svg viewBox="0 0 24 24">
+                        <defs>
+                            <path d="M0 0h24v24H0z" id="a"/>
+                        </defs>
+                        <clipPath id="b">
+                            <use overflow="visible" xlink:href="#a"/>
+                        </clipPath>
+                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
+                    </svg>
+                  </i>
+                </div>
+              </div>
+
+              <!--
+                Placeholder icon fixed width (dynamic)
+                Transformation: ad-plc-required, ad-plc-required-cont - hook
+                  attributes
+                To dest: remove hide class, keep hide on content
+                To src: add hide class, add hide class to content
+              -->
+              <div class="ad-list-item icon-placeholder ad-right-medium hide" ad-plc-requaired>
+                <i class="list-icon highlight hide" title="Required field" ad-plc-required-cont>
+                    <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0V0z" fill="none"/>
+                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                  </svg>
+                  </i>
+              </div>
+
+              <!--
+                Placeholder chips (dynamic)
+                Transformation: ad-plc-chip, ad-plc-chip-cont - hook attributes
+                To dest: do nothing
+                To src: add hide class, remove all content
+              -->
+              <div class="ad-list-item ad-right-medium hide" ad-plc-chip>
+                <div class="ad-chip ad-chip-red" ad-plc-chip-cont>
+                  Notification
+                </div>
+              </div>
+              <div class="ad-list-item ad-right-medium ad-right-24" title="Current Status Image Drop Down List" ad-dnd-comp-type>
                 <i class="list-icon">
                   <svg viewBox="0 0 24 24">
                       <path d="M0 0h24v24H0z" fill="none"/>
                       <path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/>
                   </svg>
                 </i>
-              </span>
-              <span class="list-title" title="Please indicate the status level.">Please indicate the status level.</span>
+              </div>
+              <div class="ad-list-item" title="Please indicate the status level.">Please indicate the status level.</div>
             </li>
+
             <li id="item-4" ad-dnd-item no-drop>
               <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
                 <div class="ad-grip-row">
@@ -285,15 +407,76 @@
                   <div class="ad-grip-col"></div>
                 </div>
               </div>
-              <span class="list-type ad-right-24" title="Multiselect">
+              <!--
+                Placeholder checkbox (dynamic)
+                Transformation: ad-plc-checkbox - hook attribute
+                To dest: remove hide class
+                To src: add hide class
+              -->
+              <div class="ad-list-item ad-right-24 hide" ad-plc-checkbox>
+                <div class="ad-checkbox" ad-checkbox role="button">
+                  <i class="ad-icon checked hide" ad-hide ad-state="check">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon" ad-show ad-state="uncheck">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                  </i>
+                  <i class="ad-icon hide" ad-hide ad-state="partial">
+                    <svg viewBox="0 0 24 24">
+                        <defs>
+                            <path d="M0 0h24v24H0z" id="a"/>
+                        </defs>
+                        <clipPath id="b">
+                            <use overflow="visible" xlink:href="#a"/>
+                        </clipPath>
+                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
+                    </svg>
+                  </i>
+                </div>
+              </div>
+
+              <!--
+                Placeholder icon fixed width (dynamic)
+                Transformation: ad-plc-required, ad-plc-required-cont - hook
+                  attributes
+                To dest: remove hide class, keep hide on content
+                To src: add hide class, add hide class to content
+              -->
+              <div class="ad-list-item icon-placeholder ad-right-medium hide" ad-plc-requaired>
+                <i class="list-icon highlight hide" title="Required field" ad-plc-required-cont>
+                    <svg viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0V0z" fill="none"/>
+                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                  </svg>
+                  </i>
+              </div>
+
+              <!--
+                Placeholder chips (dynamic)
+                Transformation: ad-plc-chip, ad-plc-chip-cont - hook attributes
+                To dest: do nothing
+                To src: add hide class, remove all content
+              -->
+              <div class="ad-list-item ad-right-medium hide" ad-plc-chip>
+                <div class="ad-chip ad-chip-red" ad-plc-chip-cont>
+                  Notification
+                </div>
+              </div>
+              <div class="ad-list-item ad-right-medium ad-right-24" title="Multiselect" ad-dnd-comp-type>
                 <i class="list-icon">
                   <svg  viewBox="0 0 24 24">
                       <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
                       <path d="M0 0h24v24H0z" fill="none"/>
                   </svg>
                 </i>
-              </span>
-              <span class="list-title">Primary Audience</span>
+              </div>
+              <div class="ad-list-item">Primary Audience</div>
             </li>
           </ul>
         </div>
@@ -340,294 +523,6 @@
             </div>
           </div>
           <ul class="ad-list" ad-dnd-container ad-dnd-dest>
-            <li id="item-122" ad-dnd-item no-drop>
-              <!-- Grip -->
-              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-              </div>
-
-              <!-- Placeholder checkbox (dynamic) -->
-              <div class="ad-list-item ad-right-24">
-                <div class="ad-checkbox" ad-checkbox role="button">
-                  <i class="ad-icon checked hide" ad-hide ad-state="check">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon" ad-show ad-state="uncheck">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon hide" ad-hide ad-state="partial">
-                    <svg viewBox="0 0 24 24">
-                        <defs>
-                            <path d="M0 0h24v24H0z" id="a"/>
-                        </defs>
-                        <clipPath id="b">
-                            <use overflow="visible" xlink:href="#a"/>
-                        </clipPath>
-                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
-                    </svg>
-                  </i>
-                </div>
-              </div>
-
-              <!-- Placeholder icon fixed width (dynamic) -->
-              <div class="ad-list-item icon-placeholder ad-right-medium">
-                <i class="list-icon highlight" title="Required field">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0V0z" fill="none"/>
-                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                  </svg>
-                  </i>
-              </div>
-
-              <!-- Placeholder chips (dynamic)-->
-              <div class="ad-list-item ad-right-medium">
-                <div class="ad-chip ad-chip-red">
-                  Notification
-                </div>
-              </div>
-
-              <!-- Type icon -->
-              <div class="ad-list-item ad-right-medium" title="People" ad-dnd-comp-type>
-                <i class="list-icon">
-                  <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                  </svg>
-                </i>
-              </div>
-
-              <!-- Type title (description)-->
-              <div class="ad-list-item" ad-dnd-title>People Picker Test Control</div>
-            </li>
-            <li id="item-133" ad-dnd-item no-drop>
-              <!-- Grip -->
-              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-              </div>
-
-              <!-- Placeholder checkbox (dynamic) -->
-              <div class="ad-list-item ad-right-24">
-                <div class="ad-checkbox" ad-checkbox role="button">
-                  <i class="ad-icon checked hide" ad-hide ad-state="check">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon" ad-show ad-state="uncheck">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon hide" ad-hide ad-state="partial">
-                    <svg viewBox="0 0 24 24">
-                        <defs>
-                            <path d="M0 0h24v24H0z" id="a"/>
-                        </defs>
-                        <clipPath id="b">
-                            <use overflow="visible" xlink:href="#a"/>
-                        </clipPath>
-                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
-                    </svg>
-                  </i>
-                </div>
-              </div>
-
-              <!-- Placeholder icon fixed width (dynamic) -->
-              <div class="ad-list-item icon-placeholder ad-right-medium">
-                <i class="list-icon highlight" title="Required field">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0V0z" fill="none"/>
-                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                  </svg>
-                  </i>
-              </div>
-
-              <!-- Placeholder chips (dynamic)-->
-              <div class="ad-list-item ad-right-medium hide">
-                <div class="ad-chip ad-chip-red">
-                  Very long chip
-                </div>
-              </div>
-
-              <!-- Type icon -->
-              <div class="ad-list-item ad-right-medium" title="People" ad-dnd-comp-type>
-                <i class="list-icon">
-                  <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                  </svg>
-                </i>
-              </div>
-
-              <!-- Type title (description)-->
-              <div class="ad-list-item" ad-dnd-title>People Picker Test Control</div>
-            </li>
-            <li id="item-144" ad-dnd-item no-drop>
-              <!-- Grip -->
-              <div class="ad-grip ad-right-medium" draggable="true" ad-dnd-grip>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-                <div class="ad-grip-row">
-                  <div class="ad-grip-col"></div>
-                  <div class="ad-grip-col"></div>
-                </div>
-              </div>
-
-              <!-- Placeholder checkbox (dynamic) -->
-              <div class="ad-list-item ad-right-24">
-                <div class="ad-checkbox" ad-checkbox role="button">
-                  <i class="ad-icon checked hide" ad-hide ad-state="check">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon" ad-show ad-state="uncheck">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
-                  </i>
-                  <i class="ad-icon hide" ad-hide ad-state="partial">
-                    <svg viewBox="0 0 24 24">
-                        <defs>
-                            <path d="M0 0h24v24H0z" id="a"/>
-                        </defs>
-                        <clipPath id="b">
-                            <use overflow="visible" xlink:href="#a"/>
-                        </clipPath>
-                        <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
-                    </svg>
-                  </i>
-                </div>
-              </div>
-
-              <!-- Placeholder icon fixed width (dynamic) -->
-              <div class="ad-list-item icon-placeholder ad-right-medium">
-                <i class="list-icon highlight hide" title="Required field">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0V0z" fill="none"/>
-                      <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                  </svg>
-                  </i>
-              </div>
-
-              <!-- Placeholder chips (dynamic)-->
-              <div class="ad-list-item ad-right-medium">
-                <div class="ad-chip ad-chip-red">
-                  Very long chip
-                </div>
-              </div>
-
-              <!-- Type icon -->
-              <div class="ad-list-item ad-right-medium" title="People" ad-dnd-comp-type>
-                <i class="list-icon">
-                  <svg viewBox="0 0 24 24">
-                      <path d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                  </svg>
-                </i>
-              </div>
-
-              <!-- Type title (description)-->
-              <div class="ad-list-item" ad-dnd-title>People Picker Test Control</div>
-            </li>
             <li ad-dnd-item ad-drop id="item-11">
 
               <div class="ad-grip ad-right-medium" draggable="true">
@@ -702,7 +597,6 @@
               </span>
               <span class="list-title">People Picker Test Control</span>
             </li>
-
           </ul>
         </div>
       </div>

@@ -21,7 +21,7 @@
     Placeholder checkbox (dynamic)
     Transformation: ad-plc-checkbox - hook attribute
     To dest: remove hide class
-    To src: add hide class
+    To src: add hide class, uncheck checkbox checkbox.setState('uncheck')
   -->
   <!--
     Placeholder icon fixed width (dynamic)
