@@ -69,7 +69,7 @@ class ADCheckbox {
       this.root_.addEventListener(k, this.listeners_[k]);
     });
   }
-  setState(state) {
+  setState_(state) {
     let states = ['ckeck','unckeck','partial'];
     if(states.includes(state)){
       let root = this.root_;
@@ -82,9 +82,15 @@ class ADCheckbox {
         shownEl = root.querySelector(`[${checkboxAttributes.AD_STATE}='${state}']`);
         shownEl.classList.remove(checkboxCssClasses.HIDE);
         shownEl.setAttribute(checkboxAttributes.AD_SHOW, true);
+
+        root.setAttribute(checkboxAttributes.AD_STATE, state);
+
         this.emit('change',state);
       }
     }
+  }
+  setState(state) {
+    this.setState_(state);
   }
   emit(evtType, evtData, shouldBubble = false) {
    let evt;
@@ -118,6 +124,8 @@ class ADCheckbox {
     }
     shownEl.classList.remove(checkboxCssClasses.HIDE);
     shownEl.setAttribute(checkboxAttributes.AD_SHOW, true);
+
+    root.setAttribute(checkboxAttributes.AD_STATE, triggeredState);
 
     // Fire change event on the root.
     this.emit('change', triggeredState);
