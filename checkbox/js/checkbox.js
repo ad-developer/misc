@@ -20,11 +20,7 @@
 const checkboxStrings = {
   CHECK_BOX_KEY: 'adcheckbox'
 };
-const checkboxCssClasses = {
-  HIDE: 'hide',
-};
 const checkboxAttributes = {
-  AD_HIDE: 'ad-hide',
   AD_SHOW: 'ad-show',
   AD_STATE: 'ad-state',
 };
@@ -70,18 +66,18 @@ class ADCheckbox {
     });
   }
   setState_(state) {
-    let states = ['ckeck','unckeck','partial'];
+    let states = ['check','uncheck','partial'];
     if(states.includes(state)){
       let root = this.root_;
-      let shownEl = root.querySelector(`[${checkboxAttributes.AD_SHOW}]`)
-      let curSt =  shownEl.getAttribute(checkboxAttributes.AD_STATE);
-      if(curSt !== state){
-        shownEl.classList.add(checkboxCssClasses.HIDE);
-        shownEl.removeAttribute(checkboxAttributes.AD_SHOW);
-        shownEl.setAttribute(checkboxAttributes.AD_HIDE, true);
-        shownEl = root.querySelector(`[${checkboxAttributes.AD_STATE}='${state}']`);
-        shownEl.classList.remove(checkboxCssClasses.HIDE);
-        shownEl.setAttribute(checkboxAttributes.AD_SHOW, true);
+      let el = root.querySelector(`[${checkboxAttributes.AD_SHOW}]`)
+      let cst =  root.getAttribute(checkboxAttributes.AD_STATE);
+      if(cst !== state){
+        el.style.display = 'none';
+        el.removeAttribute(checkboxAttributes.AD_SHOW);
+
+        el = root.querySelector(`[${checkboxAttributes.AD_STATE}='${state}']`);
+        el.style.display = 'block';
+        el.setAttribute(checkboxAttributes.AD_SHOW, true);
 
         root.setAttribute(checkboxAttributes.AD_STATE, state);
 
@@ -107,27 +103,12 @@ class ADCheckbox {
    this.root_.dispatchEvent(evt);
   }
   click_(e) {
-    let root = this.root_;
-    let shownEl = root.querySelector(`[${checkboxAttributes.AD_SHOW}]`)
-    let curSt =  shownEl.getAttribute(checkboxAttributes.AD_STATE);
-    let triggeredState = 'uncheck';
+    let st = this.root_.getAttribute(checkboxAttributes.AD_STATE);
+    let attr = 'uncheck';
 
-    shownEl.classList.add(checkboxCssClasses.HIDE);
-    shownEl.removeAttribute(checkboxAttributes.AD_SHOW);
-    shownEl.setAttribute(checkboxAttributes.AD_HIDE, true);
-
-    if(curSt === 'partial' || curSt === 'uncheck'){
-      shownEl = root.querySelector(`[${checkboxAttributes.AD_STATE}='check']`);
-      triggeredState = 'check';
-    } else {
-      shownEl = root.querySelector(`[${checkboxAttributes.AD_STATE}='uncheck']`);
+    if(st === 'partial' || st === 'uncheck'){
+      attr = 'check';
     }
-    shownEl.classList.remove(checkboxCssClasses.HIDE);
-    shownEl.setAttribute(checkboxAttributes.AD_SHOW, true);
-
-    root.setAttribute(checkboxAttributes.AD_STATE, triggeredState);
-
-    // Fire change event on the root.
-    this.emit('change', triggeredState);
+    this.setState_(attr);
   }
 }
