@@ -50,8 +50,9 @@ class ADCheckbox {
   static getInstance(root) {
     return root.ad && root.ad[checkboxStrings.CHECK_BOX_KEY] ? root.ad[checkboxStrings.CHECK_BOX_KEY] : null;
   }
-  constructor(root) {
+  constructor(root, opt = {}) {
     this.root_ = root;
+    this.opt_ = opt;
     this.listeners_ = {
       click: (e) => this.click_(e),
     };
@@ -71,12 +72,14 @@ class ADCheckbox {
       let root = this.root_;
       let el = root.querySelector(`[${checkboxAttributes.AD_SHOW}]`)
       let cst =  root.getAttribute(checkboxAttributes.AD_STATE);
+      let disp = this.opt_.disp || 'block';
       if(cst !== state){
         el.style.display = 'none';
         el.removeAttribute(checkboxAttributes.AD_SHOW);
 
         el = root.querySelector(`[${checkboxAttributes.AD_STATE}='${state}']`);
-        el.style.display = 'block';
+
+        el.style.display = disp;
         el.setAttribute(checkboxAttributes.AD_SHOW, true);
 
         root.setAttribute(checkboxAttributes.AD_STATE, state);
