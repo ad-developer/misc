@@ -27,7 +27,7 @@ const checkboxAttributes = {
 /*
   Checkbox has three states [ check | uncheck | partial ]
   Partial state can be only triggered form setState method.
-  Checkbox triggers change even and passes the triggers state along with
+  Checkbox triggers the change event and passes the triggered state along with
   the detail information.
 */
 class ADCheckbox {
