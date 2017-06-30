@@ -200,7 +200,9 @@ body{
 .ad-list-header .ad-select {
   top: 17px;
 }
-
+.ad-list-header .ad-checkbox{
+  font-size: 14px;
+}
 /* List Body */
 .ad-list-container .ad-list{
   list-style: none;
