@@ -51,9 +51,12 @@ const htmStrings = {
 
 const dndTestStrings = {
   PLC_CHECKBOX: 'ad-plc-checkbox',
-  PLC_REQUIRED: 'ad-plc-requaired',
-  DND_COMP_TYPE: 'ad-dnd-comp-type'
+  PLC_REQUIRED: 'ad-plc-required',
+  DND_COMP_TYPE: 'ad-dnd-comp-type',
+  SRC_ITEM: 'src-item',
+  DEST_ITEM: 'dest-item'
 };
+
 const dndTestCssClasses = {
   HIDE: 'hide',
   RIGHT_24: 'ad-right-24'
@@ -69,16 +72,19 @@ let dropItemHnd = function(e, callback) {
   let dropInst = ADDnd.getInstance(el);
   dropInst.deactivate();
   dropInst.activate('all');
+  let destItem = dropInst.root.getAttribute(dndTestStrings.DEST_ITEM);
+  if(!destItem) {
+    dropInst.root.setAttribute(dndTestStrings.DEST_ITEM, 'true');
+    // transformation
+    let checkbox = dropInst.root.querySelector(`[${dndTestStrings.PLC_CHECKBOX}]`);
+    checkbox.classList.remove(dndTestCssClasses.HIDE);
 
-  // transformation
-  let checkbox = dropInst.root.querySelector(`[${dndTestStrings.PLC_CHECKBOX}]`);
-  checkbox.classList.remove(dndTestCssClasses.HIDE);
+    let req = dropInst.root.querySelector(`[${dndTestStrings.PLC_REQUIRED}]`);
+    req.style.display = 'inline-block';
 
-  let req = dropInst.root.querySelector(`[${dndTestStrings.PLC_REQUIRED}]`);
-  req.classList.remove(dndTestCssClasses.HIDE);
-
-  let comT = dropInst.root.querySelector(`[${dndTestStrings.DND_COMP_TYPE}]`);
-  comT.classList.remove(dndTestCssClasses.RIGHT_24);
+    let comT = dropInst.root.querySelector(`[${dndTestStrings.DND_COMP_TYPE}]`);
+    comT.classList.remove(dndTestCssClasses.RIGHT_24);
+ }
 
   parent.insertBefore(el, root);
   callback(true);
@@ -106,12 +112,14 @@ ADDnd.attachToMany('[ad-dnd-src]', {
     dropInst.deactivate();
     dropInst.activate('drag');
 
+    dropInst.root.removeAttribute(dndTestStrings.DEST_ITEM);
+
     // transformation
     let checkbox = dropInst.root.querySelector(`[${dndTestStrings.PLC_CHECKBOX}]`);
     checkbox.classList.add(dndTestCssClasses.HIDE);
 
     let req = dropInst.root.querySelector(`[${dndTestStrings.PLC_REQUIRED}]`);
-    req.classList.add(dndTestCssClasses.HIDE);
+    req.style.display = 'none';
 
     let comT = dropInst.root.querySelector(`[${dndTestStrings.DND_COMP_TYPE}]`);
     comT.classList.add(dndTestCssClasses.RIGHT_24);
@@ -130,29 +138,89 @@ ADDnd.attachToMany('[ad-dnd-dest]', {
     let root = this.root;
     dropInst.deactivate();
     dropInst.activate('all');
-    // transformation
+    let destItem = dropInst.root.getAttribute(dndTestStrings.DEST_ITEM);
+      if(!destItem) {
+        dropInst.root.setAttribute(dndTestStrings.DEST_ITEM, 'true');
+      // transformation
+      let checkbox = dropInst.root.querySelector(`[${dndTestStrings.PLC_CHECKBOX}]`);
+      checkbox.classList.remove(dndTestCssClasses.HIDE);
 
-    let checkbox = dropInst.root.querySelector(`[${dndTestStrings.PLC_CHECKBOX}]`);
-    checkbox.classList.remove(dndTestCssClasses.HIDE);
+      let req = dropInst.root.querySelector(`[${dndTestStrings.PLC_REQUIRED}]`);
+      req.style.display = 'inline-block';
 
-    let req = dropInst.root.querySelector(`[${dndTestStrings.PLC_REQUIRED}]`);
-    req.classList.remove(dndTestCssClasses.HIDE);
-
-    let comT = dropInst.root.querySelector(`[${dndTestStrings.DND_COMP_TYPE}]`);
-    comT.classList.remove(dndTestCssClasses.RIGHT_24);
-
+      let comT = dropInst.root.querySelector(`[${dndTestStrings.DND_COMP_TYPE}]`);
+      comT.classList.remove(dndTestCssClasses.RIGHT_24);
+    }
     callback(false);
   }
 });
 
 // Register checkbox
+ADCheckbox.attachToMany('[ad-checkbox]', {disp: 'inline-block'});
 
-ADCheckbox.attachToMany('[ad-checkbox]');
+// Register toolbar checkbox
+ADCheckbox
+  .attachTo(document.getElementById('hd-cb')
+    ,{disp: 'inline-block'});
 
-document.getElementById('btn').addEventListener('click', function(){});
+document.getElementById('hd-cb')
+  .addEventListener('change', function(e){
+    let st = e.detail;
+    let con = document.querySelector('[ad-dnd-dest]');
+    let list = con.querySelectorAll('[ad-checkbox][ad-state=check]');
+    [].forEach.call(list, function(el){
+      el = util.closest(el, '[ad-dnd-item]');
+      el = el.querySelector('[ad-plc-required-cont]');
+      let disp = 'none';
+      if(st === 'check') {
+        disp = 'inline-block';
+      }
+      el.style.display = disp;
+    });
+
+  });
+
+document.getElementById('hd-sel')
+.addEventListener('change', function(){
+  let val = this.getAttribute('ad-val');
+  let text = this.getAttribute('ad-text');
+  let con = document.querySelector('[ad-dnd-dest]');
+  let list = con.querySelectorAll('[ad-checkbox][ad-state=check]');
+  [].forEach.call(list, function(el){
+    let con = util.closest(el, '[ad-dnd-item]');
+    el = con.querySelector('[ad-plc-chip-cont]');
+    el.textContent = text;
+    el = con.querySelector('[ad-plc-chip]');
+    el.style.display = 'inline-block';
+  });
+
+});
+
+function moreChxBx(cb) {
+  let parent = util.closest(cb,'UL');
+  let res = parent.querySelectorAll('[ad-checkbox][ad-state=check]');
+  return res && res.length > 0;
+}
+
+let cbs = document.querySelectorAll('[ad-checkbox]');
+[].forEach.call(cbs, function(ch){
+  ch.addEventListener('change', function(e){
+    let cb = document.getElementById('hd-cb');
+    let lst = document.getElementById('hd-sel');
+    if(e.detail === 'check'){
+        cb.classList.remove('hide');
+        lst.classList.remove('hide');
+    } else {
+      if(!moreChxBx(ch)){
+        cb.classList.add('hide');
+        lst.classList.add('hide');
+      }
+    }
+  });
+});
 
 document.querySelectorAll('[ad-drop]').forEach((el)=>{
-  el.addEventListener('change', ()=>{
-    //alert('change');
+  el.addEventListener('change', (e)=>{
+    alert('test');
   });
 });
