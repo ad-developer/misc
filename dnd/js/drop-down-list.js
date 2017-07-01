@@ -19,7 +19,7 @@ for (let i = 0; i < selOpts.length; i++) {
           texAtr = 'ad-text',
           valAtr = 'ad-val',
           ev;
-      ctrl = util.closest(this, 'ad-select');
+      ctrl = util.closest(this, '[ad-select]');
 
 
       val = this.getAttribute(valAtr);
@@ -32,7 +32,7 @@ for (let i = 0; i < selOpts.length; i++) {
       inpt.textContent = text;
 
 
-      list = util.closest(this, 'ad-select-options');
+      list = util.closest(this, '[ad-select-options]');
       list.classList.remove('show');
       list.setAttribute('ad-select-options-shown', false);
 
@@ -47,7 +47,7 @@ for (let i = 0; i < selOpts.length; i++) {
 
 }
 document.addEventListener('click', function(e){
-  let contr = util.closest(e.target, 'ad-select');
+  let contr = util.closest(e.target, '[ad-select]');
   let selected = contr ? contr.querySelector('[ad-select-options-shown=true]') : null;
   let opts = document.querySelectorAll('[ad-select-options-shown=true]');
 
