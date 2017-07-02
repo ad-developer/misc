@@ -6,40 +6,129 @@
     <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
-    <div class="ad-uploader">
+    <div class="ad-uploader" id="uploader">
       <div class="ad-uploader-toolbar">
+        <!-- File control -->
         <input type="file" ad-uploader-control  multiple style="display: none"/>
-        <a class="ad-uploader-btn" href="#" ad-uploader-button action="button">Upload File</a>
-        <a class="ad-uploader-btn ad-warning" href="#" ad-uploader-button action="button" style="margin-left: auto; display: none">Confirm Deletion</a>
+        <!-- Add button -->
+        <a class="ad-uploader-btn" style="margin-right: 10px;" role="button" title="Add file" ad-uploader-add>
+          <div class="ad-progress">
+            <div class="ad-progress-runner"></div>
+          </div>
+          <i class="ad-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </i>
+        </a>
+        <!-- Upload button -->
+        <a class="ad-uploader-btn" style="display: none" role="button" title="Upload file(s)" ad-uploader-upload>
+          <div class="ad-progress">
+            <div class="ad-progress-runner"></div>
+          </div>
+          <i class="ad-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
+            </svg>
+          </i>
+        </a>
+
+        <!-- Delete button -->
+        <a class="ad-uploader-btn ad-warning" style="margin-left: auto; display: none" role="button" title="Delete file(s)" ad-uploader-del>
+          <div class="ad-progress">
+            <div class="ad-progress-runner"></div>
+          </div>
+          <i class="ad-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </i>
+        </a>
       </div>
       <ul class="ad-uploader-list">
         <li class="ad-uploader-item">
-          <div class="ad-progress ad-progress-run">
-            <div class="ad-progress-runner"></div>
-          </div>
           <a href="#" class="ad-uploader-link" title="File name">file name very very long long long long long long long long long long text.docx</a>
-          <div class="ad-uploader-mask" style="width: 108px"></div>
-          <a href="#" class="ad-uploader-delete ad-active" style="width: 88px">Confirm</a>
+          <div class="ad-uploader-mask"></div>
+          <a href="#" class="ad-uploader-delete ad-uploader-blink" title="Confirm Deltion" role="button">
+            <div class="ad-progress">
+              <div class="ad-progress-runner"></div>
+            </div>
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </a>
         </li>
         <li class="ad-uploader-item">
           <a href="#" class="ad-uploader-link" title="File name">file name very very long long long long long long long long long long text.docx</a>
           <div class="ad-uploader-mask"></div>
-          <a href="#" class="ad-uploader-delete">X</a>
+          <a href="#" class="ad-uploader-delete ad-no-hover" role="button">
+            <div class="ad-progress ad-progress-run">
+              <div class="ad-progress-runner"></div>
+            </div>
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </a>
         </li>
         <li class="ad-uploader-item">
           <a href="#" class="ad-uploader-link" title="File name">file name very very long long long long long long long long long long text.docx</a>
           <div class="ad-uploader-mask"></div>
-          <a href="#" class="ad-uploader-delete">X</a>
+          <a href="#" class="ad-uploader-delete" role="button">
+            <div class="ad-progress">
+              <div class="ad-progress-runner"></div>
+            </div>
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </a>
         </li>
         <li class="ad-uploader-item">
           <a href="#" class="ad-uploader-link" title="File name">file name very very long long long long long long long long long long text.docx</a>
           <div class="ad-uploader-mask"></div>
-          <a href="#" class="ad-uploader-delete">X</a>
+          <a href="#" class="ad-uploader-delete" role="button">
+            <div class="ad-progress">
+              <div class="ad-progress-runner"></div>
+            </div>
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </a>
         </li>
         <li class="ad-uploader-item">
           <a href="#" class="ad-uploader-link" title="File name">file name very very long long long long long long long long long long text.docx</a>
           <div class="ad-uploader-mask"></div>
-          <a href="#" class="ad-uploader-delete">X</a>
+          <a href="#" class="ad-uploader-delete" role="button">
+            <div class="ad-progress">
+              <div class="ad-progress-runner"></div>
+            </div>
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </a>
         </li>
       </ul>
     </div>
@@ -47,6 +136,7 @@
     <footer>
       <a href="http://blog.teamtreehouse.com/uploading-files-ajax" target="_blank" >Learn more...</a>
     </footer>
-    <script src="js/index.js" charset="utf-8"></script>
+    <script src="js/uploader.js" charset="utf-8"></script>
+    <script src="js/test.js" charset="utf-8"></script>
   </body>
 </html>

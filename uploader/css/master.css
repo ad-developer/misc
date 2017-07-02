@@ -1,3 +1,4 @@
+/* Reset */
 body {
   padding: 0px;
   margin: 0px;
@@ -33,80 +34,63 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+[role=button] {
+  cursor: pointer;
+}
 
-/* Progress bar */
-@keyframes progress-bar {
-    0% {
-      width: 0%;
-      right: 0%;
-    }
-    40% {
-      width: 80%;
-      right: 0%;
-    }
-    60% {
-      width: 80%;
-      right: -20%;
-    }
-    100% {
-      width: 1%;
-      right: -99%;
-    }
-}
-.ad-progress {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  top: 0px;
-  left: -5px;
-  font-size: 0px;
-  background-color: #fff;
-  margin: 0px;
-  padding: 0px;
-  z-index: 12;
-}
-.ad-progress .ad-progress-runner {
-  display: block;
-  width: 0%;
+/* Icon */
+.ad-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: top;
   position: relative;
-  height: 100%;
-  background-color: #e53935;
+  top: 4px;
 }
-.ad-progress-run .ad-progress-runner {
-  animation: progress-bar 0.9s ease-out infinite;
+.ad-icon svg {
+  fill: #777 !important;
 }
 
 /* Uploader */
 .ad-uploader {
   margin-left:  40px;
+  margin-right: 40px;
   margin-top: 50px;
-  width: 800px;
+  width: 600px;
   border: 1px solid #eee;
+  box-sizing: border-box;
 }
 .ad-uploader .ad-uploader-toolbar {
   display: flex;
-  height: 60px;
-  line-height: 60px;
-  padding-left: 16px;
-  padding-right: 16px;
+  height: 58px;
+  line-height: 58px;
+  padding-left: 13px;
+  padding-right: 13px;
   background-color: #f7f7f7;
-  border-bottom: : 1px solid #eee;
+  border: 3px solid #f7f7f7;
+}
+/* TODO: Reserved for dnd */
+.ad-uploader .ad-uploader-toolbar-drop {
+  border: 3px dashed #ccc;
 }
 .ad-uploader-toolbar .ad-uploader-btn {
   display: inline-block;
   position: relative;
-  top: 14px;
-  height: 32px;
-  line-height: 32px;
+  top: 11px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
   border-radius: 2px;
-  padding-left: 16px;
-  padding-right: 16px;
-  min-width: 88px;
-  text-transform: uppercase;
-  text-align: center;
   text-decoration: none;
   color: #777;
+  text-align: center;
+}
+.ad-uploader-btn .ad-icon {
+  top: 6px;
+}
+.ad-uploader-btn svg {
+  fill: #777;
 }
 .ad-uploader-toolbar .ad-uploader-btn:hover {
   background-color: #ddd;
@@ -144,7 +128,7 @@ footer a:hover {
   right: 0px;
   text-align: center;
   text-decoration: none;
-  border: 1px solid #ccc;
+  //border: 1px solid #ccc;
   border-radius: 2px;
   top: 8px;
   right: 8px;
@@ -155,8 +139,93 @@ footer a:hover {
 }
 .ad-uploader-item .ad-uploader-delete:hover,
 .ad-uploader-item .ad-active,
+.ad-warning:hover,
+.ad-warning:hover .ad-icon svg,
+.ad-uploader-delete:hover .ad-icon svg{
+  color: #fff;
+  background-color:#e53935;
+  fill: #fff !important;
+}
 .ad-warning:hover {
-  color: #fff !important;
   background-color:#e53935 !important;
-  border-color: #ab000d !important;
+}
+.ad-no-hover:hover,
+.ad-no-hover:hover .ad-icon,
+.ad-no-hover:hover .ad-icon svg {
+  color: #777 !important;
+  background-color: #fafafa !important;
+  fill: #777 !important;
+  cursor: default;
+}
+
+/* Blink */
+@keyframes btn-blink {
+    0%, 100% {
+      color: #777;
+      background-color: transparent;
+      fill: #777;
+    }
+    20% {
+      color: #fff;
+      background-color:#e53935;
+      fill: #fff;
+    }
+    40% {
+      color: #777;
+      background-color: transparent;
+      fill: #777;
+    }
+}
+.ad-uploader-blink .ad-icon svg,
+.ad-uploader-item .ad-uploader-blink {
+  animation: btn-blink 0.5s linear infinite !important;
+}
+
+/* Progress bar */
+@keyframes progress-bar {
+    0% {
+      width: 0%;
+      right: 0%;
+    }
+    40% {
+      width: 80%;
+      right: 0%;
+    }
+    60% {
+      width: 80%;
+      right: -20%;
+    }
+    100% {
+      width: 1%;
+      right: -99%;
+    }
+}
+.ad-progress {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 0px;
+  font-size: 0px;
+  background-color: #fff;
+  margin: 0px;
+  padding: 0px;
+  z-index: 12;
+}
+.ad-uploader-btn .ad-progress {
+  left: 0px;
+  background-color: #f7f7f7;
+}
+.ad-uploader-delete .ad-progress {
+  background-color: #fafafa;
+}
+.ad-progress .ad-progress-runner {
+  display: block;
+  width: 0%;
+  position: relative;
+  height: 100%;
+  background-color: #e53935;
+}
+.ad-progress-run .ad-progress-runner {
+  animation: progress-bar 0.9s ease-out infinite;
 }
