@@ -111,6 +111,9 @@ footer a:hover {
   overflow-x: hidden;
   background-color: #fafafa; /* Mask background color must be the same */
 }
+.ad-uploader-list .ad-uploader-item:last-child {
+  margin-bottom: 0px;
+}
 .ad-uploader-mask {
   position: absolute;
   height: 48px;
