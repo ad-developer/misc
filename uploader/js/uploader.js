@@ -60,11 +60,14 @@ const attributes = {
   ITEM_LINK: 'ad-item-link',
   ITEM_DEL: 'ad-item-delete',
   ITEM_DEL_CONF: 'ad-item-conf',
-  TTL: 'title'
+  TTL: 'title',
+  FILE_NAME: 'ad-item-file-name',
+  FILE_ID: 'ad-item-file-id'
 };
 
 const strings = {
-  CONF: 'Confirm file deletion.'
+  CONF: 'Confirm file deletion.',
+  EV_CHANGE: 'change'
 };
 
 class ADUploader {
@@ -78,6 +81,7 @@ class ADUploader {
   static getInstance(root) {
     return root.ad && root.ad['aduploader'] ? root.ad['aduploader'] : null;
   }
+
   constructor(root, opt = {}) {
     this.root_ = root;
     this.opt_ = opt;
@@ -88,14 +92,17 @@ class ADUploader {
     this.listenerInfos_ = [
       {re:'uploadClick', ev:'click', ctr: attributes.UPLOAD },
       {re:'change', ev:'change', ctr: 'root' },
+      {re: 'upload', ev: 'upload', ctr: 'root'},
       {re:'deleteFile', ev:'click', ctr: attributes.DEL },
       {re: 'controlChange', ev:'change', ctr: attributes.CTR }
     ];
     this.listeners_ = {
       uploadClick: (e) => this.uploadBtnClick_(e),
-      change: (e) => this.uploaderChange_(e),
       deleteFile:(e) => this.deleteFiles_(e),
-      controlChange:(e) => this.controlChange_(e)
+      controlChange:(e) => this.controlChange_(e),
+      // Two root events
+      change: (e) => this.rootChange_(e),
+      upload: (e)=> this.rootUpload_(e)
     };
     if(opt.add){
       this.listeners_.addClick = (e) => this.addClick_(e);
@@ -148,17 +155,40 @@ class ADUploader {
    this.root_.dispatchEvent(evt);
   }
 
-  setConfirm_(domBtn) {
-    let atr = domBtn.getAttribute(attributes.ITEM_DEL_CONF);
+  // Util functions ...
+  showContext_(){
+    let n = this.fileList_.length;
+    let root = this.root_;
+    let con = root.querySelector(`[${attributes.LIST}`);
+    let upl = root.querySelector(`[${attributes.UPLOAD}`);
+    let del = root.querySelector(`[${attributes.DEL}`);
+    let st = 'none';
+    if(n){
+        st = 'block';
+    }
+    // TODO: Create context array
+    con.style.display = st;
+    upl.style.display = st;
+    del.style.display = st;
+  }
+  btnIndicator_(btn, show) {
+    if(show) {
+      btn.classList.add(cssClasses.PRG_RUN);
+    } else {
+      btn.classList.remove(cssClasses.PRG_RUN);
+    }
+  }
+  setConfirm_(btn) {
+    let atr = btn.getAttribute(attributes.ITEM_DEL_CONF);
     let conf = false;
     if(atr) {
-      domBtn.classList.remove(cssClasses.BLNK);
-      domBtn.classList.add(cssClasses.PRG_RUN);
+      btn.classList.remove(cssClasses.BLNK);
+      this.btnIndicator_(btn, true);
       conf = true;
     } else {
-      domBtn.setAttribute(attributes.ITEM_DEL_CONF, true);
-      domBtn.classList.add(cssClasses.BLNK);
-      domBtn.setAttribute(attributes.TTL, strings.CONF);
+      btn.setAttribute(attributes.ITEM_DEL_CONF, true);
+      btn.classList.add(cssClasses.BLNK);
+      btn.setAttribute(attributes.TTL, strings.CONF);
     }
     return conf;
   }
@@ -191,13 +221,22 @@ class ADUploader {
     let rec = this.getRecTmp_();
     let item = rec.querySelector(`[${attributes.ITEM_LINK}]`);
     item.textContent = file.name;
+    // TODO: Add href attribte here ...
+
+    rec.setAttribute(attributes.FILE_NAME, file.name);
+
     let listCon = this.root_.querySelector(`[${attributes.LIST}]`);
     listCon.appendChild(rec);
+    this.fileList_.push({
+      name: file.name
+    });
   }
   addFormData_(file) {
     this.formData_.append('files', file, file.name);
   }
   addFiles_(){
+    let btn = this.root_.querySelector(`[${attributes.ADD}]`);
+    this.btnIndicator_(btn, true);
     let upl = this.root_.querySelector(`[${attributes.CTR}]`);
     let files = upl.files;
     [].forEach.call(files, (f) => {
@@ -207,19 +246,43 @@ class ADUploader {
     // Clear control to accept more files
     // if needed...
     upl.value = '';
+    this.emit(strings.EV_CHANGE);
+    this.btnIndicator_(btn);
   }
   removeFile_(domBtn) {
     let rec = util.closest(domBtn, `[${attributes.ITEM}]`);
+    // Remove from the visual list ...
     rec.remove();
+
+    let fileList = this.fileList_;
+    let name = rec.getAttribute(attributes.FILE_NAME);
+    /*for (let i = 0, item; i < fileList.length; i++) {
+      item = fileList[i];
+      if(item.name === name){
+        fileList.splice(i,1);
+        break;
+      }
+    }*/
+    // Remove from the file list
+    [].forEach.call(this.fileList_, (file, i)=>{
+      if(file.name === name){
+        this.fileList_.splice(i,1);
+      }
+    });
+
+    // Remove from FormData
+    this.formData_.delete(name);
+    
   }
+
   // Event handlers
   uploadBtnClick_(e) {}
-  uploaderChange_(e) {}
   deleteFiles_(e) {}
   deleteFile_(e) {
     let btn = e.currentTarget;
     if(this.setConfirm_(btn)){
       this.removeFile_(btn);
+      this.emit(strings.EV_CHANGE);
     }
   }
   addClick_(e) {
@@ -227,5 +290,11 @@ class ADUploader {
   }
   controlChange_(e) {
     this.addFiles_();
+  }
+  rootChange_(e) {
+    this.showContext_();
+  }
+  rootUpload_(e) {
+
   }
 }
