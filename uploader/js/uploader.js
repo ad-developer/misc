@@ -19,10 +19,10 @@
 
 /*
   Constructor settings:
-    enable: {
-      dnd: true, // enable drag and drop
-      add: true, // enable add first and then upload... upload is default
-    }
+    dnd: true, // enable drag and drop
+    add: true, // enable add first and then upload... upload is default
+    onUpload - function()
+    onChange - function(fileList, formData, callback)
 
   Public methods:
     getFormData
@@ -54,7 +54,6 @@ const attributes = {
   ADD: 'ad-uploader-add',
   UPLOAD: 'ad-uploader-upload',
   DEL: 'ad-uploader-del',
-  CTR: 'ad-uploader-control',
   LIST: 'ad-uploader-list',
   ITEM: 'ad-uploader-item',
   ITEM_LINK: 'ad-item-link',
@@ -94,12 +93,11 @@ class ADUploader {
       {re:'change', ev:'change', ctr: 'root' },
       {re: 'upload', ev: 'upload', ctr: 'root'},
       {re:'deleteFile', ev:'click', ctr: attributes.DEL },
-      {re: 'controlChange', ev:'change', ctr: attributes.CTR }
     ];
     this.listeners_ = {
       uploadClick: (e) => this.uploadBtnClick_(e),
       deleteFile:(e) => this.deleteFiles_(e),
-      controlChange:(e) => this.controlChange_(e),
+      //controlChange:(e) => this.controlChange_(e),
       // Two root events
       change: (e) => this.rootChange_(e),
       upload: (e)=> this.rootUpload_(e)
@@ -108,6 +106,14 @@ class ADUploader {
       this.listeners_.addClick = (e) => this.addClick_(e);
       this.listenerInfos_.push({re:'addClick', ev:'click', ctr: attributes.ADD});
     }
+
+    // Holds current instace of the input[type=file] control.
+    this.ctr_ = null;
+
+    // This will be used dynamically with each new instance
+    // of the input[type=file] control
+    this.ctrChgLsn_ = (e)=> this.controlChange_(e);
+
     this.initialize();
   }
   initialize() {
@@ -217,7 +223,7 @@ class ADUploader {
     btn.addEventListener('click', (e) => this.deleteFile_(e));
     return con.firstElementChild;
   }
-  addFile_(file) {
+  addFile_(file, fileIndex) {
     let rec = this.getRecTmp_();
     let item = rec.querySelector(`[${attributes.ITEM_LINK}]`);
     item.textContent = file.name;
@@ -228,7 +234,9 @@ class ADUploader {
     let listCon = this.root_.querySelector(`[${attributes.LIST}]`);
     listCon.appendChild(rec);
     this.fileList_.push({
-      name: file.name
+      name: file.name,
+      ind: fileIndex,
+      ref: this.ctr_
     });
   }
   addFormData_(file) {
@@ -237,15 +245,13 @@ class ADUploader {
   addFiles_(){
     let btn = this.root_.querySelector(`[${attributes.ADD}]`);
     this.btnIndicator_(btn, true);
-    let upl = this.root_.querySelector(`[${attributes.CTR}]`);
-    let files = upl.files;
-    [].forEach.call(files, (f) => {
-      this.addFile_(f);
-      this.addFormData_(f);
+
+    let files = this.ctr_.files;
+    [].forEach.call(files, (f, i) => {
+      this.addFile_(f, i);
+      //this.addFormData_(f);
     });
-    // Clear control to accept more files
-    // if needed...
-    upl.value = '';
+
     this.emit(strings.EV_CHANGE);
     this.btnIndicator_(btn);
   }
@@ -256,15 +262,8 @@ class ADUploader {
 
     let fileList = this.fileList_;
     let name = rec.getAttribute(attributes.FILE_NAME);
-    /*for (let i = 0, item; i < fileList.length; i++) {
-      item = fileList[i];
-      if(item.name === name){
-        fileList.splice(i,1);
-        break;
-      }
-    }*/
     // Remove from the file list
-    [].forEach.call(this.fileList_, (file, i)=>{
+    [].forEach.call(this.fileList_, (file, i) => {
       if(file.name === name){
         this.fileList_.splice(i,1);
       }
@@ -272,11 +271,13 @@ class ADUploader {
 
     // Remove from FormData
     this.formData_.delete(name);
-    
+
   }
 
   // Event handlers
-  uploadBtnClick_(e) {}
+  uploadBtnClick_(e) {
+
+  }
   deleteFiles_(e) {}
   deleteFile_(e) {
     let btn = e.currentTarget;
@@ -286,7 +287,15 @@ class ADUploader {
     }
   }
   addClick_(e) {
-    document.querySelector(`[${attributes.CTR}]`).click();
+    let el = this.ctr_;
+    if(el){
+      el.removeEventListener(strings.EV_CHANGE,this.ctrChgLsn_);
+    }
+    el = this.ctr_ = document.createElement('input');
+    el.setAttribute('type','file');
+    el.setAttribute('multiple','multiple');
+    el.addEventListener(strings.EV_CHANGE,this.ctrChgLsn_);
+    el.click();
   }
   controlChange_(e) {
     this.addFiles_();
@@ -295,6 +304,5 @@ class ADUploader {
     this.showContext_();
   }
   rootUpload_(e) {
-
   }
 }
