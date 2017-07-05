@@ -21,8 +21,7 @@
   Constructor settings:
     dnd: true, // enable drag and drop
     add: true, // enable add first and then upload... upload is default
-    onUpload - function()
-    onChange - function(fileList, formData, callback)
+    url: upload url, if provided then internal upload process will be performed
 
   Public methods:
     getFormData
@@ -30,8 +29,9 @@
     *removeFileHandler
     setFileList
 
-  Events:
+  Root events:
     change
+    upload
 */
 
 const util = {
@@ -66,7 +66,8 @@ const attributes = {
 
 const strings = {
   CONF: 'Confirm file deletion.',
-  EV_CHANGE: 'change'
+  EV_CHANGE: 'change',
+  EV_UPLOAD: 'upload'
 };
 
 class ADUploader {
@@ -276,7 +277,14 @@ class ADUploader {
 
   // Event handlers
   uploadBtnClick_(e) {
-
+    if(this.url){
+      this.processUpload_();
+    }
+    let data = {
+      formData: this.getFormData(),
+      fileList: this.getFileList()
+    };
+    this.emit(strings.EV_UPLOAD, data);
   }
   deleteFiles_(e) {}
   deleteFile_(e) {
@@ -304,5 +312,6 @@ class ADUploader {
     this.showContext_();
   }
   rootUpload_(e) {
+
   }
 }
