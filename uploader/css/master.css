@@ -63,6 +63,7 @@ footer a:hover {
 }
 .ad-uploader .ad-uploader-toolbar {
   display: flex;
+  position: relative;
   height: 58px;
   line-height: 58px;
   padding-left: 13px;
@@ -221,6 +222,13 @@ footer a:hover {
 }
 .ad-uploader-delete .ad-progress {
   background-color: #fafafa;
+}
+.ad-uploader-toolbar > .ad-progress {
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  width: auto;
+  background-color: #f7f7f7;
 }
 .ad-progress .ad-progress-runner {
   display: block;
