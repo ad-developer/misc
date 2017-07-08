@@ -42,6 +42,9 @@ const util = {
       }
       el = el.parentElement;
     }
+  },
+  $(query) {
+    return document.querySelector(query);
   }
 };
 
@@ -61,7 +64,8 @@ const attributes = {
   ITEM_DEL_CONF: 'ad-item-conf',
   TTL: 'title',
   FILE_NAME: 'ad-item-file-name',
-  FILE_ID: 'ad-item-file-id'
+  FILE_ID: 'ad-item-file-id',
+  PROGRESS: 'ad-uploader-progress'
 };
 
 const strings = {
@@ -86,7 +90,6 @@ class ADUploader {
     this.root_ = root;
     this.opt_ = opt;
 
-    this.formData_ = new FormData();
     this.fileList_ = [];
 
     this.listenerInfos_ = [
@@ -141,7 +144,17 @@ class ADUploader {
     el.addEventListener(entType, handler);
   }
   getFormData(){
-    return this.formData_;
+    let formData = new FormData();
+    [].forEach.call(this.fileList_, (file)=>{
+      // Only get local files, the list can have
+      // items pushed from the server...
+      if(file.ind !== undefined && !file.upl){
+        let bits = file.ref.files[file.ind];
+        formData.append(file.name, bits, file.name);
+      }
+    });
+
+    return formData;
   }
   getFileList(){
     return this.fileList_;
@@ -237,11 +250,9 @@ class ADUploader {
     this.fileList_.push({
       name: file.name,
       ind: fileIndex,
-      ref: this.ctr_
+      ref: this.ctr_,
+      upl: false
     });
-  }
-  addFormData_(file) {
-    this.formData_.append('files', file, file.name);
   }
   addFiles_(){
     let btn = this.root_.querySelector(`[${attributes.ADD}]`);
@@ -250,7 +261,6 @@ class ADUploader {
     let files = this.ctr_.files;
     [].forEach.call(files, (f, i) => {
       this.addFile_(f, i);
-      //this.addFormData_(f);
     });
 
     this.emit(strings.EV_CHANGE);
@@ -269,15 +279,55 @@ class ADUploader {
         this.fileList_.splice(i,1);
       }
     });
+  }
+  processUpload_() {
+    // Set up the request.
+    let xhr = new XMLHttpRequest();
+    let ind = util.$(`[${attributes.PROGRESS}]`);
 
-    // Remove from FormData
-    this.formData_.delete(name);
+    // Register few events...
+    xhr.upload.addEventListener("progress", (e)=>{
+      if (e.lengthComputable) {
+        var pctCompl = e.loaded / e.total;
+        ind.style.width = (pctCompl * 100) + '%';
+        console.log(e.loaded);
+      } else {
+        // Unable to compute progress information since the total size is unknown
+      }
+    });
+    xhr.addEventListener("error", (e)=>{
+      ind.style.width = 0;
+    });
+    // Open the connection.
+    xhr.open('POST', this.opt_.url, true);
 
+    // Set Header
+    //xhr.setRequestHeader()
+    // Set up a handler for when the request finishes.
+    xhr.onload = (e)=> {
+      if (xhr.status === 200) {
+        // File(s) uploaded.
+        ind.style.width = 0;
+        // Remove upload button
+        let btn = this.root_.querySelector(`[${attributes.UPLOAD}]`);
+        btn.style.display = 'none';
+        [].forEach.call(this.fileList_,(file) =>{
+          file.upl = true;
+        });
+      } else {
+        ind.style.width = 0;
+        // Error.
+      }
+    };
+
+    // Prepare and send form data.
+    let formData = this.getFormData();
+    xhr.send(formData);
   }
 
   // Event handlers
   uploadBtnClick_(e) {
-    if(this.url){
+    if(this.opt_.url){
       this.processUpload_();
     }
     let data = {
@@ -311,7 +361,7 @@ class ADUploader {
   rootChange_(e) {
     this.showContext_();
   }
-  rootUpload_(e) {
-
-  }
+  // TODO: No need for this event handler.
+  // This going to be fired on the root_.
+  rootUpload_(e) {}
 }
