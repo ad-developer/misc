@@ -1,5 +1,5 @@
 
-var u = {
+let u = {
   el: function(id){
     return document.getElementById(id);
   },
@@ -16,8 +16,10 @@ var u = {
     return el.getAttribute(attr);
   }
 }
-var btn = u.el('searchBtn');
 
+/***************************************************/
+
+let btn = u.el('searchBtn');
 btn.addEventListener('click', function(){
 
   var search = u.getAttr(btn, 'ad-search');
@@ -36,52 +38,53 @@ btn.addEventListener('click', function(){
 
 });
 
-var navBtn = u.el('nav-menu-btn');
+/***************************************************/
 
-var mask = u.el('nav-mask');
+let navBtn = u.el('nav-menu-btn');
+let mask = document.querySelector('[ad-mask]');
 navBtn.addEventListener('click', function(){
-  var men = u.el('nav-menu');
+  var men = document.querySelector('[ad-drawer]');
   u.addClass(men, 'show');
-  u.addClass(mask, 'show');
+  mask.style.display = 'block';
 });
-
 
 mask.addEventListener('click', function(){
-  var men = u.el('nav-menu');
+  var men = document.querySelector('[ad-drawer]');
   u.removeClass(men, 'show');
-  u.removeClass(mask, 'show');
+  mask.style.display = 'none';
 });
 
-var navList = document.querySelectorAll('.nav-menu dt');
-
-for (var i = 0, el; i < navList.length; i++) {
+let navList = document.querySelectorAll('[ad-drawer] dt');
+for (let i = 0, el; i < navList.length; i++) {
   el = navList[i];
   console.log(el.textContent);
   el.addEventListener('click', function(event){
-    var par = event.target.parentNode;
-    var nl = par.querySelector('.nav-list');
+    let par = event.target.parentNode;
+    let nl = par.querySelector('.nav-list');
     if(nl.classList.contains('show')){
       u.removeClass(nl, 'show');
     } else {
       u.addClass(nl, 'show');
     }
-
     console.log(event.target.textContent);
   });
 };
 
-var ident = u.el('identity');
+/***************************************************/
+
+// Identity show
+let ident = document.querySelector('[ad-identity]');
 ident.addEventListener('click', function(event){
-  var el = event.target;
-  if(!el.classList.contains('show')){
-    u.addClass(el, 'show');
+  if(!this.classList.contains('show')){
+    this.classList.add('show');
   }
 });
 
+// Identity hide (click anythrere)
 document.addEventListener('click', function(event){
-  var el = u.el('identity');
-  var tarEl = event.target;
-  if(!tarEl.classList.contains('navbar-identity') && el.classList.contains('show')){
+  let el = document.querySelector('[ad-identity]');
+  let tarEl = event.target;
+  if(!tarEl.classList.contains('ad-identity') && el.classList.contains('show')){
     u.removeClass(el, 'show');
   }
 });

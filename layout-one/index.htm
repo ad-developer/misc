@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/input.css">
     <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
@@ -22,8 +25,8 @@
       <div class="ad-header-item">
         Company Name
       </div>
-
-      <div class="ad-header-item ad-righ-24" role="button" id="searchBtn" style="margin-left: auto">
+      <!--
+      <div class="ad-header-item ad-righ-24" role="button" >
         <i class="ad-icon">
           <svg viewBox="0 0 24 24">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -31,7 +34,8 @@
           </svg>
         </i>
       </div>
-      <div class="ad-header-item ad-righ-24" role="button" id="searchBtn">
+      -->
+      <div class="ad-header-item ad-righ-24" role="button" id="searchBtn" style="margin-left: auto">
         <i class="ad-icon">
           <svg viewBox="0 0 24 24">
               <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -40,74 +44,246 @@
         </i>
       </div>
 
-      <div class="ad-identity" title="first.last@gmail.com" id="identity" role="button">
-        <div class="pop-arrow-border"></div>
-        <div class="pop-arrow"></div>
-        <div class="pop">
-          <div class="pop-content">
-            <div class="pop-img"></div>
-            <div class="pop-info">
-              <div class="pop-name">Leonardo DiCaprio</div>
-              <div class="pop-email"><a href="#">l.dicaprio@email.com</a></div>
-              <div class="pop-list">
-                <p>Roles</p>
-                <ul>
-                  <li>Admin</li>
-                  <li>Writer</li>
-                  <li>Viewer</li>
-                </ul>
-              </div>
+      <div class="ad-identity" title="first.last@gmail.com" ad-identity role="button">
+        <div class="ad-arrow-border"></div>
+        <div class="ad-arrow"></div>
+        <div class="ad-pop-box">
+          <div class="content">
+            <div class="img"></div>
+            <div class="info">
+              <h1>Leonardo DiCaprio</h1>
+              <p><a href="#">leonardo.dicaprio@gmail.com</a></p>
+              <h1>Role</h1>
+              <p>Admin</p>
             </div>
           </div>
-          <div class="pop-footer">
-            <button type="button" name="button" class="btn right">Sign Out</button>
-          </div>
+          <div class="footer"></div>
         </div>
       </div>
 
     </div>
 
     <!-- Navigation drawer -->
-    <div class="nav-menu-mask" id="nav-mask"></div>
-    <div class="nav-menu" id="nav-menu">
+    <div class="ad-drawer" ad-drawer>
       <div class="logo">
-          <span>Company Name</span>
+          <h1>Company Name</h1>
       </div>
       <nav>
         <dl>
           <dt>Group One</dt>
           <div class="nav-list" >
-            <dd><a href="#" class="active">Item One</a></dd>
-            <dd><a href="#">Item Two</a></dd>
+            <dd>
+              <a href="#" class="active">Item One</a>
+              <a href="#">Item Two</a>
+            </dd>
           </div>
         </dl>
         <dl>
           <dt>Croup Two</dt>
           <div class="nav-list">
-            <dd><a href="#">Item One</a></dd>
-            <dd><a href="#">Item Two</a></dd>
-            <dd><a href="#">Item Two</a></dd>
+            <dd>
+              <a href="#">Item One</a>
+              <a href="#">Item Two</a>
+              <a href="#">Item Two</a>
+            </dd>
           </div>
         </dl>
         <dl>
-          <dt>Group Three</dt>
+          <dt>Croup Three</dt>
           <div class="nav-list">
-            <dd><a href="#">Item One</a></dd>
-            <dd><a href="#">Item Two</a></dd>
-            <dd><a href="#">Item Two</a></dd>
+            <dd>
+              <a href="#">Item One</a>
+              <a href="#">Item Two</a>
+              <a href="#">Item Two</a>
+            </dd>
           </div>
         </dl>
         <dl>
-          <dt>Group Four</dt>
+          <dt>Croup Four</dt>
           <div class="nav-list">
-            <dd><a href="#">Item One</a></dd>
-            <dd><a href="#">Item Two</a></dd>
-            <dd><a href="#">Item Two</a></dd>
+            <dd>
+              <a href="#">Item One</a>
+              <a href="#">Item Two</a>
+              <a href="#">Item Two</a>
+            </dd>
           </div>
         </dl>
       </nav>
     </div>
 
+    <!-- Main Layout -->
+    <div class="ad-container">
+
+      <div class="ad-col ad-col-256 ad-right-border">
+        <div class="ad-toolbar">
+          <div class="ad-item">
+            Summary
+          </div>
+        </div>
+        <div class="ad-content">
+          <div class="control-group">
+            <div class="input-group">
+              <input type="text" name="" value="" class="form-control" fluid-input>
+              <div class="control-label">First Name</div>
+            </div>
+            <div class="line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+            <div class="error-group">
+              <span>Enter First Name</span>
+            </div>
+          </div>
+        </div>
+        <div class="ad-footer">
+
+        </div>
+      </div>
+
+      <div class="ad-col">
+        <div class="ad-toolbar">
+          <div class="ad-item">
+            Some Information
+          </div>
+          <div class="ad-btn" style="margin-left: auto;" role="button">
+            <i class="ad-icon">
+              <svg viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </i>
+          </div>
+        </div>
+        <div class="ad-content">
+          <div class="row" style="max-width: 600px;">
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">First Name</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Error Message</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">Last Name</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Error Message</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">Email Address</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Error Message</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="max-width: 600px;">
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">First Name</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Error Message</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">Last Name *</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Required</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="control-group">
+                <div class="input-group">
+                  <input type="text" name="" value="" class="form-control" fluid-input>
+                  <div class="control-label">Email Address</div>
+                </div>
+                <div class="line-group">
+                  <div class="not-select"></div>
+                  <div class="select"></div>
+                </div>
+                <div class="error-group">
+                  <span>Error Message</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-footer">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Global mask -->
+    <div class="ad-mask" ad-mask style="display:none"></div>
+    <script src="js/fluid-input.js" charset="utf-8"></script>
     <script src="js/navbar.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        // testing error state of the control
+        var getAnsester = function(el, cls){
+          while ((el = el.parentElement) && !el.classList.contains(cls));
+          return el;
+        };
+
+        var els = document.querySelectorAll('[fluid-input]'),
+            i = 0,
+            el;
+        for (; i < els.length; i++) {
+          el = els[i];
+          // add blur event
+          el.addEventListener('blur', function(e){
+            var par = getAnsester(e.target, 'control-group');
+            if(e.target.value.trim() === ''){
+              par.classList.add('error');
+              par.classList.remove('no-star');
+            } else {
+              par.classList.remove('error');
+              par.classList.add('no-star');
+            }
+          });
+        }
+    </script>
   </body>
 </html>
