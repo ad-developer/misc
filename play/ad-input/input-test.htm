@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/ad-input.css">
+    <link rel="stylesheet" href="css/calendar.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value ad-required>
+              <div class="ad-control-label" ad-label>Required Input<span  class="require-star" ad-label-required>*</span></div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+            <div class="ad-error-group" ad-error>
+              <span>Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control ad-test-value>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value>
+              <div class="ad-control-label" ad-label>Plain Input</div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value ad-required>
+              <div class="ad-control-label" ad-label>With Button Required<span class="require-star" ad-label-required>*</span></div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+            <div class="ad-error-group" ad-error>
+              <span>Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control >
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value ad-calendar>
+              <div class="ad-control-label" ad-label>Calendar</div>
+              <div class="ad-form-button" role="button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value ad-calendar>
+              <div class="ad-control-label" ad-label>Calendar</div>
+              <div class="ad-form-button" role="button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value ad-calendar>
+              <div class="ad-control-label" ad-label>Calendar</div>
+              <div class="ad-form-button" role="button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <button type="button" name="button" class="ad-button" id="value-test">Add Value</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="js/polyfills.js" charset="utf-8"></script>
+    <!--<script src="js/ad-input.js" charset="utf-8"></script>-->
+    <script src="js/ad-input.js5.js" charset="utf-8"></script>
+    <script src="js/vendor/jquery.js" charset="utf-8"></script>
+    <script src="js/vendor/calendar.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      function closest(el, sel) {
+        while(el) {
+          if (el.matches(sel)) {
+              return el;
+          }
+          el = el.parentElement;
+        }
+      };
+      $('[ad-calendar]').datepicker();
+      let ctrl = document.querySelector('[ad-test-value]');
+
+      let btn = document.getElementById('value-test');
+      btn.addEventListener('click', function(e){
+        let el = ADInput.getInstance(ctrl);
+        el.value = 'some test';
+      });
+
+      let req = document.querySelectorAll('[ad-required]');
+      for (let i = 0, el; (el = req[i]); i++) {
+        el.addEventListener('blur', function(){
+          let par = closest(this, '[ad-input-control]');
+          if(this.value.trim() === ''){
+            par.classList.add('error');
+            par.classList.remove('no-star');
+          } else {
+            par.classList.remove('error');
+            par.classList.add('no-star');
+          }
+        });
+      }
+
+    </script>
+  </body>
+</html>
