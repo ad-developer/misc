@@ -1,0 +1,36 @@
+.ad-btn{
+  display: inline-block;
+  position: relative;
+  min-width: 64px;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  background: transparent;
+  font-size: 14px; // Override font to specifically be px as spec defined pt
+  font-weight: 500;
+  line-height: 36px; // Override line-height so text aligns centered
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  vertical-align: middle;
+  user-select: none;
+  box-sizing: border-box;
+  color: #66bb6a;
+  margin: 0px;
+}
+.ad-btn:hover{
+  cursor: pointer;
+  background-color: rgba(102, 187, 106, 0.26)
+}
+.ad-btn:active{
+  outline: 0;
+  background-color: rgba(102, 187, 106, 0.)
+}
+.ad-btn:disabled{
+  color: rgba(0, 0, 0, 0.26);
+  cursor: default;
+  pointer-events: none; 
+}

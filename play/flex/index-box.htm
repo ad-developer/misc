@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .html{
+        box-sizing: border-box;
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -ms-overflow-style: scrollbar;
+        -webkit-tap-highlight-color: transparent;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      @-ms-viewport {
+        width: device-width;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        line-height: 1.5;
+        color: #292b2c;
+        background-color: #fff;
+      }
+      .container{
+        display: block;
+        margin: 20px;
+        padding: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: #eee;
+        //position: relative;
+      }
+      .container span{
+        line-height: 40px;
+        vertical-align: top;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      .container .some-div{
+        height: 40px;
+        width: 40px;
+        background-color: #ccc;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .container .some-fixed-div{
+        height: 40px;
+        width: 40px;
+        background-color: #ccc;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 30px;
+      }
+      .container .some-fixed-div:hover{
+        color: #fff;
+        background-color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span>Some Text</span>
+      <div class="some-div"></div>
+      <div class="some-fixed-div">
+        X
+      </div>
+    </div>
+  </body>
+</html>
