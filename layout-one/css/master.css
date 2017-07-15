@@ -32,14 +32,16 @@
 .ad-right-border {
   border-right: 1px solid #e0e0e0;
 }
-
+.ad-emphasis {
+  font-weight: 400;
+}
 /* Header */
 .ad-header{
   display: flex;
   position: fixed;
   width: 100%;
   height: 64px;
-  background-color: #f44336;
+  background-color: #BB0826;
   color: #fff;
   padding: 0 24px;
   box-shadow: 0 2px 5px rgba(0,0,0,.26);
@@ -124,6 +126,7 @@
   font-size: 0px;
   white-space: nowrap;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .ad-pop-box .img{
   display: inline-block;
@@ -146,7 +149,7 @@
   vertical-align: top;
   white-space: nowrap;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .info h1 {
   font-size: 14px;
@@ -343,7 +346,7 @@
   line-height: 48px;
   padding-left: 24px;
   border-bottom: 1px solid #e0e0e0;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 .ad-content {
   display: block;
