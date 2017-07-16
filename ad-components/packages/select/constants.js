@@ -1,12 +1,13 @@
 
 const strings = {
-  INPUT_KEY: 'ad-input',
-  INPUT_CTR: 'ad-input',
+  SELECT_KEY: 'ad-select',
+  SELECT_CTR: 'ad-select',
   LABEL: 'ad-label',
   LABEL_STAR: 'ad-label-required',
   LINE: 'ad-line',
   VALUE: 'ad-value',
-  CHANGE: 'ad.change'
+  CHANGE_EV: 'ad.change',
+  SELECTED_EV: 'ad.selected'
 };
 
 const cssClasses = {

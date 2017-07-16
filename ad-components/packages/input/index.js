@@ -106,6 +106,7 @@ class ADInput {
         ctr.setAttribute(ADInputFoundation.strings.VALUE, value);
         this.emit(ADInputFoundation.strings.CHANGE, value);
       },
+      // TODO: This logic will be moved to setDisplayMode
       // state: view | edit |
       setViewState: (state) => {
         let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);

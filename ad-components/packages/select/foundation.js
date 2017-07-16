@@ -1,5 +1,5 @@
 
-class ADInputFoundation {
+class ADSelectFoundation {
   /** @return enum{cssClasses} */
   static get cssClasses() {
     return cssClasses;
@@ -22,12 +22,23 @@ class ADInputFoundation {
     return {
       addClass: (/* className: string */) => {},
       removeClass: (/* className: string, all: boolean */) => {},
+
+      setAttr: (/* attr: string, value: string */) => {},
+      rmAttr: (/* attr: string */) => {},
+
       registerInteractionHandler: (/* evtType: string, handler: EventListener */) => {},
       deregisterInteractionHandler: (/* evtType: string, handler: EventListener */) => {},
-      setDisplayMode: (/* mode: string */) => {},
+
+      registerMenuInteractionHandler: (/* type: string, handler: EventListener */) => {},
+      deregisterMenuInteractionHandler: (/* type: string, handler: EventListener */) => {},
+
       getValue: () => /* string */ '',
       setValue: (/* value: string */) => {},
-      setViewState: (/* state: string */) => {}
+
+      setDisplayMode: (/* mode: string */) => {},
+      notifyChange: () => {},
+
+      isMenuOpen: () => /* boolean */ false
     };
   }
 
@@ -39,22 +50,31 @@ class ADInputFoundation {
     this.adapter_ =
       Object.assign(ADInputFoundation.defaultAdapter, adapter);
 
-    this.listeners_ = {
-      focus: (e) => this.focus_(e),
-      blur: (e) => this.blur_(e)
-    };
+      this.displayHandler_ = (evt) => {
+        evt.preventDefault();
+        if (!this.adapter_.isMenuOpen()) {
+          this.open_();
+        }
+      };
+      this.selectionHandler_ = ({detail}) => {
+        const {index} = detail;
+        this.close_();
+        if (index !== this.selectedIndex_) {
+          this.setSelectedIndex(index);
+          this.adapter_.notifyChange();
+        }
+      };
+
   }
 
   init() {
-    this.addEventListeners_();
+    this.adapter_.registerInteractionHandler('click', this.displayHandler_);
+    this.adapter_.registerMenuInteractionHandler(
+      ADSelectFoundation.strings.SELECTED_EV, this.selectionHandler_);
   }
 
-  setViewState(state) {
-    this.removeEventListeners_();
-    this.adapter_.setViewState(state);
-    if(state === 'edit') {
-      this.addEventListeners_();
-    }
+  destroy() {
+    // Subclasses should override this method to perform de-initialization routines (de-registering events, etc.)
   }
 
   getValue(){
@@ -72,8 +92,12 @@ class ADInputFoundation {
     this.adapter_.triggerChange(value);
   }
 
-  destroy() {
-    // Subclasses should override this method to perform de-initialization routines (de-registering events, etc.)
+  setViewState(state) {
+    this.removeEventListeners_();
+    this.adapter_.setViewState(state);
+    if(state === 'edit') {
+      this.addEventListeners_();
+    }
   }
 
   addEventListeners_(){

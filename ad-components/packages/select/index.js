@@ -1,29 +1,27 @@
 
-class ADInput {
+class ADSelect {
   /**
    * @param {!Element} root
-   * @return {!ADInput}
+   * @return {!ADSelect}
    */
   static attachTo(root, opt) {
-    // Subclasses which extend MDCBase should provide an attachTo() method that takes a root element and
-    // returns an instantiated component with its root set to that element. Also note that in the cases of
-    // subclasses, an explicit foundation class will not have to be passed in; it will simply be initialized
-    // from getDefaultFoundation().
-    return new ADInput(root, undefined, opt);
+    return new ADSelect(root, undefined, opt);
   }
+
   static attachToMany(selector, opt) {
     let list = document.querySelectorAll(selector);
     for (let i = 0, root, instance; (root = list[i]); i++){
       root = list[i];
-      instance = new ADInput(root, undefined, opt);
+      instance = new ADSelect(root, undefined, opt);
       // attach instance to the root
       root.ad = root.ad || {};
-      root.ad[ADInputFoundation.strings.INPUT_KEY] = instance;
+      root.ad[ADSelectFoundation.strings.SELECT_KEY] = instance;
     }
   }
+
   static getInstance(root) {
-    return root.ad && root.ad[ADInputFoundation.strings.INPUT_KEY]
-      ? root.ad[ADInputFoundation.strings.INPUT_KEY] : null;
+    return root.ad && root.ad[ADInputFoundation.strings.SELECT_KEY]
+      ? root.ad[ADInputFoundation.strings.SELECT_KEY] : null;
   }
 
   get value() {
@@ -138,8 +136,6 @@ class ADInput {
   }
 
   destroy() {
-    // Subclasses may implement this method to release any resources / deregister any listeners they have
-    // attached. An example of this might be deregistering a resize event from the window object.
     this.foundation_.destroy();
   }
 
