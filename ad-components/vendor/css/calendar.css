@@ -54,6 +54,12 @@
 .datepicker td {
   line-height: 1.1em;
 }
+.datepicker .datepicker-months td,
+.datepicker .datepicker-years td {
+  width: 274px;
+  height: 68px;
+}
+
 .datepicker td.day:hover {
   background: #eeeeee;
   cursor: pointer;
@@ -72,13 +78,13 @@
 }
 .datepicker td span {
   display: block;
-  width: 54px;
-  height: 54px;
-  line-height: 54px;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
   float: left;
   margin: 2px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 50%;
 }
 .datepicker td span:hover {
   background: #eeeeee;

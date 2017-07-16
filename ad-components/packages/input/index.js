@@ -34,6 +34,10 @@ class ADInput {
     this.foundation_.setValue(value);
   }
 
+  set viewState(state) {
+    this.foundation_.setViewState(state);
+  }
+
   /**
    * @param {!Element} root
    * @param {F=} foundation
@@ -80,6 +84,10 @@ class ADInput {
         let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
         ctr.addEventListener(evtType, handler);
       },
+      deregisterInteractionHandler: (evtType, handler) => {
+        let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
+        ctr.removeEventListener(evtType, handler);
+      },
       setDisplayMode: (/* mode: string */) => {},
       getValue: () => {
         let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
@@ -87,11 +95,37 @@ class ADInput {
       },
       setValue: (value) => {
         let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
-        ctr.setAttribute(ADInputFoundation.strings.VALUE, value);
-        ctr.value = value;
+        if(ctr.tagName === 'DIV'){
+          ctr.textContent = value;
+        } else {
+          ctr.value = value;
+        }
       },
       triggerChange: (value) => {
+        let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
+        ctr.setAttribute(ADInputFoundation.strings.VALUE, value);
         this.emit(ADInputFoundation.strings.CHANGE, value);
+      },
+      // state: view | edit |
+      setViewState: (state) => {
+        let ctr = this.root_.querySelector(`[${ADInputFoundation.strings.INPUT_CTR}]`);
+        let value = ctr.getAttribute(ADInputFoundation.strings.VALUE);
+        let par = ctr.parentElement;
+        ctr.remove();
+
+        if(state === 'view') {
+          ctr = document.createElement('div');
+          ctr.textContent = value;
+        } else {
+          ctr = document.createElement('input');
+          ctr.value = value;
+        }
+
+        ctr.classList.add(ADInputFoundation.cssClasses.FORM_CONTROL);
+        ctr.setAttribute(ADInputFoundation.strings.INPUT_CTR, true);
+        ctr.setAttribute(ADInputFoundation.strings.VALUE, value);
+
+        par.insertBefore(ctr, par.firstChild);
       }
     });
   }

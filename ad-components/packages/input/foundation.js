@@ -26,7 +26,8 @@ class ADInputFoundation {
       deregisterInteractionHandler: (/* evtType: string, handler: EventListener */) => {},
       setDisplayMode: (/* mode: string */) => {},
       getValue: () => /* string */ '',
-      setValue: (/*value: string */) => {}
+      setValue: (/* value: string */) => {},
+      setViewState: (/* state: string */) => {}
     };
   }
 
@@ -49,7 +50,11 @@ class ADInputFoundation {
   }
 
   setViewState(state) {
-
+    this.removeEventListeners_();
+    this.adapter_.setViewState(state);
+    if(state === 'edit') {
+      this.addEventListeners_();
+    }
   }
 
   getValue(){
@@ -57,10 +62,12 @@ class ADInputFoundation {
   }
 
   setValue(value){
+    let all = true;
     if(value !== '') {
       this.adapter_.addClass(ADInputFoundation.cssClasses.SELECTED);
-      this.adapter_.removeClass(ADInputFoundation.cssClasses.SELECTED);
+      all = false;
     }
+    this.adapter_.removeClass(ADInputFoundation.cssClasses.SELECTED, all);
     this.adapter_.setValue(value);
     this.adapter_.triggerChange(value);
   }
@@ -75,6 +82,12 @@ class ADInputFoundation {
     });
   }
 
+  removeEventListeners_() {
+    Object.keys(this.listeners_).forEach((k) => {
+      this.adapter_.deregisterInteractionHandler(k, this.listeners_[k]);
+    });
+  }
+
   focus_(e){
     this.adapter_.addClass(ADInputFoundation.cssClasses.SELECTED);
   }
@@ -82,6 +95,7 @@ class ADInputFoundation {
   blur_(e){
     let value = this.getValue();
     let all = value === '';
+    this.adapter_.triggerChange(value);
     this.adapter_.removeClass(ADInputFoundation.cssClasses.SELECTED, all);
   }
 };

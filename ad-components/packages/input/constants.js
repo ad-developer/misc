@@ -10,5 +10,6 @@ const strings = {
 };
 
 const cssClasses = {
-  SELECTED: 'selected'
+  SELECTED: 'selected',
+  FORM_CONTROL: 'ad-form-control'
 };
