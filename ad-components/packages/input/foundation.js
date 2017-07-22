@@ -47,6 +47,10 @@ class ADInputFoundation {
 
   init() {
     this.addEventListeners_();
+    if (this.getValue()) {
+      this.adapter_.addClass(ADInputFoundation.cssClasses.SELECTED);
+      this.adapter_.removeClass(ADInputFoundation.cssClasses.SELECTED, false);
+    }
   }
 
   setViewState(state) {
