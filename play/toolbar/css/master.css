@@ -134,7 +134,24 @@ ul {
   border: none;
   outline: none;
   color: #fff;
-  //background-color: inherit;
+  background-color: inherit;
+  //background-color: #ff6f60;
+  padding-left: 8px;
+}
+.selection:focus {
   background-color: #ff6f60;
+}
+.selection::placeholder {
+  color: #fff;
+}
+
+.control-ddl {
+  min-width: 50px;
+  cursor: pointer;
+}
+.control-ddl:hover{
+  background-color: #ff6f60;
+}
+.control-ddl .ddl-selection {
   padding-left: 8px;
 }
