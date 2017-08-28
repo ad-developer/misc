@@ -33,3 +33,12 @@ Component
 
 
 http://blog.vjeux.com/2012/css/css-cross-browser-drag-cursor.html
+
+
+
+
+interface B
+	class A
+
+class A + interface B
+	class B

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      class Enimal {
+        constructor(name) {
+          this.name_ = name;
+        }
+        sound(){}
+      }
+
+      let Cat = class extends Enimal {
+        constructor(name) {
+          super(name);
+        }
+        sound(){
+          console.log(`Cat ${this.name_} says myau`);
+        }
+      }
+      let lucy = new Cat('Lucy');
+      lucy.sound();
+    </script>
+  </body>
+</html>
