@@ -109,8 +109,8 @@
         }
       'ft' is optional field but must be supplied if filtering set as 'server'
       (refer to filter option)
-        'opt_' option has a special meaning and the name MUST NOT be used by any other
-        field. It is used on the first load to preselect the filter(s) option(s)
+        opt_ option has a special meaning and the name MUST NOT be uses by any other
+        field. It is used upotn the first load to preselect the filter(s) option(s)
       'caller' - refer to bind method
 
  */
@@ -133,6 +133,16 @@
 		        }
 		    }
 		};
+
+    Grid.closeFitlterOptions = function(e){
+      let me = $(e.target);
+      if(!me.closest('.gex-header-selected').length){
+        $('.gex-header-selected')
+        .removeClass('gex-header-selected')
+        .find('.gex-list')
+        .hide();
+      }
+    };
 
     Grid.prototype = {
         _progress: false,
@@ -437,6 +447,7 @@
                 hCon = $('<div/>').addClass('gex-header-container'),
                 hLabel = $('<div/>').addClass('gex-header-label'),
                 hfMask = $('<div/>').addClass('gex-filter-mask'),
+                searchBox = '<div class="gex-search-box"><input type="text" class="gex-control" gex-search-input><i class="gex-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></i></div>',
                 filterContent = null,
                 br = '\n',
                 tooltip,
@@ -483,50 +494,73 @@
                 $('<span/>')
                   .addClass('glyphicon glyphicon-filter  gex-filter-btn pull-right')
                   .attr('ad-ref-list', 'col_ch_' + option.name)
-                  .on('click', function(){
-                    var me = $(this),
+                  .on('click', function(e){
+
+                    Grid.closeFitlterOptions(e);
+                    e.preventDefault();
+
+                    let me = $(this),
                         parent = me
                         .parent()
                         .parent()
                         .parent().addClass('gex-header-selected');
                         // use ar as a width for the filter list
-                        ar = parent.outerWidth() - 3;
-                        if (ar < 250) {
-                            ar = 250;
-                        }
-                        // TODO: Detect if the drop down is offscreen
-                        // on the right or on the bottom edge of the
-                        // view port
-                        // Here is the possible solution:
-                        // http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
-                        ar = $('#' + me.attr('ad-ref-list'))
-                        .parent()
-                        .width(ar)
-                        .show();
-                        if (that._isOffScreen(ar)) {
-                            ar.addClass('off-right-edge');
-                        }
+                    ar = parent.outerWidth() - 3;
+                    if (ar < 350) {
+                        ar = 350;
+                    }
+                    // TODO: Detect if the drop down is offscreen
+                    // on the right or on the bottom edge of the
+                    // view port
+                    // Here is the possible solution:
+                    // http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
+                    ar = $('#' + me.attr('ad-ref-list'))
+                    .parent()
+                    .width(ar)
+                    .show();
+                    if (that._isOffScreen(ar)) {
+                        ar.addClass('off-right-edge');
+                    }
+
                   })
               );
               filterContent = $('<div/>')
+                .html(searchBox)
                 .hide()
                 .addClass('gex-list')
                 .append(
                   $('<ul>')
                     .attr('id', 'col_ch_' + option.name)
                     .addClass('gex-choice-block gex-list-block')
-                )
-                .on('mouseleave',function(){
-                    th.removeClass('gex-header-selected');
-                    $(this).hide();
-                });
+                );
+                //.on('mouseleave',function(){
+                //    th.removeClass('gex-header-selected');
+                //    $(this).hide();
+                //});
 
-              th.append(filterContent)
-              .on('mouseleave', function(){
-                $(this)
-                .removeClass('gex-header-selected')
-                .children('.gex-list').hide();
+              filterContent.find('[gex-search-input]').on('keyup', function(){
+                  let $this = $(this),
+                      txt = $this.val().toLowerCase();
+                  $this.closest('.gex-list').find('ul').find('li').each(function(){
+        						let el = $(this),
+        							text = el.attr('title');
+                      if(text){
+                        text = text.toLowerCase();
+          							if(text.search(txt) > -1){
+          								el.show();
+          							} else {
+          								el.hide();
+          							}
+                      }
+        					});
               });
+
+              th.append(filterContent);
+              //.on('mouseleave', function(){
+              //  $(this)
+              //  .removeClass('gex-header-selected')
+              //  .children('.gex-list').hide();
+              //});
             }
 
             return th;
@@ -750,15 +784,20 @@
             }, caller);
         }
     };
+
+    // jQuery grid plug-in
+    $.fn.grid = function (option) {
+        return this.each(function () {
+            var $this = $(this);
+            option.con = $this[0].id;
+            $this.data('grid', (data = new Grid(option)));
+        })
+    }
+
+    $(document).on('click', function(e){
+      Grid.closeFitlterOptions(e);
+    });
+
+    $.fn.grid.Constructor = Grid;
+
 }();
-
-// jQuery grid plug-in
-$.fn.grid = function (option) {
-    return this.each(function () {
-        var $this = $(this);
-        option.con = $this[0].id;
-        $this.data('grid', (data = new Grid(option)));
-    })
-}
-
-$.fn.grid.Constructor = Grid;
