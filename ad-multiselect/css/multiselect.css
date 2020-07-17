@@ -1,0 +1,172 @@
+.ad-ms{
+  font-family: 'Roboto';
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.ad-ms-expanded {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+
+  /*TODO: this is for testing only*/
+  /*margin-bottom: 10px;*/
+
+  /*TODO: IMPORTANT-----
+    In Javascript
+      1. Position must be set to fixed
+      2. width: must be set to the current width of the .ms container;
+  */
+  //position: fixed;
+}
+.ad-ms-expanded .ad-ms-box{
+  border: none;
+}
+.ad-ms-expanded .ad-ms-list {
+  display: flex;
+  flex-direction: column;
+}
+.ad-ms-list {
+  display: none;
+}
+.ad-ms-box{
+    display: flex;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 0 0 5px;
+    font-size: 12px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    /*TODO: this is for testing only*/
+    /*margin-bottom: 10px;*/
+}
+.ad-ms-box__arrow-down {
+  display: flex;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #555;
+  position: relative;
+  top: 9px;
+  right: -1px;
+}
+.ad-ms-box__arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 5px solid #555;
+  float: right;
+  position: relative;
+  top: 10px;
+  right: 5px;
+}
+
+.ad-ms-choices {
+  display: flex;
+  font-size: 1.1em;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 95%;
+}
+
+.ad-ms-filter-block{
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-left: 8px;
+    margin-right: 8px;
+    box-sizing: border-box;
+}
+.ad-ms-filter-block input{
+    border: none;
+    height: 24px;
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 100%;
+    font-size: 1em;
+    outline: none;
+}
+.ad-ms-filter-block input::-ms-clear {
+    display: none;
+}
+.ad-ms-filter-block b{
+    display: flex;
+    font-size: 1em;
+    border: none;
+    margin-left: 4px;
+    float: right;
+    position: relative;
+    top: 7px;
+    right: 4px;
+}
+.ad-ms-icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+}
+.ad-ms-icon svg{
+  width: 100%;
+  height: 100%;
+}
+
+.ad-ms-choice-block {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  overflow-y:scroll;
+  height: 200px;
+  margin-left: 8px;
+  margin-right: 8px;
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0px;
+}
+.ad-ms-checkbox {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  margin-right: 4px;
+}
+.ad-ms-checkbox__icon {
+  padding: 2px;
+  display: flex;
+}
+.ad-ms-checkbox__icon svg {
+  width: 100%;
+}
+.ad-ms-choice-block li {
+ display: flex;
+ align-items: center;
+ padding-left: 4px;
+ line-height: 24px;
+ cursor: pointer;
+ white-space: nowrap;
+ overflow: hidden;
+}
+.ad-ms-choice-block li:hover{
+  background-color: #ddd;
+}
+.ad-error .ad-ms-expanded,
+.ad-error .ad-ms-box{
+  border-color: #ff0000;
+}
+.ad-error .ad-ms-choices {
+  color: #ff0000;
+}
+/* this removes IE input box clear x button */
+input[type=text]::-ms-clear {
+    display: none;
+}
