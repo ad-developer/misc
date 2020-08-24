@@ -1,6 +1,14 @@
 var ad = ad || {};
 ad.ADHierarchyList = (function(){
 
+  /*
+    Template
+    <div class="ad-hierarchy-list-container" ad-hierarchy-list>
+      <div class="ad-hierarchy-list-header" ad-title></div>
+      <div class="ad-hierarchy-list" ad-list></div>
+    </div>
+  */
+
   var ADHierarchyList = function(root, opt) {
     this.root_ = root;
     this.title_ = null;
