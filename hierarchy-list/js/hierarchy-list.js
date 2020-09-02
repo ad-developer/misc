@@ -92,17 +92,6 @@ ad.ADHierarchyList = (function(){
       var id = el.getAttribute('ad-id');
       var grpId = el.getAttribute('ad-grp-id');
 
-      //var isParent = false;
-      //var parent = el.parentNode;
-      //if(parent.hasAttriute('ad-group-item')){
-
-      //}
-
-
-      //var el = this.root_.querySelector('[ad-group-item][ad-id=' + id + ']');
-      //if(!el){
-      //  el = this.root_.querySelector('[ad-item][ad-id=' + id + ']');
-      //}
       el.parentNode.remove();
       ad.utils.emit(this.root_, 'change', { elId: id, grpId: grpId});
     }
