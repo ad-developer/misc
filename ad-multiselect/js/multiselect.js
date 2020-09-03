@@ -106,6 +106,10 @@ ad.ADMultiselect = (function(){
         this.listCtr_.appendChild(ctr);
       }
     },
+    uload: function() {
+      this.clear();
+      this.listCtr_.innerHTML = '';
+    },
     getSelectedData: function() {
       return this.valueList_;
     },
