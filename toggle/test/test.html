@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/toggle.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="ad-toggle-button" ad-toogle ad-toggle-state="on">
+        <i class="ad-toggle-icon" ad-toogle-on>
+          <svg viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </i>
+        <i class="ad-toggle-icon" ad-toggle-off style="display:none">
+          <svg viewBox="0 0 24 24">
+              <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </i>
+        <i class="ad-toggle-icon" ad-toggle-partial style="display:none">
+          <svg viewBox="0 0 24 24">
+              <defs>
+                  <path d="M0 0h24v24H0z" id="a"/>
+              </defs>
+              <clipPath id="b">
+                  <use overflow="visible" xlink:href="#a"/>
+              </clipPath>
+              <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
+          </svg>
+        </i>
+      </div>
+        <button type="button" name="button" set-partial-btn style="margin-top: 100px">Set Partial</button>
+    </div>
+
+
+
+    <script src="js/utils.js" charset="utf-8"></script>
+    <script src="../js/toggle.js" charset="utf-8"></script>
+    <script src="js/test.js" charset="utf-8"></script>
+  </body>
+</html>
