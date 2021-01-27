@@ -3,17 +3,8 @@
  Copyright (c) 2021 A.D. Software Labs
  License: MIT
 */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["ad"] = factory();
-	else
-		root["ad"] = factory();
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
+var ad = typeof ad === "object" ? ad : {}; ad["page-controller"] =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -413,4 +404,3 @@ var ADPageController = /*#__PURE__*/function (_ADComponent) {
 /***/ })
 
 /******/ });
-});
