@@ -399,8 +399,6 @@ var ADTooltip = /*#__PURE__*/function (_ADComponent) {
     value: function setPosition(x, y) {
       this.x_ = x;
       this.y_ = y;
-      this.toolTip_.style.left = x + 'px';
-      this.toolTip_.style.top = y + 'px';
     }
     /** Reload function used to reload tooltip if a source was updated */
 
@@ -415,25 +413,37 @@ var ADTooltip = /*#__PURE__*/function (_ADComponent) {
         var tooltip = document.createElement('span');
         tooltip.classList.add(strings.TOOLTIP_CL);
         tooltip.innerHTML = toolTipContent;
-        this.toolTip_ = tooltip;
-        this.root_.insertAdjacentElement('afterend', tooltip);
+        this.toolTip_ = tooltip; // Depricated - this approach is used for IE 11. Will be phased out
+        // once IE is no longer supported.
+        //this.root_.insertAdjacentElement('afterend', tooltip);
+
+        this.insertAfter_(this.root_, tooltip);
       } else {
         this.toolTip_.innerHTML = toolTipContent;
       }
     }
+    /**
+      * @private
+      */
+
   }, {
     key: "mouseOverEventHandler_",
     value: function mouseOverEventHandler_() {
       var pos = this.getTooltipPosition_();
-      this.setPosition(pos.x, pos.y);
+      this.setPosition_(pos.x, pos.y);
       this.toolTip_.classList.add(strings.TOOLTIP_SHOW_CL);
     }
+    /**
+      * @private
+      */
+
   }, {
     key: "mouseOutEventHandler_",
     value: function mouseOutEventHandler_() {
       this.toolTip_.classList.remove(strings.TOOLTIP_SHOW_CL);
     }
     /**
+      * @private
       * @return {!Object} - object {y=x, x=x} returns postio of the tooltip
       * element
       */
@@ -477,6 +487,29 @@ var ADTooltip = /*#__PURE__*/function (_ADComponent) {
         y: y,
         x: x
       };
+    }
+    /**
+      * @private
+      * @param {!number} x - position
+      * @param {!number} y - position
+      */
+
+  }, {
+    key: "setPosition_",
+    value: function setPosition_(x, y) {
+      this.toolTip_.style.left = x + 'px';
+      this.toolTip_.style.top = y + 'px';
+    }
+    /**
+      * @private
+      * @param {!Element} referenceElement - referenceElement
+      * @param {!Element} newElement - newElement
+      */
+
+  }, {
+    key: "insertAfter_",
+    value: function insertAfter_(referenceElement, newElement) {
+      referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
     }
   }], [{
     key: "attachTo",
