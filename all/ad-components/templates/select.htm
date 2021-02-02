@@ -1,0 +1,48 @@
+
+<!--
+  Attributes
+
+    ad-control-group    - root element
+    ad-select           - control
+    ad-static           - static control
+    ad-value            - attribute to hold current value of the control
+    ad-text             - attribute to hod current text representation of the
+                          control
+    ad-label            - control label
+    [ad-label-required] - required marker of the label element
+    ad-select-list      - list container
+    ad-value            - list item value
+    ad-text             - list item text
+    ad-line             - active line element
+    [ad-error]          - error group element (entire error group is optional)
+
+-->
+
+<div class="ad-control-group" ad-select-control>
+  <div class="ad-input-group ad-input-group-btn">
+    <div class="ad-form-control" ad-select role="button" ad-value ad-text></div>
+    <div class="ad-form-button">
+      <i class="ad-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M7 10l5 5 5-5z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </i>
+    </div>
+    <div class="ad-control-label" ad-label>States<span ad-label-required>*</span></div>
+    <ul class="ad-select-list" style="display: none" ad-select-list>
+      <li class="ad-select-item" ad-value="" ad-text="">Please Select...</li>
+      <li class="ad-select-item" ad-value="one" ad-text="One">One</li>
+      <li class="ad-select-item" ad-value="two" ad-text="Two">Two</li>
+      <li class="ad-select-item" ad-value="free" ad-text="Three">Three</li>
+      <li class="ad-select-item" ad-value="four" ad-text="Four">Four</li>
+    </ul>
+  </div>
+  <div class="ad-line-group">
+    <div class="not-select"></div>
+    <div class="select" ad-line></div>
+  </div>
+  <div class="ad-error-group" ad-error>
+    <span>Required</span>
+  </div>
+</div>

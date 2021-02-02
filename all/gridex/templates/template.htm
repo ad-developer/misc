@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/gridex.css">
+  </head>
+  <body>
+    <div style="padding-right: 20px; padding-left: 20px;">
+      <div id="g">
+      	<table class="table table-hover table-condensed" id="g21">
+      		<thead>
+      			<tr>
+      				<th style="width: 30px;" class="gex-header gex-header-selected">
+      					ID
+                <span class="glyphicon glyphicon-filter  gex-filter-btn pull-right"></span>
+            	</th>
+      				<th style="width: 100px;" class="gex-header">
+                 <div class="gex-header-container">
+                   <div class="gex-header-label" title="Some simple tooltipt &#013; tooltip">
+                      <a class="sorted">Audience Long Text more and more and more and more and more<span class="caret"></span></a>
+                   </div>
+                   <div class="gex-filter-mask">
+                     <span class="glyphicon glyphicon-filter gex-filter-btn gex-filter-btn-applied"></span>
+                   </div>
+                 </div>
+                 <div class="gex-list" style="display: block" style="width: 300px">
+                   <ul class="gex-choice-block gex-list-block">
+                     <li data-text="Alabama" style="border-bottom: 1px solid #ccc"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">All</span></li>
+                     <li data-text="Alabama" data-value="Alabama_val" title="Alabama"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">Ko, Yoon Jung</span></li>
+                     <li data-text="Alabama" data-value="Alabama_val" title="Alabama"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">Rosales, Christopher</span></li>
+                   </ul>
+                 </div>
+      				</th>
+      				<th style="width: 100px;" class="gex-header gex-header-selected">
+                  <a  style="color: inherit;">Created By<span class="caret up"></span></a>
+                  <span class="glyphicon glyphicon-filter  gex-filter-btn pull-right" role="button"></span>
+                  <div class="gex-list" style="display: block" style="width: 300px">
+                    <ul class="gex-choice-block gex-list-block">
+                      <li data-text="Alabama" style="border-bottom: 1px solid #ccc"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">All</span></li>
+                      <li data-text="Alabama" data-value="Alabama_val" title="Alabama"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">Ko, Yoon Jung</span></li>
+                      <li data-text="Alabama" data-value="Alabama_val" title="Alabama"><input name="testId" type="checkbox" value="Alabama_val"><span class="ms-choice-text">Rosales, Christopher</span></li>
+                    </ul>
+                  </div>
+          		</th>
+      				<th style="width: 100px;" class="gex-header">
+      				  <a  style="color: inherit;">Team Member</a>
+            	</th>
+      				<th style="width: 100px;" class="gex-header">
+      					<a>Audit Type</a>
+      				</th>
+      				<th style="width: 100px;" class="gex-header"  >
+      					<a>Audit Status</a>
+      				</th>
+      				<th style="width: 50px;"></th>
+      			</tr>
+      		</thead>
+      		<tbody>
+      			<tr data-key="2624">
+      				<td>
+      					<a href="/stoppayaudit/index/2624">2624</a><a></a>
+      				</td>
+      				<td title="3/24/2017">3/24/2017</td>
+      				<td title="Rosseau, Julie">Rosseau, Julie</td>
+      				<td title="Sistek, Brent">Sistek, Brent</td>
+      				<td><span style="color: #5bc0de">Stop Pay</span></td>
+      				<td title="Pass">Pass</td>
+      				<td>
+      					<a data-delete="" href="#" id="2624">Delete</a><a></a>
+      				</td>
+      			</tr>
+      		</tbody>
+      	</table>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+    var els = document.getElementsByClassName('gex-filter-btn');
+    for (var i = 0; i < els.length; i++) {
+      els[i].addEventListener('click', function(){
+        alert('clicked');
+      });
+    }
+    </script>
+  </body>
+</html>

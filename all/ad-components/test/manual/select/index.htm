@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../../../vendor/css/normalize.css">
+    <link rel="stylesheet" href="../../../vendor/css/grid.css">
+    <link rel="stylesheet" href="../../../vendor/css/calendar.css">
+    <link rel="stylesheet" href="../../../packages/select/ad-input.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-select-control>
+            <div class="ad-input-group ad-input-group-btn">
+              <div class="ad-form-control" ad-select role="button" ad-value ad-text></div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="ad-control-label" ad-label>States<span ad-label-required>*</span></div>
+              <ul class="ad-select-list" style="display: none" ad-select-list>
+                <li class="ad-select-item" ad-value="" ad-text="">Please Select...</li>
+                <li class="ad-select-item" ad-value="one" ad-text="One">One</li>
+                <li class="ad-select-item" ad-value="two" ad-text="Two">Two</li>
+                <li class="ad-select-item" ad-value="free" ad-text="Three">Three</li>
+                <li class="ad-select-item" ad-value="four" ad-text="Four">Four</li>
+              </ul>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+            <div class="ad-error-group" ad-error>
+              <span>Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group" ad-select-control ad-set-value>
+            <div class="ad-input-group ad-input-group-btn">
+              <div class="ad-form-control" ad-select role="button" ad-value ad-text></div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="ad-control-label" ad-label>States</div>
+              <ul class="ad-select-list" style="display: none" ad-select-list>
+                <li class="ad-select-item" ad-value="" ad-text="">Please Select...</li>
+                <li class="ad-select-item" ad-value="one" ad-text="One">One</li>
+                <li class="ad-select-item" ad-value="two" ad-text="Two">Two</li>
+                <li class="ad-select-item" ad-value="free" ad-text="Three">Three</li>
+                <li class="ad-select-item" ad-value="four" ad-text="Four">Four</li>
+              </ul>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <button type="button" name="button" class="ad-button" id="value-test">Add Value</button>
+        </div>
+        <div class="col-2">
+          <button type="button" name="button" class="ad-button" id="v-state">Set View State</button>
+        </div>
+        <div class="col-2">
+          <button type="button" name="button" class="ad-button" id="e-state">Set Edit State</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="../../../vendor/js/polyfills.js" charset="utf-8"></script>
+    <script src="../../../vendor/js/jquery.js" charset="utf-8"></script>
+    <script src="../../../vendor/js/calendar.js" charset="utf-8"></script>
+    <script src="../../../packages/select/constants.js" charset="utf-8"></script>
+    <script src="../../../packages/select/foundation.js" charset="utf-8"></script>
+    <script src="../../../packages/select/index.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+      ADInput.attachToMany('[ad-input-control]');
+
+      function closest(el, sel) {
+        while(el) {
+          if (el.matches(sel)) {
+              return el;
+          }
+          el = el.parentElement;
+        }
+      };
+      $('[ad-calendar]').datepicker();
+      let ctrl = document.querySelector('[ad-test-value]');
+
+      let btn = document.getElementById('value-test');
+      btn.addEventListener('click', function(e){
+        let el = ADInput.getInstance(ctrl);
+        el.value = 'test';
+      });
+
+      let req = document.querySelectorAll('[ad-required]');
+      for (let i = 0, el; (el = req[i]); i++) {
+        el.addEventListener('blur', function(){
+          let par = closest(this, '[ad-input-control]');
+          if(this.value.trim() === ''){
+            par.classList.add('error');
+            par.classList.remove('no-star');
+          } else {
+            par.classList.remove('error');
+            par.classList.add('no-star');
+          }
+        });
+      }
+
+      let btn2 = document.getElementById('v-state');
+      btn2.addEventListener('click', function(e){
+        let el = ADInput.getInstance(ctrl);
+        el.viewState = 'view';
+      });
+
+
+      let btn3 = document.getElementById('e-state');
+      btn3.addEventListener('click', function(e){
+        let el = ADInput.getInstance(ctrl);
+        el.viewState = 'edit';
+      });
+
+      let ctrls = document.querySelectorAll('[ad-input-control]');
+      for (var i = 0, ctr; (ctr = ctrls[i]); i++) {
+        ctr.addEventListener('ad.change', function(e){
+          let target = e.target;
+          //alert('test');
+          //alert(e.detail);
+        });
+      }
+
+    </script>
+  </body>
+</html>

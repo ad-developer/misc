@@ -1,0 +1,285 @@
+html{
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  box-sizing: inherit;
+}
+[role=button]{
+  cursor: pointer;
+}
+ul,
+li {
+ list-style: none;
+ margin: 0px;
+ padding: 0px;
+}
+input {
+  outline: none;
+}
+.ad-header {
+  position: absolute;
+  width: 100%;
+  height:38px;
+  top: 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+  line-height: 38px;
+  font-size: 16px;
+  font-weight: 300;
+  color: #fff;
+  background-color: #87ceeb;
+}
+
+/* -- actual content of the site -- */
+.ad-row {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+}
+
+.ad-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.ad-button {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 40px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.ad-button:hover {
+  background-color: #f9f9f9;
+}
+.ad-button .ad-icon {
+  top: 8px;
+  left: 8px;
+}
+.ad-button-text {
+  width: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.ad-button-text .ad-icon {
+  left: 0px;
+  margin-right: 8px;
+}
+
+.ad-chip {
+  display: inline-block;
+  position: relative;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #ccc;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 32px;
+}
+.ad-chip-button {
+  padding-right: 0px;
+}
+.ad-chip .ad-button {
+  height: 24px;
+  width: 24px;
+  left: auto;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background-color: #555;
+}
+.ad-chip .ad-button:hover svg {
+  fill: #ccc;
+}
+.ad-chip .ad-icon {
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+}
+.ad-chip svg {
+  fill: #fff;
+}
+.ad-chip-red {
+  background-color: #e53935;
+  color: #fff;
+}
+.ad-chip-blue {
+  background-color: #1e88e5;
+  color: #fff;
+}
+.ad-chip-green {
+  background-color: #43a047;
+  color: #fff;
+}
+.ad-chip-orange {
+  background-color: #fb8c00;
+}
+.ad-chip-black {
+  background-color: #212121;
+  color: #fff;
+}
+
+.ad-select {
+  display: inline-flex;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+}
+.ad-select:hover {
+  background-color: #f9f9f9;
+}
+.ad-select .ad-icon,
+.ad-select .ad-text {
+  display: inline-block;
+}
+.ad-select .ad-icon {
+  margin-left: auto;
+  top: 8px;
+}
+.ad-select .ad-select-options {
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  width: 200px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+}
+.ad-select-options li{
+  height: 32px;
+  line-height: 32px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.ad-select-options li:hover {
+  background-color: #f9f9f9;
+}
+.ad-checkbox:hover {
+  background-color: inherit;
+}
+
+.ad-inputbox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  font-size: 13px;
+}
+.ad-inputbox::after{
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  position: absolute;
+  left: 0px;
+  bottom: 1px;
+}
+.ad-inputbox label {
+  display: inline-block;
+  position: absolute;
+  height: 13px;
+  line-height: 13px;
+  bottom: 7px;
+}
+.ad-inputbox input {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  max-height: 40px;
+  line-height: 40px;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  width: 100%;
+  bottom: 0px;
+  background-color: transparent;
+  font-size: 13px;
+}
+
+.ad-toolbar {
+  display: flex;
+  position: relative;
+  height: 48px;
+  line-height: 48px;
+  margin-top: 38px;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.ad-toolbar .ad-button {
+  top: 4px;
+}
+.ad-filters {
+  display: inline-block;
+}
+.ad-col-256 {
+  position: relative;
+  display: inline-block;
+  width: 256px;
+  min-width: 256px;
+  max-width: 256px;
+  height: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+  border-right: 1px solid #ccc;
+}
+.ad-col {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+.ad-content {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.ad-filter-box {
+  position: fixed;
+  display: block;
+  width: 300px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  z-index: 10;
+}
+.ad-filter-box .ad-row {
+  height: 48px;
+  line-height: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-bottom: 1px solid #ccc;
+}
+.ad-row .ad-button {
+  min-width: 40px;
+}
+.ad-row .ad-checkbox {
+  margin-left: -8px;
+}
+.ad-row .ad-inputbox {
+  margin-right: 24px;
+}
+.ad-filter-box .ad-select{
+  top: 4px;
+  margin-right: 24px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div style="width: 100%; min-height: 200px; background-color: #ccc; padding: 24px" contenteditable="true" ad-doc>
+
+    </div>
+
+    <!--<button type="button" name="button" ad-action>Action</button>-->
+
+    <div ad-cont>
+
+    </div>
+    <script type="text/javascript">
+
+      var oDoc = document.querySelector('[ad-doc]')
+      var con = document.querySelector('[ad-cont]');
+      //var act = document.querySelector('[ad-action]');
+      var act = document.createElement('i');
+      act.innerHTML = "Test";
+      con.appendChild(act);
+
+      act.addEventListener('click', function(){
+        formatDoc('bold');
+      });
+
+      var formatDoc = function(sCmd, sValue) {
+        oDoc.focus();
+        document.execCommand(sCmd, false, sValue);
+        oDoc.focus();
+      }
+    </script>
+  </body>
+</html>

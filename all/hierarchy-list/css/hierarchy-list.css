@@ -1,0 +1,81 @@
+.ad-hierarchy-list-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.ad-hierarchy-list-header {
+  font-size: 1.1em;
+  border-bottom: 1px solid #ccc;
+  padding: 16px;
+
+}
+.ad-hierarchy-list{
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.ad-hierarchy-list-button {
+  display: flex;
+  visibility: hidden;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  margin-left: 4px;
+  top: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+
+  box-sizing: border-box;
+}
+.ad-hierarchy-list-button:hover {
+  background-color: #f7f7f7;
+}
+.ad-hierarchy-list-button svg {
+  width: 100%;
+  height: 100%;
+}
+.ad-no-button {
+  display: flex;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  margin-left: 4px;
+  top: 8px;
+  box-sizing: border-box;
+}
+
+.ad-group-item {
+  display: flex;
+  flex-shrink: 0;
+  min-height: 40px;
+  cursor: auto;
+}
+.ad-group-text {
+  display: flex;
+  line-height: 40px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.ad-item {
+  display: flex;
+}
+.ad-item-text {
+  display: flex;
+  line-height: 40px;
+  margin-left: 8px;
+  font-style: italic;
+}
+
+.ad-group-item:hover .ad-hierarchy-list-button:not(.ad-sub-button) {
+  visibility: visible;
+}
+.ad-item:hover  .ad-hierarchy-list-button {
+    visibility: visible;
+}

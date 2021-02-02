@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/ad-input.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- First row -->
+      <!-- Control with a button  -->
+      <div class="row">
+        <div class="col-3">
+          <div class="ad-control-group">
+            <div class="ad-input-group input-group-btn">
+              <input type="text" name="" value="" class="ad-form-control" fluid-input>
+              <div class="ad-control-label">Control Label</div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+            <div class="ad-error-group">
+              <span>Error Message</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second row -->
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group">
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" fluid-input>
+              <div class="ad-control-label">Control Label</div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+            <div class="ad-error-group">
+              <span>Control Label Required</span>
+            </div>
+          </div>
+        </div>
+        <!-- Required control -->
+        <div class="col-2">
+          <div class="ad-control-group">
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" fluid-input>
+              <div class="ad-control-label"><div  class="require-star">*</div>First Name</div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+            <div class="ad-error-group">
+              <span>First Name Required</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--
+        Third row
+        Static control
+      -->
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group">
+            <div class="ad-input-group">
+              <div class="ad-form-control">Static Value</div>
+              <div class="ad-control-label selected">I am static</div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group">
+            <div class="ad-input-group">
+              <div class="ad-form-control">Static Value</div>
+              <div class="ad-control-label selected">I am static too</div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        Fourth row
+        Select control
+      -->
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-control-group>
+            <div class="ad-input-group input-group-btn">
+              <div class="ad-form-control" ad-select role="button"></div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="ad-control-label" ad-label>States</div>
+              <ul class="ad-select-list" style="display: none" ad-select-list>
+                <li class="ad-select-item" ad-value="one" ad-text="One">One</li>
+                <li class="ad-select-item" ad-value="two" ad-text="Two">Two</li>
+                <li class="ad-select-item" ad-value="free" ad-text="Three">Three</li>
+                <li class="ad-select-item" ad-value="four" ad-text="Four">Four</li>
+              </ul>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="ad-control-group" ad-control-group>
+            <div class="ad-input-group input-group-btn">
+              <div class="ad-form-control" ad-select role="button"></div>
+              <div class="ad-form-button">
+                <i class="ad-icon">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z"/>
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="ad-control-label" ad-label>States</div>
+              <ul class="ad-select-list" style="display: none" ad-select-list>
+                <li class="ad-select-item" ad-value="" ad-text="">Please Select...</li>
+                <li class="ad-select-item" ad-value="one" ad-text="One">One</li>
+                <li class="ad-select-item" ad-value="two" ad-text="Two">Two</li>
+                <li class="ad-select-item" ad-value="free" ad-text="Three">Three</li>
+                <li class="ad-select-item" ad-value="four" ad-text="Four">Four</li>
+              </ul>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <div class="ad-control-group" ad-input-control>
+            <div class="ad-input-group">
+              <input type="text" name="" value="" class="ad-form-control" ad-input ad-value>
+              <div class="ad-control-label" ad-label>New Era Control<span ad-label-required>*</span></div>
+            </div>
+            <div class="ad-line-group">
+              <div class="not-select"></div>
+              <div class="select" ad-line></div>
+            </div>
+            <div class="ad-error-group" ad-error>
+              <span>Required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/plifills.js" charset="utf-8"></script>
+    <script src="js/ad-input.js" charset="utf-8"></script>
+    <!--<script src="js/ad-select.js" charset="utf-8"></script>-->
+  </body>
+</html>

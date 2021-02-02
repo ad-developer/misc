@@ -1,0 +1,351 @@
+body{
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  background-color: #fafafa;
+}
+.search-bar-mask {
+  top: 0;
+  background-color: #87CEEB;
+  height: 38px;
+  position: absolute;
+  width: 100%;
+}
+.ad-toolbar {
+  position: relative;
+  //background-color: #eee;
+  //border-bottom: 1px solid #ccc;
+  height: 60px;
+  margin-top: 38px;
+  width: 100%;
+  padding: 15px 20px;
+}
+.ad-toolbar select{
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  vertical-align: top;
+  //border: 1px solid #ccc;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  //background-color: #eee;
+  //padding-left:10px;
+  min-width: 160px;
+  outline: none;
+  //border-radius: 2px;
+}
+
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: -webkit-grabbing;
+}
+.ad-container{
+  font-size: 0px;
+  width: 100%;
+  margin: auto;
+  margin-top: 0px;
+  padding: 20px;
+  height: 370px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.ad-left-panel,
+.ad-right-panel{
+  vertical-align: top;
+  font-size: 0px;
+  display: inline-block;
+  height: 300px;
+  margin: 0px;
+
+}
+.ad-left-panel{
+  width: 32%;
+  min-width: 300px;
+}
+.ad-right-panel{
+  width: 62%;
+  min-width: 600px;
+}
+.ad-divider{
+  display: inline-block;
+  width: 6%;
+  min-width: 60px;
+}
+[role="button"] {
+  cursor: pointer;
+  //pointer-events: all;
+}
+
+/* Select Control */
+.ad-select {
+  display: flex;
+  position: relative;
+  width: 120px;
+  white-space: nowrap;
+  height: 30px;
+  line-height: 30px;
+}
+.ad-select:hover {
+  background-color: #eee;
+}
+.ad-select .ad-control {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  line-height: 30px;
+  width: 102px;
+  padding-left: 5px;
+  overflow: hidden;
+  font-size: 14px;
+}
+.ad-select .ad-select-arrow {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  top: 6px;
+}
+.ad-select .ad-select-list {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  list-style: none;
+  padding: 5px;
+  margin: 0px;
+  width: 120px;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 10;
+  background-color: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: none;
+}
+.ad-select-list li {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 5px;
+  font-size: 14px;
+}
+.ad-select-list li:hover {
+  background-color: #eee;
+
+}
+
+/* Adjustment for toolbar */
+.ad-toolbar .ad-select {
+  top: 5px;
+}
+
+/* List Container */
+.ad-list-container {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  color: #575757;
+  padding: 0px;
+  margin: 0px;
+  min-width: 300px;
+}
+
+/* List Header */
+.ad-list-container .ad-list-header {
+  display: flex;
+  font-size: 0px;
+  height: 64px;
+  line-height: 64px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.ad-list-header h1 {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: normal;
+  color: #575757;
+  padding: 0px;
+  margin: 0px;
+  cursor: default;
+}
+.ad-list-header span {
+  display: inline-block;
+  position: relative;
+  height: 64px;
+  line-height: 64px;
+  vertical-align: top;
+  font-size: 14px;
+}
+.ad-list-header .ad-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+}
+.ad-list-header .ad-icon svg{
+  vertical-align: top;
+  fill: #363636;
+}
+.ad-list-header .ad-select {
+  top: 17px;
+}
+.ad-list-header .ad-checkbox{
+  font-size: 14px;
+}
+/* List Body */
+.ad-list-container .ad-list{
+  list-style: none;
+  margin: -1px;
+  padding-left: 0px;
+  border: 1px dotted transparent;
+  width: auto;
+  height: 236px;
+  overflow-y: auto;
+}
+.ad-list li{
+  border: 1px dotted transparent;
+  border-bottom: 1px solid #eee;
+  height: 48px;
+  padding-top: 3px;
+  padding-bottom:3px;
+  padding-left: 6px;
+  overflow: hidden;
+  font-size: 0px;
+}
+.ad-list li:hover{
+  background-color: #eee;
+}
+.ad-list li:hover .ad-grip{
+  opacity: 1;
+}
+
+.ad-over {
+  border-color: red !important;
+  border-bottom: 1px dotted red !important;
+}
+
+/* Grip */
+.ad-list .ad-grip{
+  display: inline-block;
+  border: none;
+  font-size: 0px;
+  width: 10px;
+  height: 42px;
+  opacity: 0;
+}
+.ad-list .ad-grip-grabbing{
+  cursor: -webkit-grabbing;
+}
+.ad-grip .ad-grip-row{
+  display: block;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+.ad-grip .ad-grip-row:first-child{
+    margin-top: 2px;
+}
+.ad-grip .ad-grip-row:last-child{
+  margin-bottom:2px;
+}
+.ad-grip .ad-grip-col{
+  display: inline-block;
+  height: 2px;
+  width: 2px;
+  margin-right: 4px;
+  background-color: #aaa;
+}
+
+.ad-list span,
+.ad-list .ad-list-item {
+  font-weight: 100;
+  display: inline-block;
+  vertical-align: top;
+  height: 42px;
+  line-height: 42px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  font-size: 14px;
+  padding: 0px;
+}
+.ad-list .icon-placeholder {
+  width: 18px;
+}
+
+.ad-list .list-icon,
+.ad-list .ad-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 12px;
+}
+.ad-list .list-icon svg,
+.ad-list .ad-icon svg {
+  fill: #575757;
+  margin: 0px;
+  vertical-align: top;
+}
+
+
+.ad-over{
+  border: 1px dashed #ff0000;
+  cursor: pointer !important;
+}
+.ad-over-item{
+  border: 1px dashed #ccc !important;
+  cursor: copy !important;
+}
+.ad-list .checked svg {
+  fill: #1e88e5;
+}
+.ad-list .highlight svg {
+  fill: #d32f2f;
+}
+
+.ad-chip{
+  vertical-align: top;
+  position: relative;
+  height: 22px;
+  font-size: 11px;
+  line-height: 22px;
+  background-color: #1e88e5;
+  color: #fff;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+  top: 10px;
+}
+
+/* Utility classes */
+.ad-right-medium {
+  margin-right: 7px;
+}
+.ad-right-small {
+  margin-right: 3px;
+}
+.ad-right-24 {
+  margin-right: 24px;
+}
+.ad-right-auto {
+  margin-right: auto !important;
+}
+
+.hide{
+  display: none !important;
+}
+.show{
+  display: block !important;
+}
